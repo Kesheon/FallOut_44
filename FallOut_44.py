@@ -1,4 +1,4 @@
-        
+
 import characterinventory
 import characterinventory2
 import pickle
@@ -12,12 +12,16 @@ FORT_HAGEN = 6
 INSTITUTE = 7
 QUIT = 8
 
+# Everything that goes into character_inventory
 WEAPON1 = '10mm Pistol'
 AMMO1 = '10mm Pistol ammunition'
 RING1 = 'Nora\'s wedding ring'
 RING2 = 'Your wedding ring'
 BOTTLED_WATER = 'Bottled Purified Water'
 RED_ROCKET_PASSWORD = 'Password to Red Rocket Truck Stop safe: 12345'
+#--------------------------------------------------------------------
+
+# Everything that goes into character_inventory2
 ARMOR1 = 'Light Kevlar Armor'
 FOOD1 = 'Canned beans'
 
@@ -525,31 +529,3 @@ def redrocket_truckstop(character_inventory, character_inventory2):
 
             
 main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
