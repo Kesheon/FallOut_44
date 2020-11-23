@@ -12,38 +12,88 @@ FORT_HAGEN = 6
 INSTITUTE = 7
 QUIT = 8
 
-# Everything that goes into character_inventory
+# Variables that go into the character_inventory list under def main
 WEAPON1 = '10mm Pistol'
 AMMO1 = '10mm Pistol ammunition'
 RING1 = 'Nora\'s wedding ring'
 RING2 = 'Your wedding ring'
 BOTTLED_WATER = 'Bottled Purified Water'
 RED_ROCKET_PASSWORD = 'Password to Red Rocket Truck Stop safe: 12345'
-#--------------------------------------------------------------------
 
-# Everything that goes into character_inventory2
+# Variables that go into the character_inventory2 list under def main
 ARMOR1 = 'Light Kevlar Armor'
 FOOD1 = 'Canned beans'
+    # FIRST_AID1 goes here as well, but it has another list
+    # that it belongs to: quest_inventory. It can be seen further
+    # below.
 
+# Variables that go into quest_inventory list under def main
+MAN_SIZED_RATS = 'Man-sized rats already defeated'
+MUTANT_DOGS = 'Mutant dogs already defeated'
 
+# Variables for the first aid kits that can be collected
+# in various places within the program
+FIRST_AID1 = 'First aid kit'
+
+# Variable that hold's that players money
+MONEY = 0
+
+# Variables for the money that can be collected in various
+# places within the program
+CASH1 = 250
+
+# File that the program saves to
 FILENAME = 'FallOut44.txt'
 
 def main():
-    
+    # global variables that go into character_inventory list 
     global WEAPON1
     global AMMO1
     global RING1
     global RING2
     global BOTTLED_WATER
     global RED_ROCKET_PASSWORD
+
+    # global variables that go into the character_inventory2 list
     global ARMOR1
     global FOOD1
+        # FIRST_AID1 goes here as well, but it has it has another list
+        # that it belongs to: quest_inventory. It can be seen further
+        # below.
+        
+
+    # global variables that go into the quest_inventory list
+    global MAN_SIZED_RATS
+    global MUTANT_DOGS
+
+     # global variable that holds the player's money
+    global MONEY
+
+    # global variables for the money that can be collected in various
+    # places within the program
+    global CASH1
     
-    character_inventory = []
+    # global variables for the first aid kits that can be collected
+    # in various places within the program
+    global FIRST_AID1
+
+    # character_inventory is a list that stores the players collected items
+    # It is an object imported from the characterinvenory file
+    character_inventory = [WEAPON1, AMMO1]
     inventory = characterinventory.CharacterInventory(character_inventory)
-    
-    character_inventory2 = []
+
+    # character_inventory2 is a second list that stores the players collected items
+    # It is an object imported from the characterinventory2 file
+    character_inventory2 = [ARMOR1, FOOD1, FIRST_AID1]
     inventory2 = characterinventory2.CharacterInventory2(character_inventory2)
+
+    # quest_inventory is a list that prevents the same messages from
+    # being displayed more than once in certain areas of the program
+    quest_inventory = []
+
+    # prevent_exploit is a list that prevents money and first aid kits
+    # from being collected more that once/ exploited
+    prevent_exploit = []
     
     choice = 0 
     
@@ -56,11 +106,14 @@ def main():
             print()
             print(character_inventory2)
             print()
+            print('Money:\t$',format(MONEY, ',.2f'), sep='')
+            print()
             input('Press enter to continue. ')
         elif choice == SANCTUARY_HILLS:
-            Sanctuary_Hills = sanctuary_hills(character_inventory)
+            Sanctuary_Hills = sanctuary_hills(character_inventory, quest_inventory)
         elif choice == REDROCKET_TRUCKSTOP:
-            RedRocketTruckStop = redrocket_truckstop(character_inventory, character_inventory2)
+            RedRocketTruckStop = redrocket_truckstop(character_inventory, character_inventory2,
+                                                     quest_inventory, prevent_exploit)
             
 def get_menu_choice():
     print()
@@ -85,7 +138,7 @@ def get_menu_choice():
     return choice
     
 
-def sanctuary_hills(character_inventory):
+def sanctuary_hills(character_inventory, quest_inventory):
     RUNDOWN_HOUSE1 = 1
     RUNDOWN_HOUSE2 = 2
     NEIGHBOR_HOUSE = 3
@@ -111,9 +164,15 @@ def sanctuary_hills(character_inventory):
 
         if choice2 == RUNDOWN_HOUSE1:
             if WEAPON1 and AMMO1 in character_inventory:
-                input('SYSTEM: You kill all of the man-sized rats that are outside'+
+                if MAN_SIZED_RATS not in quest_inventory:
+                    quest_inventory.append(MAN_SIZED_RATS)
+                    input('SYSTEM: You kill all of the man-sized rats that are outside'+
                       ' \n\nof the house with your weapon of choice. You then enter the house.'+
                       ' \n\nPress enter to continue. ')
+                else:
+                    input('SYSTEM: You have already killed all of the man-sized rats that'+
+                          '\n\nwere here earlier. You walk by their corpses. Press'+
+                          '\n\nenter to continue. ')
                 print()
                 print()
                 print('Inside of run-down house 1')
@@ -137,13 +196,13 @@ def sanctuary_hills(character_inventory):
                 if choice3 == GET_WATER:
                     if BOTTLED_WATER not in character_inventory:
                         character_inventory.append(BOTTLED_WATER)
-                        input('SYSTEM: Bottled Purified Water has been added to your inventory.'+
-                               '\nPress enter to continue. ')
+                        input('SYSTEM: Bottled Purified Water has been added to your'+
+                              '\n\ninventory. Press enter to continue. ')
                     else:
-                        input('SYSTEM: Bottled Purified Water is already in your inventory.'+
-                               '\nPress enter to continue. ')
+                        input('SYSTEM: Bottled Purified Water is already in your'+
+                              '\n\ninventory. Press enter to continue. ')
                 elif choice3 == READ_COMPUTER1:
-                    input('Press enter to continue. ')
+                    input('Press enter to read computer. ')
                     print()
                     print('---------------------------------------------------------------------------')
                     print()
@@ -152,7 +211,7 @@ def sanctuary_hills(character_inventory):
                     print('Computer entry 1: Dear, Mr.Green'+
 '\n\nI am calling in sick today. However, it is expected of you as supervisor to host a meeting today.'+
 '\n\nYou need to stress the importance of safety in this meeting. Every year we have too many'+
-'\n\nmen,especially the younger ones, going out there thinking that they are superman.'+
+'\n\nmen, especially the younger ones, going out there thinking that they are Superman.'+
 '\n\nI will brief you in the next email I send on the points you need to bring out to them.'+
 '\n\nRecord this meeting and send it to me, please.'+
 '\n\n-Mr.Russell'+
@@ -174,16 +233,23 @@ def sanctuary_hills(character_inventory):
                     print()
                     print('Computer entry 2: Stuck!'+
 '\n\nI\'m stuck here! I should have stayed in Diamond City! I thought that'+
-'\n\nSanctuary Hills would ring true to it\'s name. But it has not. Honestly,'+
+'\n\nSanctuary Hills would ring true to it\'s name, but it has not. Honestly,'+
 '\n\nanywhere anyone goes there are people ready to shoot you for food and water, and then'+
 '\n\nthere are the animals that want to rip your head off. The animals are abnormally vicious and 10 times'+
 '\n\nbigger due to the radiation that comes from the atomic bombs that dropped 210 years ago. I stored'+
 '\n\nsome canned beans in a safe at Red Rocket Truck Stop so that I can have a guaranteed meal in the case'+
 '\n\nof an emergency. Reminder to self: the passcode to that safe is 12345. There is also some light kevlar'+
 '\n\narmor in there. It helps to wear armor since so many people and things want to hurt one another in this'+
-'\n\npost apocalyptic world.'+
+'\n\npost apocalyptic world. I also put $250 behind the Red Rocket Truck Stop\'s public toilet and a first aid'+
+'\n\nkit in the storage room\'s file cabinet. I would carry all these things on me, but I have enough on me'+
+'\n\nalready. So, all of the things I\'m storing at the Red Rocket Truck Stop are just backup items. Honestly,'+
+'\n\nI\'m crying as I write this. Life is so hard out here. I had three options and all of them were bad. I'+
+'\n\ncould have stayed in Diamond City and risked the danger of the Institute and their synths. I could leave'+
+'\n\nDiamond City and hope to find a better place to settle; I chose this and it is not going well. Or I could'+
+'\n\nhave chosen to leave the CommonwWealth in the hope of something better being out there. But that is too'+
+'\n\nrisky if you ask me.'+
 '\n\n-Rebecca'+
-'\nFebruary 1, 2287')
+'\nSeptember 25, 2287')
                     print()
                     input('Press enter to continue. ')
                     print()
@@ -191,7 +257,7 @@ def sanctuary_hills(character_inventory):
                     print('Thinking to self: I should remember that passcode to that safe: 12345. I\'ll write it down.'+
                           '\n\nThis person, Rebecca, made this entry not long ago. She must have unfortunately been'+
                           '\n\nkilled by the man-sized rats outside: I did see a woman\'s corpse nearby. Well, I can'+
-'\n\ntake those canned beans and that light kevlar armor from that safe at Red Rocket Truck Stop for the sake of my own survival.')
+'\n\ntake whatever she left behind at the Red Rocket Truck Stop.')
                     print()
                     print()
                     if RED_ROCKET_PASSWORD in character_inventory:
@@ -202,14 +268,11 @@ def sanctuary_hills(character_inventory):
                         input('SYSTEM: Password to Red Rocket Truck Stop Safe has been added to your inventory.'+
                           '\n\nPress enter to continue. ')
             else:
-                print('SYSTEM: You need a weapon and ammunition for the weapon before coming here! There are rats' +
+                input('SYSTEM: You need a weapon and ammunition for the weapon before coming here! There are rats' +
 ' \n\nthe size of a man that are threatning to attack you if you come any closer! Don\'t be like the woman who'+
-                      '\n\nwas killed! You can see her corpse nearby!')
-                print()
-                input('Press enter to continue. ')
+                      '\n\nwas killed! You can see her corpse nearby! Press enter to continue. ')
                     
-
-        if choice2 == RUNDOWN_HOUSE2:
+        elif choice2 == RUNDOWN_HOUSE2:
              print()
              print('Inside of run-down house 2')
              print('---------------------------')
@@ -238,7 +301,7 @@ def sanctuary_hills(character_inventory):
                  else:
                      input('SYSTEM: 10mm Pistol is already in your inventory. Press enter to continue. ')
              elif choice4 == READ_COMPUTER2:
-                input('Press enter to continue. ')
+                input('Press enter to read computer. ')
                 print()
                 print('---------------------------------------------------------------------------')
                 print()
@@ -294,7 +357,7 @@ def sanctuary_hills(character_inventory):
                     input('SYSTEM: 10mm Pistol ammunition is already in'+
                           ' your inventory. Press enter to continue. ')
             elif choice5 == READ_COMPUTER3:
-                input('Press enter to continue. ')
+                input('Press enter to read computer. ')
                 print()
                 print('---------------------------------------------------------------------------')
                 print()
@@ -307,7 +370,7 @@ def sanctuary_hills(character_inventory):
 '\n\nprepping the food as I write you know. I\'ll throw down some beers with Nate today. I\'ll swing your way'+
 '\n\nnext weekend. Cheers mate!'+
 '\n\n-Alex Armstrong'+
-'\nSeptember 15, 2077')
+'\nJune 17, 2077')
                 print()
                 print('Thinking to self: You and your family will be missed Alex. I\'m sorry.')
                 print()
@@ -413,29 +476,38 @@ def sanctuary_hills(character_inventory):
                 print()
                 input('Press enter to continue. ')      
 
-    return choice2
-
-
     
-def redrocket_truckstop(character_inventory, character_inventory2):
-    OPEN_SAFE = 1
-    READ_COMPUTER = 2
-    QUIT2 = 3
-    choice2 = 0
+def redrocket_truckstop(character_inventory, character_inventory2, quest_inventory,
+                        prevent_exploit):
+    global MONEY
+    global CASH1
     if WEAPON1 and AMMO1 in character_inventory:
-        while choice2 != QUIT2:
+        if MUTANT_DOGS not in quest_inventory:
+            quest_inventory.append(MUTANT_DOGS)
             input('You kill all of the mutant dogs that are outside of'+
                   '\n\nRed Rocket Truck Stop with a weapon of your choice.'+
                   '\n\nYou then enter the Red Rocket Truck Stop. Press'+
                   '\n\nenter to continue. ')
-            print()
+        else:
+            input('SYSTEM: You have already killed all of the mutant dogs that'+
+                          '\n\nwere here earlier. You walk by their corpses. Press'+
+                  '\n\nenter to continue. ')
+        OPEN_SAFE = 1
+        READ_COMPUTER = 2
+        COLLECT_CASH = 3
+        COLLECT_FIRSTAID = 4
+        QUIT2 = 5
+        choice2 = 0
+        while choice2 != QUIT2:
             print()
             print('Inside of Red Rocket Truck Stop')
             print('-------------------------------')
             print()
             print('1. Open safe in storage room'+
-              '\n2. Read computer'+
-                  '\n3. Go back to map (The CommonWealth)')
+              '\n2. Read computer in storage room'+
+                  '\n3. Collect cash behind the toilet'+
+                  '\n4. Collect the first aid kit in the storage room file cabinet'+
+                  '\n5. Go back to map (The CommonWealth)')
             print()
             choice2 = int(input('Enter your choice: '))
             print()
@@ -451,18 +523,18 @@ def redrocket_truckstop(character_inventory, character_inventory2):
                           '\n\nyou can view it. Press enter to continue. ')
                 else:
                     if ARMOR1 and FOOD1 in character_inventory2:
-                        input('SYSTEM: You already have Light Kevlar Armor and Canned beans'+
-                              '\n\nin your inventory. Press enter to continue. ')
+                        input('SYSTEM: You have already opened the safe. Light Kevlar'+
+                              '\n\nArmor and Canned beans are already in your'+
+                              '\n\ninventory. Press enter to continue. ')
                     else:
                         character_inventory2.append(ARMOR1)
                         character_inventory2.append(FOOD1)
                         input('SYSTEM: You opened the safe! Light Kevlar Armor and Canned'+
                           '\n\nbeans have been added to your inventory. Press'+
                           '\n\nenter to continue. ')
-                    print()
-                    print()
+
             elif choice2 == READ_COMPUTER:
-                input('Press enter to continue. ')
+                input('Press enter to read computer. ')
                 print()
                 print('---------------------------------------------------------------------------')
                 print()
@@ -485,7 +557,7 @@ def redrocket_truckstop(character_inventory, character_inventory2):
                 print()
                 print('-Property of Red Rocket Truck Stop')
                 print()
-                print('Computer entry 2: Distress message to nearby military units'+
+                print('Computer entry 2: Distress message to nearby military units,'+
                         '\n\nOfficer Miles reporting. I am sending this message'+
                       '\n\nfrom a civilian computer in a business storefront named,'+
                       '\n\n"Red Rocket Truck Stop". I am doing this instead of using'+
@@ -497,14 +569,14 @@ def redrocket_truckstop(character_inventory, character_inventory2):
                       '\n\nWhat can I do with it? I lost an arm after my helicopter crashed.'+
                       '\n\nMy co-pilot, Junior Officer Garret, helped slow the bleeding and'+
                       '\n\nPatched up my wound. But this patching won\'t hold forever. If'+
-                      '\n\nsomeone doesn\'t get here and help me within the next few hours'+
+                      '\n\nsomeone doesn\'t get here and help me within the next few hours,'+
                       '\n\nthen I\'m a dead man. Junior Officer Garret unfortunately tried to'+
                       '\n\nkill me realizing that we are stranded and have little food'+
                       '\n\nrations. I had to do what I had to do. If no one can come'+
                       '\n\nsave me at least retrieve my gear. It won\'t be good if just'+
                       '\n\nanyone takes my T-45 Power armor (if they find a way to power'+
                       '\n\nit up) and my assualt rifle. That stuff is military grade gear.'+
-                      '\n\nIt is made for survival and combat, not for some doofus to steal!'+
+                      '\n\nIt is made for survival and combat, not for some doofus to steal.'+
                       '\n\n-Officer Miles'+
                       '\nOctober 23, 2077')
                 print()
@@ -515,17 +587,38 @@ def redrocket_truckstop(character_inventory, character_inventory2):
                       '\n\nof Freedom in Concord. I\'m sure it\'s still there since Officer Miles'+
                       '\n\nnever got a response from anyone to his distress call. Power armor was'+
                       '\n\nthe military\'s strongest combat armor. I should know being a war veteran'+
-                      '\n\nthat used it in the American-Russian War from 2073-2076. I\'ll take anything'+
-                      '\n\nthat\'ll help me survive in this post apocalyptic world so that I can find my son, Shaun.')
+                      '\n\nwho used it in the American-Russian War from 2073-2076. I\'ll take anything'+
+                      '\n\nthat\'ll help me survive in this post apocalyptic world so that I can find'+
+                      '\n\nShaun.')
                 print()
-                print()
+                input('Press enter to continue. ')
                 
                     
+            elif choice2 == COLLECT_CASH:
+                if CASH1 not in prevent_exploit:
+                    prevent_exploit.append(CASH1)
+                    MONEY = MONEY + CASH1
+                    input('SYSTEM: $250 have been added to your inventory. Press'+
+                          '\n\nenter to continue. ')
+                else:
+                    input('SYSTEM: You have already collected the $250 behind'+
+                          '\n\nthe toilet. Press enter to continue. ')
+
+            elif choice2 == COLLECT_FIRSTAID:
+                if FIRST_AID1 not in prevent_exploit:
+                    prevent_exploit.append(FIRST_AID1)
+                    if FIRST_AID1 not in character_inventory2:
+                        character_inventory2.append(FIRST_AID1)
+                        input('SYSTEM: A first aid kit has been added to your'+
+                              '\n\ninventory. Press enter to continue. ')
+                else:
+                    input('SYSTEM: You have already collected the first aid'+
+                          '\n\nkit. Press enter to continue. ')
+
                 
     else:
         input('SYSTEM: You need a weapon and ammunition for the weapon before coming here!'+
-              '\n\nThere are mutant dogs that are as big as lions threatning to attack you.'+
+              '\n\nThere are mutant dogs that are as big as lions threatning to attack you!'+
               '\n\nPress enter to continue. ')
-
             
 main()
