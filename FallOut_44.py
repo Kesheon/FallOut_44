@@ -30,6 +30,7 @@ FOOD1 = 'Canned beans'
 # Variables that go into quest_inventory list under def main
 MAN_SIZED_RATS = 'Man-sized rats already defeated'
 MUTANT_DOGS = 'Mutant dogs already defeated'
+RAIDERS_1 = 'Raiders already defeated'
 
 # Variables for the first aid kits that can be collected
 # in various places within the program
@@ -57,7 +58,7 @@ def main():
     # global variables that go into the character_inventory2 list
     global ARMOR1
     global FOOD1
-        # FIRST_AID1 goes here as well, but it has it has another list
+        # FIRST_AID1 goes here as well, but it has another list
         # that it belongs to: quest_inventory. It can be seen further
         # below.
         
@@ -65,6 +66,7 @@ def main():
     # global variables that go into the quest_inventory list
     global MAN_SIZED_RATS
     global MUTANT_DOGS
+    global RAIDERS_1
 
      # global variable that holds the player's money
     global MONEY
@@ -79,12 +81,12 @@ def main():
 
     # character_inventory is a list that stores the players collected items
     # It is an object imported from the characterinvenory file
-    character_inventory = [WEAPON1, AMMO1]
+    character_inventory = []
     inventory = characterinventory.CharacterInventory(character_inventory)
 
     # character_inventory2 is a second list that stores the players collected items
     # It is an object imported from the characterinventory2 file
-    character_inventory2 = [ARMOR1, FOOD1, FIRST_AID1]
+    character_inventory2 = []
     inventory2 = characterinventory2.CharacterInventory2(character_inventory2)
 
     # quest_inventory is a list that prevents the same messages from
@@ -114,6 +116,9 @@ def main():
         elif choice == REDROCKET_TRUCKSTOP:
             RedRocketTruckStop = redrocket_truckstop(character_inventory, character_inventory2,
                                                      quest_inventory, prevent_exploit)
+        elif choice == CONCORD:
+            ConCord = concord(character_inventory, character_inventory2,
+                              quest_inventory, prevent_exploit)
             
 def get_menu_choice():
     print()
@@ -477,8 +482,8 @@ def sanctuary_hills(character_inventory, quest_inventory):
                 input('Press enter to continue. ')      
 
     
-def redrocket_truckstop(character_inventory, character_inventory2, quest_inventory,
-                        prevent_exploit):
+def redrocket_truckstop(character_inventory, character_inventory2,
+                        quest_inventory, prevent_exploit):
     global MONEY
     global CASH1
     if WEAPON1 and AMMO1 in character_inventory:
@@ -592,7 +597,6 @@ def redrocket_truckstop(character_inventory, character_inventory2, quest_invento
                       '\n\nShaun.')
                 print()
                 input('Press enter to continue. ')
-                
                     
             elif choice2 == COLLECT_CASH:
                 if CASH1 not in prevent_exploit:
@@ -620,5 +624,70 @@ def redrocket_truckstop(character_inventory, character_inventory2, quest_invento
         input('SYSTEM: You need a weapon and ammunition for the weapon before coming here!'+
               '\n\nThere are mutant dogs that are as big as lions threatning to attack you!'+
               '\n\nPress enter to continue. ')
-            
+
+def concord(character_inventory, character_inventory2,  
+            quest_inventory, prevent_exploit):
+    MUESUEM_OF_FREEDOM = 1
+    MYSTERIOUS_SEWER = 2
+    QUIT2 = 3
+    choice2 = 0
+    while choice2 != QUIT2:
+        print()
+        print('Places in Concord')
+        print('-----------------')
+        print()
+        print('1. Go to the Muesuem of Freedom'+
+              '\n2. Investigate the mysterious looking sewer')
+        print()
+        choice2 = int(input('Enter your choice: '))
+        print()
+        while choice2 < MUESUEM_OF_FREEDOM or choice2 > QUIT2:
+            choice2 = int(input('Enter a valid choice: '))
+            print()
+        if choice2 == MUESUEM_OF_FREEDOM:
+            if WEAPON1 and AMMO1 in character_inventory:
+                if ARMOR1 in character_inventory2:
+                    if RAIDERS_1 not in quest_inventory:
+                        quest_inventory.append(RAIDERS_1)
+                        input('SYSTEM: You get into a shoot out with a bunch of low'+
+                                  '\n\nlifes who call themselves "Raiders". You take cover'+
+                                  '\n\nbehind a rusted car. You can hear their bullets'+
+                                  '\n\nwhistling over your head. It\'s about 7 of them'+
+                                  '\n\nfrom what you can tell. But due to being an ex'+
+                                  '\n\nmember of a special combat branch in the military'+
+                                  '\n\nand being well equipped: you are able to mow them'+
+                                  '\n\ndown with your weapon of choice. However, you'+
+                                  '\n\nwere shot in the left shoulder and use a first aid'+
+                                  '\n\nkit to take care of it. Press enter to continue. ')
+                        if FIRST_AID1 in character_inventory2:
+                            character_inventory2.remove(FIRST_AID1)
+                    else:
+                            input('SYSTEM: You have already killed the "Raiders" that were here. You'+
+                          '\n\nwalk by their corpses. Press enter to continue. ')
+                    print()
+                    print()
+                    print('Inside of the Muesuem of Freedom')
+                    print('--------------------------------')
+                    print()
+                    print('Thinking to self: Man this place is run-down.')
+                    print()
+                    print('1. Collect first aid kit by emergency exit(downstairs)'+
+                          '\n2. Collect assualt rifle hidden behind mannequin(downstairs)'+
+                          '\n3. Hack computer to open security gate and collect fusion core (upstairs)'+
+                          '\n4. Enter T-45 Power Armor (rooftop)')
+                           
+                else:
+                    input('SYSTEM: Check your inventory! You need either a 10mm pistol,'+
+                              '\n\n10mm pistol ammunition, light kevlar armor, and/or a first'+
+                              '\n\naid kit before coming here. There are men outside who are'+
+                              '\n\narmed and they do not look friendly. It seems they are'+
+                              '\n\nlooking for something inside of the muesuem... Press'+
+                              '\n\nenter to continue. ')
+            else:
+                input('SYSTEM: Check your inventory! You need either a 10mm pistol,'+
+                              '\n\n10mm pistol ammunition, light kevlar armor, and/or a first'+
+                              '\n\naid kit before coming here. There are men outside who are'+
+                              '\n\narmed and they do not look friendly. It seems they are'+
+                              '\n\nlooking for something inside of the muesuem... Press'+
+                              '\n\nenter to continue. ')            
 main()
