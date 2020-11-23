@@ -23,7 +23,7 @@ RED_ROCKET_PASSWORD = 'Password to Red Rocket Truck Stop safe: 12345'
 # Variables that go into the character_inventory2 list under def main
 ARMOR1 = 'Light Kevlar Armor'
 FOOD1 = 'Canned beans'
-    # FIRST_AID1 goes here as well, but it has it has another list
+    # FIRST_AID1 goes here as well, but it has another list
     # that it belongs to: quest_inventory. It can be seen further
     # below.
 
