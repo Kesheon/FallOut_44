@@ -1,4 +1,5 @@
 
+        
 import characterinventory
 import characterinventory2
 import pickle
@@ -23,25 +24,42 @@ RED_ROCKET_PASSWORD = 'Password to Red Rocket Truck Stop safe: 12345'
 # Variables that go into the character_inventory2 list under def main
 ARMOR1 = 'Light Kevlar Armor'
 FOOD1 = 'Canned beans'
-    # FIRST_AID1 goes here as well, but it has another list
-    # that it belongs to: quest_inventory. It can be seen further
-    # below.
+    # FIRST_AID1 and FIRST_AID2 go here as well, but they have two other
+    # list that they belong to: quest_inventory and prevent_exploit. 
+    # They can be seen further below.
+MUESUEM_PASSWORD = 'Muesuem of Freedom\'s public computer password: ThePersonnelHereAreLosers'
 
-# Variables that go into quest_inventory list under def main
+# Variables that go into the quest_inventory list under def main
 MAN_SIZED_RATS = 'Man-sized rats already defeated'
 MUTANT_DOGS = 'Mutant dogs already defeated'
 RAIDERS_1 = 'Raiders already defeated'
 
+# Variables that go into the think_inventory list under def main
+THINK_SELF1 = 'First thought'
+THINK_SELF2 = 'Second thought'
+THINK_SELF3 = 'Third thought'
+THINK_SELF4 = 'Fourth thought'
+THINK_SELF5 = 'Fifth thought'
+THINK_SELF6 = 'Sixth thought'
+THINK_SELF7 = 'Seventh thought'
+THINK_SELF8 = 'Eighth thought'
+THINK_SELF9 = 'Ninth thought'
+THINK_SELF10 = 'Tenth thought'
+THINK_SELF11 = 'Eleventh thought'
+THINK_SELF12 = 'Twelth thought'
+
 # Variables for the first aid kits that can be collected
 # in various places within the program
 FIRST_AID1 = 'First aid kit'
+FIRST_AID2 = 'First aid kit'
 
 # Variable that hold's that players money
-MONEY = 0
+MONEY = 0.0
 
 # Variables for the money that can be collected in various
 # places within the program
 CASH1 = 250
+CASH2 = 251
 
 # File that the program saves to
 FILENAME = 'FallOut44.txt'
@@ -58,9 +76,10 @@ def main():
     # global variables that go into the character_inventory2 list
     global ARMOR1
     global FOOD1
-        # FIRST_AID1 goes here as well, but it has another list
-        # that it belongs to: quest_inventory. It can be seen further
-        # below.
+        # FIRST_AID1 and FIRST_AID2 go here as well, but they have two other
+        # list that they belong to: quest_inventory and prevent_exploit. 
+        # They can be seen further below.
+    global MUESUEM_PASSWORD 
         
 
     # global variables that go into the quest_inventory list
@@ -68,37 +87,56 @@ def main():
     global MUTANT_DOGS
     global RAIDERS_1
 
+    # global variables that go into the think_inventory list
+    global THINK_SELF1
+    global THINK_SELF2
+    global THINK_SELF3
+    global THINK_SELF4
+    global THINK_SELF5
+    global THINK_SELF6
+    global THINK_SELF7
+    global THINK_SELF8
+    global THINK_SELF9
+    global THINK_SELF10
+    global THINK_SELF11
+    global THINK_SELF12
+
      # global variable that holds the player's money
     global MONEY
 
     # global variables for the money that can be collected in various
     # places within the program
     global CASH1
+    global CASH2
     
     # global variables for the first aid kits that can be collected
     # in various places within the program
     global FIRST_AID1
+    global FIRST_AID2
 
     # character_inventory is a list that stores the players collected items
     # It is an object imported from the characterinvenory file
-    character_inventory = []
+    character_inventory = [AMMO1, WEAPON1]
     inventory = characterinventory.CharacterInventory(character_inventory)
 
     # character_inventory2 is a second list that stores the players collected items
     # It is an object imported from the characterinventory2 file
-    character_inventory2 = []
+    character_inventory2 = [ARMOR1, FOOD1, FIRST_AID1, FIRST_AID2, MUESUEM_PASSWORD]
     inventory2 = characterinventory2.CharacterInventory2(character_inventory2)
 
-    # quest_inventory is a list that prevents the same messages from
-    # being displayed more than once in certain areas of the program
+    # quest_inventory is a list that prevents the same messages for various quest
+    # from being displayed more than once in certain areas of the program
     quest_inventory = []
+
+    # think_inventory is a list that prevents various thoughts of the player
+    # from being displayed more than once 
+    think_inventory = []
 
     # prevent_exploit is a list that prevents money and first aid kits
     # from being collected more that once/ exploited
     prevent_exploit = []
     
     choice = 0 
-    
     while choice != QUIT:
         choice = get_menu_choice()
         if choice == INVENTORY:
@@ -112,13 +150,16 @@ def main():
             print()
             input('Press enter to continue. ')
         elif choice == SANCTUARY_HILLS:
-            Sanctuary_Hills = sanctuary_hills(character_inventory, quest_inventory)
+            Sanctuary_Hills = sanctuary_hills(character_inventory, quest_inventory,
+                                              think_inventory)
         elif choice == REDROCKET_TRUCKSTOP:
             RedRocketTruckStop = redrocket_truckstop(character_inventory, character_inventory2,
-                                                     quest_inventory, prevent_exploit)
+                                                     quest_inventory, think_inventory,
+                                                     prevent_exploit)
         elif choice == CONCORD:
             ConCord = concord(character_inventory, character_inventory2,
-                              quest_inventory, prevent_exploit)
+                              quest_inventory, think_inventory,
+                              prevent_exploit)
             
 def get_menu_choice():
     print()
@@ -143,7 +184,8 @@ def get_menu_choice():
     return choice
     
 
-def sanctuary_hills(character_inventory, quest_inventory):
+def sanctuary_hills(character_inventory, quest_inventory,
+                    think_inventory):
     RUNDOWN_HOUSE1 = 1
     RUNDOWN_HOUSE2 = 2
     NEIGHBOR_HOUSE = 3
@@ -183,12 +225,8 @@ def sanctuary_hills(character_inventory, quest_inventory):
                 print('Inside of run-down house 1')
                 print('--------------------------')
                 print()
-                print('Thinking to self: Apparently scavengers have been here. I see bottled purified'+
-                      ' \n\nwater, so I should grab that to hydrate. And apparently there is'+
-                      ' \n\na computer here that still works. It\'s 210 years old! I wonder what\'s on it?')
-                print()
-                print('1. Collect bottled water'+
-                      '\n2. Read computer')
+                print('1. Check kitchen cabinets'+
+                      '\n2. Read computer in living room')
                 print()
                 GET_WATER = 1
                 READ_COMPUTER1 = 2
@@ -201,8 +239,8 @@ def sanctuary_hills(character_inventory, quest_inventory):
                 if choice3 == GET_WATER:
                     if BOTTLED_WATER not in character_inventory:
                         character_inventory.append(BOTTLED_WATER)
-                        input('SYSTEM: Bottled Purified Water has been added to your'+
-                              '\n\ninventory. Press enter to continue. ')
+                        input('SYSTEM: You find Bottled Purified Water in the kitchen cabinets.'+
+                              '\n\nIt has been added to your inventory. Press enter to continue. ')
                     else:
                         input('SYSTEM: Bottled Purified Water is already in your'+
                               '\n\ninventory. Press enter to continue. ')
@@ -226,12 +264,14 @@ def sanctuary_hills(character_inventory, quest_inventory):
                     print()
                     input('Press enter to continue. ')
                     print()
-                    print('Thinking to self: I always wondered what Mr.Russell did for work. Apparently he worked at BigWell'+
+                    if THINK_SELF1 not in think_inventory:
+                        print('Thinking to self: I always wondered what Mr.Russell did for work. Apparently he worked at BigWell'+
 '\n\nChecmical Plant. I never went out of my way to speak to him though. He was always a jerk to all'+
 '\n\nof his neighbors. What am I thinking? This man has been dead for 210 years. I should move on.')
-                    print()
-                    input('Press enter to read computer entry 2. ')
-                    print()
+                        think_inventory.append(THINK_SELF1)
+                        print()
+                        input('Press enter to read computer entry 2. ')
+                        print()
                     print('---------------------------------------------------------------------------')
                     print()
                     print('-Property of Mr.Russell')
@@ -259,11 +299,13 @@ def sanctuary_hills(character_inventory, quest_inventory):
                     input('Press enter to continue. ')
                     print()
                     print()
-                    print('Thinking to self: I should remember that passcode to that safe: 12345. I\'ll write it down.'+
+                    if THINK_SELF2 not in think_inventory:
+                        print('Thinking to self: I should remember that passcode to that safe: 12345.'+
                           '\n\nThis person, Rebecca, made this entry not long ago. She must have unfortunately been'+
                           '\n\nkilled by the man-sized rats outside: I did see a woman\'s corpse nearby. Well, I can'+
 '\n\ntake whatever she left behind at the Red Rocket Truck Stop.')
-                    print()
+                        think_inventory.append(THINK_SELF2)
+                        print()
                     print()
                     if RED_ROCKET_PASSWORD in character_inventory:
                         input('SYSTEM: You already have the password to the Red Rocket Truck Stop'+
@@ -282,14 +324,8 @@ def sanctuary_hills(character_inventory, quest_inventory):
              print('Inside of run-down house 2')
              print('---------------------------')
              print()
-             print('Thinking to self: There is a 10mm pistol under the bed in the master bedroom: I should take that.'+
-'\n\nI wonder what information is on that computer in the living room. That computer looks like,'+
-'\n\nit was made after the bombs dropped: it\'s made of scavenged materials. It might have some'+
-'\n\nrelevant information on it. The person who owned it probably temporarily lived here and'+
-'\n\nlater abandoned the place. It must have been recently.')
-             print()
-             print('1. Collect 10mm Pistol'+
-                   '\n2. Read computer')
+             print('1. Open unlocked safe under the master bedroom\'s bed'+
+                   '\n2. Read computer in master bedroom')
              print()
              COLLECT_WEAPON = 1
              READ_COMPUTER2 = 2
@@ -302,7 +338,9 @@ def sanctuary_hills(character_inventory, quest_inventory):
              if choice4 == COLLECT_WEAPON:
                  if WEAPON1 not in character_inventory:
                      character_inventory.append(WEAPON1)
-                     input('SYSTEM: 10mm Pistol has been added to your inventory. Press enter to continue. ')
+                     input('SYSTEM: You open the unlocked safe under the master bedroom\'s bed'+
+                           '\n\nand find a 10mm Pistol. It has been added to your'+
+                           '\n\ninventory. Press enter to continue. ')
                  else:
                      input('SYSTEM: 10mm Pistol is already in your inventory. Press enter to continue. ')
              elif choice4 == READ_COMPUTER2:
@@ -322,28 +360,29 @@ def sanctuary_hills(character_inventory, quest_inventory):
                 print()
                 input('Press enter to continue. ')
                 print()
-                print('Thinking to self: I\'m assuming Raiders are low-lifes that work together to rob and kill'+
+                if THINK_SELF3 not in think_inventory:
+                    print('Thinking to self: I\'m assuming Raiders are low-lifes that work together to rob and kill'+
 '\n\nfor the sake of their own survival in this post apocalyptic world. Their name,'+
 '\n\n"Raiders" sort of implies that. But what in the world are Supermutants? Deathclaws?'+
 '\n\nSynths? What is the Institute? Have I seen some of these things already and'+
 '\n\njust didn\'t know it at the time?')
-                print()
-                input('Press enter to continue. ')
+                    think_inventory.append(THINK_SELF3)
+                    print()
+                    input('Press enter to continue. ')
                 
         elif choice2 == NEIGHBOR_HOUSE:
             print()
             print('Inside of neighbor\'s run-down house')
             print('--------------------------')
             print()
-            print('Thinking to self: This was my neighbor\'s house 210 years ago!'+
+            if THINK_SELF4 not in think_inventory:
+                print('Thinking to self: This was my neighbor\'s house 210 years ago.'+
                   '\n\nThey were a likeable family, but they were killed in the'+
-                  '\n\ncryogenic pods by Vault Tec. Such a tragic end...'+
-                  '\n\nThere is some 10mm pistol ammmunition in the master bedroom\'s'+
-                  '\n\ncloset: I should take it. There is also a working computer here.'+
-                  '\n\nI wonder if it has any relevant information on it.')
-            print()
-            print('1. Collect 10mm Pistol ammunition'+
-                  '\n2. Read computer')
+                  '\n\ncryogenic pods by Vault Tec. Such a tragic end...')
+                think_inventory.append(THINK_SELF4)
+                print()
+            print('1. Open rusted car\'s glove compartment in garage'+
+                  '\n2. Read computer in master bedroom')
             print()
             COLLECT_AMMO = 1
             READ_COMPUTER3 = 2
@@ -356,8 +395,9 @@ def sanctuary_hills(character_inventory, quest_inventory):
             if choice5 == COLLECT_AMMO:
                 if AMMO1 not in character_inventory:
                     character_inventory.append(AMMO1)
-                    input('SYSTEM: 10mm Pistol ammunition has been'+
-                          ' added to your inventory. Press enter to continue. ')
+                    input('SYSTEM: You open the rusted car\'s glove compartment and'+
+                          '\n\nfind a box of 10mm Pistol ammunition. It has been'+
+                          '\n\nadded to your inventory. Press enter to continue. ')
                 else:
                     input('SYSTEM: 10mm Pistol ammunition is already in'+
                           ' your inventory. Press enter to continue. ')
@@ -377,8 +417,10 @@ def sanctuary_hills(character_inventory, quest_inventory):
 '\n\n-Alex Armstrong'+
 '\nJune 17, 2077')
                 print()
-                print('Thinking to self: You and your family will be missed Alex. I\'m sorry.')
-                print()
+                if THINK_SELF5 not in think_inventory:
+                    print('Thinking to self: You and your family will be missed Alex. I\'m sorry.')
+                    think_inventory.append(THINK_SELF5)
+                    print()
                 input('Press enter to read computer entry 2. ')
                 print()
                 print('---------------------------------------------------------------------------')
@@ -405,33 +447,36 @@ def sanctuary_hills(character_inventory, quest_inventory):
                 print()
                 input('Press enter to continue. ')
                 print()
-                print('Thinking to self: Just what exactly is the Institute and'+
+                if THINK_SELF6 not in think_inventory:
+                    print('Thinking to self: Just what exactly is the Institute and'+
                             '\n\nwhat are these synths? I should go to this "Diamond'+
                             '\n\nCity" and see if anyone there can help me find my son.'+
                             '\n\nIt is a city after all, so surely there are some people'+
                             '\n\nthere with the ability to help me. This computer entry'+
                             '\n\ndid mention that there is a detective agency there...')
-                print()
-                input('Press enter to continue. ')
+                    think_inventory.append(THINK_SELF6)
+                    print()
+                    input('Press enter to continue. ')
 
         elif choice2 == YOUR_HOUSE:
             print()
             print('Inside of your house')
             print('--------------------')
             print()
-            print('Thinking to self: I sure miss being here. My son Shaun is out there'+
+            if THINK_SELF7 not in think_inventory:
+                print('Thinking to self: I sure miss being here. My son Shaun is out there'+
                   '\n\nsomewhere, my wife, Nora, was gunned down in front of me, and'+
                   '\n\nhere I am in our home 210 years later: alone. Wait a minute...'+
                   '\n\nIs that my wedding ring and Nora\'s on the nightstand? It is!'+
                   '\n\nWe didn\'t have them on the day the bombs fell because they'+
-                  '\n\nneeded repairing. They are mostly rusted out, but no doubt I'+
-                  '\n\nshould take them. And what is that tape recording there? It'+
-                  '\n\nhas "Nora\'s voice recording" written on it. Maybe she was going'+
-                  '\n\nto surprise me with it. I should play it on the computer in our'+
-                  '\n\nliving room, and listen to it. Good thing that the computer still'+
-                  '\n\nseems to work. ')
-            print()
-            print('1. Collect wedding rings on master bedroom nightstand'+
+                  '\n\nneeded repairing. They are surprisingly in good condition.'+
+                  '\n\nAnd what is that tape recording there? It has "Nora\'s voice'+
+                  '\n\nrecording" written on it. Maybe she was going to surprise me with it?'+
+                  '\n\nI should play it on the computer in our living room, and listen to it.'+
+                  '\n\nGood thing that the computer still seems to work. ')
+                think_inventory.append(THINK_SELF7)
+                print()
+            print('1. Collect wedding rings on the master bedroom\'s nightstand'+
                   '\n2. Listen to Nora\'s voice recording on living room computer')
             print()
             COLLECT_RINGS = 1
@@ -477,13 +522,16 @@ def sanctuary_hills(character_inventory, quest_inventory):
 '\nRecorded October 21, 2077')
                 print()
                 print()
-                print('Thinking to self: I\'ll find Shaun. For the both of us.')
-                print()
+                if THINK_SELF8 not in think_inventory:
+                    print('Thinking to self: I\'ll find Shaun. For the both of us.')
+                    think_inventory.append(THINK_SELF8)
+                    print()
                 input('Press enter to continue. ')      
 
     
 def redrocket_truckstop(character_inventory, character_inventory2,
-                        quest_inventory, prevent_exploit):
+                        quest_inventory, think_inventory,
+                        prevent_exploit):
     global MONEY
     global CASH1
     if WEAPON1 and AMMO1 in character_inventory:
@@ -508,10 +556,10 @@ def redrocket_truckstop(character_inventory, character_inventory2,
             print('Inside of Red Rocket Truck Stop')
             print('-------------------------------')
             print()
-            print('1. Open safe in storage room'+
+            print('1. Enter safe\'s password in the storage room'+
               '\n2. Read computer in storage room'+
-                  '\n3. Collect cash behind the toilet'+
-                  '\n4. Collect the first aid kit in the storage room file cabinet'+
+                  '\n3. Look behind the toilet'+
+                  '\n4. Collect first aid at the clerk\'s counter'+
                   '\n5. Go back to map (The CommonWealth)')
             print()
             choice2 = int(input('Enter your choice: '))
@@ -549,13 +597,15 @@ def redrocket_truckstop(character_inventory, character_inventory2,
                       '\n\n*Chocolate'+
                       '\n\n*Hot dogs'+
                       '\n\n*Hot dog buns'+
-                      '\n\n*Jersey Beer'+
+                      '\n\n*Boston Beer'+
                       '\n\n-Zackery Miller'+
                       '\nRed Rocket Truck Stop personnel'+
                       '\nOctober 9, 2077')
                 print()
-                print('Thinking to self: Not much to see here. ')
-                print()
+                if THINK_SELF9 not in think_inventory:
+                    print('Thinking to self: Not much to see here. ')
+                    think_inventory.append(THINK_SELF9)
+                    print()
                 input('Press enter to read computer entry 2. ')
                 print()
                 print('---------------------------------------------------------------------------')
@@ -587,7 +637,8 @@ def redrocket_truckstop(character_inventory, character_inventory2,
                 print()
                 input('Press enter to continue. ')
                 print()
-                print('Thinking to self: How terrible. I\'m no doofus, but I should try to take'+
+                if THINK_SELF10 not in think_inventory:
+                    print('Thinking to self: How terrible. I\'m no doofus, but I should try to take'+
                       '\n\nthat T-45 Power armor and that assualt rifle on the roof of the Muesuem'+
                       '\n\nof Freedom in Concord. I\'m sure it\'s still there since Officer Miles'+
                       '\n\nnever got a response from anyone to his distress call. Power armor was'+
@@ -595,14 +646,16 @@ def redrocket_truckstop(character_inventory, character_inventory2,
                       '\n\nwho used it in the American-Russian War from 2073-2076. I\'ll take anything'+
                       '\n\nthat\'ll help me survive in this post apocalyptic world so that I can find'+
                       '\n\nShaun.')
-                print()
+                    think_inventory.append(THINK_SELF10)
+                    print()
                 input('Press enter to continue. ')
                     
             elif choice2 == COLLECT_CASH:
                 if CASH1 not in prevent_exploit:
                     prevent_exploit.append(CASH1)
-                    MONEY = MONEY + CASH1
-                    input('SYSTEM: $250 have been added to your inventory. Press'+
+                    MONEY += CASH1
+                    input('SYSTEM: You check behind the toilet and find a hidden stash of $250.'+
+                          '\n\nIt has been added to your inventory. Press'+
                           '\n\nenter to continue. ')
                 else:
                     input('SYSTEM: You have already collected the $250 behind'+
@@ -626,7 +679,11 @@ def redrocket_truckstop(character_inventory, character_inventory2,
               '\n\nPress enter to continue. ')
 
 def concord(character_inventory, character_inventory2,  
-            quest_inventory, prevent_exploit):
+            quest_inventory, think_inventory,
+            prevent_exploit):
+    global MONEY
+    global CASH1
+    global CASH2
     MUESUEM_OF_FREEDOM = 1
     MYSTERIOUS_SEWER = 2
     QUIT2 = 3
@@ -637,7 +694,8 @@ def concord(character_inventory, character_inventory2,
         print('-----------------')
         print()
         print('1. Go to the Muesuem of Freedom'+
-              '\n2. Investigate the mysterious looking sewer')
+              '\n2. Investigate the mysterious looking sewer'+
+              '\n3. Go back to map (The CommonWealth)')
         print()
         choice2 = int(input('Enter your choice: '))
         print()
@@ -669,12 +727,15 @@ def concord(character_inventory, character_inventory2,
                     print('Inside of the Muesuem of Freedom')
                     print('--------------------------------')
                     print()
-                    print('Thinking to self: Man this place is run-down.')
+                    if THINK_SELF11 in think_inventory:
+                        print('Thinking to self: Man this place is run-down. There\'s a'+
+                          '\n\nhole in the roof up there.')
+                        think_inventory.append(THINK_SELF11)
+                        print()
+                    print('1. Collect first aid kit by emergency exit (first floor)'+
+                          '\n2. Look inside muesuem\'s old ticket booth (first floor)'+
+                          '\n3. Read public computer (second floor)')
                     print()
-                    print('1. Collect first aid kit by emergency exit(downstairs)'+
-                          '\n2. Collect assualt rifle hidden behind mannequin(downstairs)'+
-                          '\n3. Hack computer to open security gate and collect fusion core (upstairs)'+
-                          '\n4. Enter T-45 Power Armor (rooftop)')
                            
                 else:
                     input('SYSTEM: Check your inventory! You need either a 10mm pistol,'+
@@ -689,5 +750,105 @@ def concord(character_inventory, character_inventory2,
                               '\n\naid kit before coming here. There are men outside who are'+
                               '\n\narmed and they do not look friendly. It seems they are'+
                               '\n\nlooking for something inside of the muesuem... Press'+
-                              '\n\nenter to continue. ')            
+                              '\n\nenter to continue. ')
+            COLLECT_FIRSTAID = 1
+            COLLECT_CASH = 2
+            READ_COMPUTER = 3
+            COLLECT_FUSION_CORE = 4
+            COLLECT_ASSUALT_RIFLE = 5
+            ENTER_T45_POWER_ARMOR = 6
+            choice3 = 0
+            choice3 = int(input('Enter your choice: '))
+            print()
+            while choice3 < COLLECT_FIRSTAID or choice3 > ENTER_T45_POWER_ARMOR:
+                choice3 = int(input('Enter your choice: '))
+                print()
+            if choice3 == COLLECT_FIRSTAID:
+                if FIRST_AID2 not in prevent_exploit:
+                    prevent_exploit.append(FIRST_AID2)
+                    if FIRST_AID2 not in character_inventory2:
+                        character_inventory2.append(FIRST_AID2)
+                        input('SYSTEM: You open the first aid kit by the emergency exit and take it.'+
+                          '\n\nIt has been added to your inventory. Press enter to continue. ')
+                else:
+                    input('SYSTEM: You have already collected the first aid'+
+                          '\n\nkit. Press enter to continue. ')
+            elif choice3 == COLLECT_CASH:
+                if CASH2 not in prevent_exploit:
+                    prevent_exploit.append(CASH2)
+                    MONEY = MONEY + CASH2
+                    input('SYSTEM: You look inside the muesuem\'s old ticket booth'+
+                          '\n\nand find $251. It was well hidden. It has'+
+                          '\n\nbeen added to your inventory. ')
+                else:
+                    input('SYSTEM: You have already collected the $250 inside the'+
+                          '\n\nmuesuem\'s ticket booth. Press enter to continue. ')
+
+            elif choice3 == READ_COMPUTER:
+                input('Press enter to read computer. ')
+                print()
+                print('---------------------------------------------------------------------------')
+                print()
+                print('-Muesuem of Freedom\'s public computer')
+                print()
+                print('Computer entry 1: GOOD RIDDANCE!'+
+                      '\n\nI am SICK AND TIRED of working with everyone here. I AM DONE! PERIOD!'+
+                      '\n\nI am typing this on the public computer, so that ANYONE, even'+
+                      '\n\ncustomers, may come and read this. I am able to shut off all of this'+
+                      '\n\nfacilitie\'s power and keep it that way for as long as I want. The fusion'+
+                      '\n\ncore behind this security gate powers this entire place and I can hack'+
+                      '\n\ninto it and shut it down from where-ever I please at anytime. And no you'+
+                      '\n\nwon\'t be able to trace my signal. Good luck trying to fix it. Who\'s hobby'+
+                      '\n\nof hacking computers is worthless now, Peter? Peter, I hope you, Patrick,'+
+                      '\n\nElizabeth, Jackson, Jocelyn, and Koby all lose your jobs. Everyday'+
+                      '\n\nyou guys open up the muesuem I will shut the power off for 3/4 of the time'+
+                      '\n\nthe muesuem is open. Good luck generating income. Peter just because'+
+                      '\n\nyou\'re the boss does not give you the right to talk to me like I\'m a child.'+
+                      '\n\nPatrick, how about you come to work and actually WORK sometime. I get tired'+
+                      '\n\nof getting called in because you\'re too much of a lazy bum to do anything. But'+
+                      '\n\nsince you all are about to lose your jobs you\'ve got all day to do that.'+
+                      '\n\nElizabeth you should stop gossiping about people behind their back. I feel'+
+                      '\n\nlike I am in high school all over again everyday I come here listening to you'+
+                      '\n\ntalk about somebody. Jackson how about you stop being so rude to customer\'s?'+
+                      '\n\nI\'m sure you\'ll find lots of time to practice that in your bathroom mirror'+
+                      '\n\nsince all of you are soon about to be out of a job. Jocelyn you should learn to'+
+                      '\n\nrespect people\'s personal space and should try taking a shower sometime. One'+
+                      '\n\nday you came by my work space and I swear I was about to pass out. Koby, you'+
+                      '\n\nneed to decide what you want to do with your life. Work a full time job or sell'+
+                      '\n\ndrugs. I got tired of police coming to the muesuem every other day asking ME'+
+                      '\n\nquestions about YOU. And lately there had been some rough looking guys coming'+
+                      '\n\nto the muesuem asking where you were. I\'m not trying to die because you cheated'+
+                      '\n\nsome thugs their 5 grams and they shoot up the muesuem. The police won\'t even'+
+                      '\n\nknow where to find me since you hired me illegally, Peter. I gave you my'+
+                      '\n\npaperwork and you said you\'d, "keep it on file." I literally heard and saw you'+
+                      '\n\nshred it not even 30 seconds later. You have no records of me that can be used to'+
+                      '\n\ntrace me, so you\'re all done for. You guys didn\'t even know my real name. I'+
+                      '\n\ndeleted all footage of me as well. The police will have no leads on me at all.'+
+                      '\n\nBut if you guys get tired of me shutting the place done so often: this is all you'+
+                      '\n\nhave to do. Type in the new password I set on this computer\'s security gate and'+
+                      '\n\nit will open. The password is: ThePersonnelHereAreLosers. Type it exactly like'+
+                      '\n\nthat. No spaces. Then you can remove the fusion core behind the computer\'s'+
+                      '\n\nsecurity gate and you will have removed this place\'s source of power and then'+
+                      '\n\nyou all can go find a new job if you so choose.'+
+                      '\n\n-"TJ"'+
+                      '\nAugust 21, 2077')
+                print()
+                input('Press enter to continue. ')
+                print()
+                if THINK_SELF12 not in think_inventory:
+                    think_inventory.append(THINK_SELF12)
+                    print('Thinking to self: Wow. What a riot. I actually remember seeing this on'+
+                          '\n\nthe national news headline. This guy was never found. Crazy. This'+
+                          '\n\nwas 210 years ago. He said the password to the public computer in this'+
+                          '\n\nbuilding is: ThePersonnelHereAreLosers. No spaces, spelled exactly'+
+                          '\n\nlike that. I\'ll remember it just in case.')
+                    print()
+                if MUESUEM_PASSWORD not in character_inventory2:
+                    input('SYSTEM: The muesuem\'s public computer password has been added to your'+
+                          '\n\ninventory. Press enter to continue. ')
+                    print()
+                else:
+                    input('SYSTEM: You already have this muesuem\'s public computer'+
+                          '\n\npassword. Press enter to continue. ')
+                    print()            
 main()
