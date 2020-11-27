@@ -133,7 +133,7 @@ def main():
     think_inventory = []
 
     # prevent_exploit is a list that prevents money and first aid kits
-    # from being collected more that once/ exploited
+    # from being collected more than once/ exploited
     prevent_exploit = []
     
     choice = 0 
