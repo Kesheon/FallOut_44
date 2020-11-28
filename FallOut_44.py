@@ -248,8 +248,8 @@ def main():
     
 
     # prevent_exploit is a list that prevents variables CASH1,
-    # FIRST_AID1, BOTTLED_WATER, FOOD1, and FUSION_CORE1 from 
-    # being collected more than once/ exploited
+    # FIRST_AID1, BOTTLED_WATER, FOOD1, FUSION_CORE1, and ARMOR2 
+    # from being collected more than once/ exploited
     #--------------------------------------------------------
     prevent_exploit = []
 
