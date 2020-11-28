@@ -1,7 +1,7 @@
 
-        
 import characterinventory
 import characterinventory2
+import characterinventory3
 import pickle
 
 INVENTORY = 1
@@ -14,27 +14,54 @@ INSTITUTE = 7
 QUIT = 8
 
 # Variables that go into the character_inventory list under def main
+#-------------------------------------------------------------------
 WEAPON1 = '10mm Pistol'
-AMMO1 = '10mm Pistol ammunition'
+AMMO1 = '10mm Pistol Ammunition'
 RING1 = 'Nora\'s wedding ring'
 RING2 = 'Your wedding ring'
-BOTTLED_WATER = 'Bottled Purified Water'
+BOTTLED_WATER = 'Bottled Purified Water' # this variable also goes in the
+                                         # prevent_exploit list
 RED_ROCKET_PASSWORD = 'Password to Red Rocket Truck Stop safe: 12345'
 
+
 # Variables that go into the character_inventory2 list under def main
-ARMOR1 = 'Light Kevlar Armor'
-FOOD1 = 'Canned beans'
-    # FIRST_AID1 and FIRST_AID2 go here as well, but they have two other
-    # list that they belong to: quest_inventory and prevent_exploit. 
-    # They can be seen further below.
+#--------------------------------------------------------------------
+ARMOR1 = 'Light Kevlar Armor' 
+FOOD1 = 'Canned Beans' # this variable also goes in the
+                       # prevent_exploit list
+                       
+        # FIRST_AID1 goes here as well. But FIRST_AID1
+        # also belongs to the prevent_exploit list.
+        
 MUESUEM_PASSWORD = 'Muesuem of Freedom\'s public computer password: ThePersonnelHereAreLosers'
+FUSION_CORE1 = 'Fusion Core' # this variable also goes in the
+                             # prevent_exploit list
+WEAPON2 = 'Assualt Rifle'
+
+                             
+
+# Variables that go into the character_inventory3 list under def main
+#--------------------------------------------------------------------
+    # FIRST_AID2 goes in this list but also goes into the
+    # prevent_exploit2 list
+AMMO2 = '5.56 Assualt Rifle Ammunition'
+ARMOR2 = 'T-45 Power Armor' # this variable also goes in the
+                            # prevent_exploit list
+
+
+    
 
 # Variables that go into the quest_inventory list under def main
+#---------------------------------------------------------------
 MAN_SIZED_RATS = 'Man-sized rats already defeated'
 MUTANT_DOGS = 'Mutant dogs already defeated'
+READ_RED_ROCKET_COMPUTER = 'Read computer at Red Rocket Truck Stop'
 RAIDERS_1 = 'Raiders already defeated'
 
+
+
 # Variables that go into the think_inventory list under def main
+#---------------------------------------------------------------
 THINK_SELF1 = 'First thought'
 THINK_SELF2 = 'Second thought'
 THINK_SELF3 = 'Third thought'
@@ -46,48 +73,100 @@ THINK_SELF8 = 'Eighth thought'
 THINK_SELF9 = 'Ninth thought'
 THINK_SELF10 = 'Tenth thought'
 THINK_SELF11 = 'Eleventh thought'
-THINK_SELF12 = 'Twelth thought'
+THINK_SELF12 = 'Twelveth thought'
+THINK_SELF13 = 'Thirteenth thought'
+THINK_SELF14 = 'Fourteenth thought'
+
+
 
 # Variables for the first aid kits that can be collected
 # in various places within the program
-FIRST_AID1 = 'First aid kit'
-FIRST_AID2 = 'First aid kit'
+#--------------------------------------------------------------------------------
+FIRST_AID1 = 'First Aid Kit' # this variable goes in both the character_inventory
+                             # list and the prevent_exploit list
+                             
+FIRST_AID2 = 'First Aid Kit' # this variable goes in both the character_inventory2
+                             # list and the prevent_exploit2 list
+
+
+                             
 
 # Variable that hold's that players money
+#----------------------------------------
 MONEY = 0.0
+
+
+
 
 # Variables for the money that can be collected in various
 # places within the program
-CASH1 = 250
-CASH2 = 251
+#------------------------------------------------------------
+CASH1 = 250 # this variable goes in the prevent_exploit list
+CASH2 = 250 # this variable goes in the prevent_exploit2 list
+
+
 
 # File that the program saves to
+#-------------------------------
 FILENAME = 'FallOut44.txt'
 
 def main():
-    # global variables that go into character_inventory list 
+    
+    # global variables that go into character_inventory list
+    #-------------------------------------------------------
     global WEAPON1
     global AMMO1
     global RING1
     global RING2
-    global BOTTLED_WATER
+    global BOTTLED_WATER # this variable also goes in the
+                         # prevent_exploit list
+                         
     global RED_ROCKET_PASSWORD
 
+    
+
     # global variables that go into the character_inventory2 list
+    #-------------------------------------------------------------
     global ARMOR1
-    global FOOD1
-        # FIRST_AID1 and FIRST_AID2 go here as well, but they have two other
-        # list that they belong to: quest_inventory and prevent_exploit. 
-        # They can be seen further below.
-    global MUESUEM_PASSWORD 
+    global FOOD1 # this variable also goes in the
+                 # prevent_exploit list
+                 
+        # FIRST_AID1 goes here as well. But FIRST_AID1
+        # also belongs to the prevent_exploit list.
+        
+    global MUESUEM_PASSWORD
+    global FUSION_CORE1 # this variable also goes in the
+                        # prevent_exploit list
+    global WEAPON2
+    
+
+                        
+    
+
+    # global variables that go into the character_inventory3 list
+    #------------------------------------------------------------
+        # FIRST_AID2 goes in this list but also goes into the
+        # prevent_exploit2 list
+    global AMMO2
+    global ARMOR2 # this variable also goes in the
+                  # prevent_exploit list
+
+
         
 
+        
     # global variables that go into the quest_inventory list
+    #-------------------------------------------------------
     global MAN_SIZED_RATS
     global MUTANT_DOGS
+    global READ_RED_ROCKET_COMPUTER
     global RAIDERS_1
 
+
+    
+
     # global variables that go into the think_inventory list
+    #-------------------------------------------------------
     global THINK_SELF1
     global THINK_SELF2
     global THINK_SELF3
@@ -100,41 +179,87 @@ def main():
     global THINK_SELF10
     global THINK_SELF11
     global THINK_SELF12
+    global THINK_SELF13
+    global THINK_SELF14
+
+
+    
 
      # global variable that holds the player's money
+     #----------------------------------------------
     global MONEY
+
+    
 
     # global variables for the money that can be collected in various
     # places within the program
-    global CASH1
-    global CASH2
+    #----------------------------------------------------------------
+    global CASH1 # this variable goes in the prevent_exploit list
+    global CASH2 # this variable goes in the prevent_exploit2 list
+
+    
     
     # global variables for the first aid kits that can be collected
     # in various places within the program
-    global FIRST_AID1
-    global FIRST_AID2
+    #--------------------------------------------------------------
+    global FIRST_AID1 # this variable goes in both the character_inventory
+                      # list and the prevent_exploit list
+                      
+    global FIRST_AID2 # this variable goes in both the character_inventory2
+                      # list and the prevent_exploit2 list
+
+                      
 
     # character_inventory is a list that stores the players collected items
     # It is an object imported from the characterinvenory file
-    character_inventory = [AMMO1, WEAPON1]
+    #--------------------------------------------------------------------------------------
+    character_inventory = []
     inventory = characterinventory.CharacterInventory(character_inventory)
+
+    
 
     # character_inventory2 is a second list that stores the players collected items
     # It is an object imported from the characterinventory2 file
-    character_inventory2 = [ARMOR1, FOOD1, FIRST_AID1, FIRST_AID2, MUESUEM_PASSWORD]
+    #------------------------------------------------------------------------------
+    character_inventory2 = []
     inventory2 = characterinventory2.CharacterInventory2(character_inventory2)
+
+    
+
+    # character_inventory3 is a third list that stores the players collected items
+    # It is an object imported from the characterinventory3 file
+    #-----------------------------------------------------------------------------
+    character_inventory3 = []
+    inventory3 = characterinventory3.CharacterInventory3(character_inventory3)
+
+    
 
     # quest_inventory is a list that prevents the same messages for various quest
     # from being displayed more than once in certain areas of the program
+    #----------------------------------------------------------------------------
     quest_inventory = []
 
-    # think_inventory is a list that prevents various thoughts of the player
-    # from being displayed more than once 
-    think_inventory = []
+    
 
-    # prevent_exploit is a list that prevents money and first aid kits
+    # think_inventory is a list that prevents various thoughts of the player
+    # from being displayed more than once
+    #-----------------------------------------------------------------------
+    think_inventory = []
+    
+
+    # prevent_exploit is a list that prevents variables CASH1,
+    # FIRST_AID1, BOTTLED_WATER, FOOD1, FUSION_CORE1, and ARMOR2 
     # from being collected more than once/ exploited
+    #--------------------------------------------------------
     prevent_exploit = []
+
+
+
+    # prevent_exploit2 is a list that prevents variables CASH2
+    # and FIRST_AID2 from being collected more than once/ exploited
+    #--------------------------------------------------------------
+    prevent_exploit2 = []
+
     
     choice = 0 
     while choice != QUIT:
@@ -146,20 +271,23 @@ def main():
             print()
             print(character_inventory2)
             print()
+            print(character_inventory3)
+            print()
             print('Money:\t$',format(MONEY, ',.2f'), sep='')
             print()
             input('Press enter to continue. ')
         elif choice == SANCTUARY_HILLS:
             Sanctuary_Hills = sanctuary_hills(character_inventory, quest_inventory,
-                                              think_inventory)
+                                              think_inventory, prevent_exploit)
         elif choice == REDROCKET_TRUCKSTOP:
             RedRocketTruckStop = redrocket_truckstop(character_inventory, character_inventory2,
                                                      quest_inventory, think_inventory,
                                                      prevent_exploit)
         elif choice == CONCORD:
             ConCord = concord(character_inventory, character_inventory2,
-                              quest_inventory, think_inventory,
-                              prevent_exploit)
+                              character_inventory3, quest_inventory,
+                              think_inventory, prevent_exploit,
+                              prevent_exploit2)
             
 def get_menu_choice():
     print()
@@ -185,13 +313,13 @@ def get_menu_choice():
     
 
 def sanctuary_hills(character_inventory, quest_inventory,
-                    think_inventory):
+                    think_inventory, prevent_exploit):
+    choice2 = 0
     RUNDOWN_HOUSE1 = 1
     RUNDOWN_HOUSE2 = 2
     NEIGHBOR_HOUSE = 3
     YOUR_HOUSE = 4
     QUIT2 = 5
-    choice2 = 0
     while choice2 != QUIT2:
         print()
         print('Places in Sanctuary Hills')
@@ -237,13 +365,15 @@ def sanctuary_hills(character_inventory, quest_inventory,
                     choice3 = int(input('Enter a valid choice: '))
                     print()
                 if choice3 == GET_WATER:
-                    if BOTTLED_WATER not in character_inventory:
-                        character_inventory.append(BOTTLED_WATER)
-                        input('SYSTEM: You find Bottled Purified Water in the kitchen cabinets.'+
+                    if BOTTLED_WATER not in prevent_exploit:
+                        prevent_exploit.append(BOTTLED_WATER)
+                        if BOTTLED_WATER not in character_inventory:
+                            character_inventory.append(BOTTLED_WATER)
+                            input('SYSTEM: You find Bottled Purified Water in the kitchen cabinets.'+
                               '\n\nIt has been added to your inventory. Press enter to continue. ')
                     else:
-                        input('SYSTEM: Bottled Purified Water is already in your'+
-                              '\n\ninventory. Press enter to continue. ')
+                        input('SYSTEM: You have already collected the Bottled.'+
+                              '\n\nPurified Water. Press enter to continue. ')
                 elif choice3 == READ_COMPUTER1:
                     input('Press enter to read computer. ')
                     print()
@@ -316,7 +446,7 @@ def sanctuary_hills(character_inventory, quest_inventory,
                           '\n\nPress enter to continue. ')
             else:
                 input('SYSTEM: You need a weapon and ammunition for the weapon before coming here! There are rats' +
-' \n\nthe size of a man that are threatning to attack you if you come any closer! Don\'t be like the woman who'+
+'\n\nthe size of a man that are threatning to attack you if you come any closer! Don\'t be like the woman who'+
                       '\n\nwas killed! You can see her corpse nearby! Press enter to continue. ')
                     
         elif choice2 == RUNDOWN_HOUSE2:
@@ -327,9 +457,9 @@ def sanctuary_hills(character_inventory, quest_inventory,
              print('1. Open unlocked safe under the master bedroom\'s bed'+
                    '\n2. Read computer in master bedroom')
              print()
+             choice4 = 0
              COLLECT_WEAPON = 1
              READ_COMPUTER2 = 2
-             choice4 = 0
              choice4 = int(input('Enter your choice: '))
              print()
              while choice4 < COLLECT_WEAPON or choice4 > READ_COMPUTER2:
@@ -396,10 +526,10 @@ def sanctuary_hills(character_inventory, quest_inventory,
                 if AMMO1 not in character_inventory:
                     character_inventory.append(AMMO1)
                     input('SYSTEM: You open the rusted car\'s glove compartment and'+
-                          '\n\nfind a box of 10mm Pistol ammunition. It has been'+
+                          '\n\nfind a box of 10mm Pistol Ammunition. It has been'+
                           '\n\nadded to your inventory. Press enter to continue. ')
                 else:
-                    input('SYSTEM: 10mm Pistol ammunition is already in'+
+                    input('SYSTEM: 10mm Pistol Ammunition is already in'+
                           ' your inventory. Press enter to continue. ')
             elif choice5 == READ_COMPUTER3:
                 input('Press enter to read computer. ')
@@ -545,12 +675,12 @@ def redrocket_truckstop(character_inventory, character_inventory2,
             input('SYSTEM: You have already killed all of the mutant dogs that'+
                           '\n\nwere here earlier. You walk by their corpses. Press'+
                   '\n\nenter to continue. ')
+        choice2 = 0
         OPEN_SAFE = 1
         READ_COMPUTER = 2
         COLLECT_CASH = 3
         COLLECT_FIRSTAID = 4
         QUIT2 = 5
-        choice2 = 0
         while choice2 != QUIT2:
             print()
             print('Inside of Red Rocket Truck Stop')
@@ -568,6 +698,8 @@ def redrocket_truckstop(character_inventory, character_inventory2,
                 choice2 = int(input('Enter a valid choice: '))
                 print()
             if choice2 == OPEN_SAFE:
+                # the variable safe_password is used to validate
+                # the password of the Red Rocket Truck Stop's safe
                 safe_password = int(input('Enter the safe\'s password: '))
                 print()
                 if safe_password != int('12345'):
@@ -575,18 +707,21 @@ def redrocket_truckstop(character_inventory, character_inventory2,
                           '\n\nHills. Then it will be stored in your inventory: where'+
                           '\n\nyou can view it. Press enter to continue. ')
                 else:
-                    if ARMOR1 and FOOD1 in character_inventory2:
-                        input('SYSTEM: You have already opened the safe. Light Kevlar'+
-                              '\n\nArmor and Canned beans are already in your'+
-                              '\n\ninventory. Press enter to continue. ')
+                    if ARMOR1 in character_inventory:
+                        if FOOD1 in prevent_exploit:
+                            input('SYSTEM: You have already opened the safe and collected'+
+                                  '\n\nit\'s contents. Press enter to continue. ')
                     else:
                         character_inventory2.append(ARMOR1)
+                        prevent_exploit.append(FOOD1)
                         character_inventory2.append(FOOD1)
                         input('SYSTEM: You opened the safe! Light Kevlar Armor and Canned'+
                           '\n\nbeans have been added to your inventory. Press'+
                           '\n\nenter to continue. ')
 
             elif choice2 == READ_COMPUTER:
+                if READ_RED_ROCKET_COMPUTER not in quest_inventory:
+                    quest_inventory.append(READ_RED_ROCKET_COMPUTER)
                 input('Press enter to read computer. ')
                 print()
                 print('---------------------------------------------------------------------------')
@@ -679,15 +814,18 @@ def redrocket_truckstop(character_inventory, character_inventory2,
               '\n\nPress enter to continue. ')
 
 def concord(character_inventory, character_inventory2,  
-            quest_inventory, think_inventory,
-            prevent_exploit):
+            character_inventory3, quest_inventory,
+            think_inventory, prevent_exploit,
+            prevent_exploit2):
+    
     global MONEY
     global CASH1
     global CASH2
+    
+    choice2 = 0
     MUESUEM_OF_FREEDOM = 1
     MYSTERIOUS_SEWER = 2
     QUIT2 = 3
-    choice2 = 0
     while choice2 != QUIT2:
         print()
         print('Places in Concord')
@@ -722,32 +860,37 @@ def concord(character_inventory, character_inventory2,
                     else:
                             input('SYSTEM: You have already killed the "Raiders" that were here. You'+
                           '\n\nwalk by their corpses. Press enter to continue. ')
-                    print()
-                    print()
+                            print()
+                            print()
                     print('Inside of the Muesuem of Freedom')
                     print('--------------------------------')
                     print()
                     if THINK_SELF11 in think_inventory:
                         print('Thinking to self: Man this place is run-down. There\'s a'+
-                          '\n\nhole in the roof up there.')
+                          '\n\nhole in the roof up there. The elevators have been destroyed'+
+                              '\n\nit seems. I\'ll take the stairs if I need to go up.')
                         think_inventory.append(THINK_SELF11)
                         print()
-                    print('1. Collect first aid kit by emergency exit (first floor)'+
+                    print('1. Collect First Aid Kit by emergency exit (first floor)'+
                           '\n2. Look inside muesuem\'s old ticket booth (first floor)'+
-                          '\n3. Read public computer (second floor)')
+                          '\n3. Read public computer (second floor)'+
+                          '\n4. Enter public computer\'s password (second floor)'+
+                          '\n5. Search the pilot seat of the crashed helicopter (rooftop)'+
+                          '\n6. Search the co-pilot seat of the crashed helicopter (rooftop)'+
+                          '\n7. Enter and collect T-45 Power Armor next to the crashed helicopter (rooftop)')
                     print()
                            
                 else:
-                    input('SYSTEM: Check your inventory! You need either a 10mm pistol,'+
-                              '\n\n10mm pistol ammunition, light kevlar armor, and/or a first'+
-                              '\n\naid kit before coming here. There are men outside who are'+
+                    input('SYSTEM: Check your inventory! You need either a 10mm Pistol,'+
+                              '\n\n10mm Pistol Ammunition, Light Kevlar Armor, and/or a First'+
+                              '\n\nAid Kit before coming here. There are men outside who are'+
                               '\n\narmed and they do not look friendly. It seems they are'+
                               '\n\nlooking for something inside of the muesuem... Press'+
                               '\n\nenter to continue. ')
             else:
                 input('SYSTEM: Check your inventory! You need either a 10mm pistol,'+
-                              '\n\n10mm pistol ammunition, light kevlar armor, and/or a first'+
-                              '\n\naid kit before coming here. There are men outside who are'+
+                              '\n\n10mm Pistol Ammunition, Light Kevlar Armor, and/or a First'+
+                              '\n\nAid Kit before coming here. There are men outside who are'+
                               '\n\narmed and they do not look friendly. It seems they are'+
                               '\n\nlooking for something inside of the muesuem... Press'+
                               '\n\nenter to continue. ')
@@ -756,29 +899,30 @@ def concord(character_inventory, character_inventory2,
             READ_COMPUTER = 3
             COLLECT_FUSION_CORE = 4
             COLLECT_ASSUALT_RIFLE = 5
-            ENTER_T45_POWER_ARMOR = 6
+            COLLECT_ASSUALT_RIFLE_AMMO = 6
+            ENTER_T45_POWER_ARMOR = 7
             choice3 = 0
             choice3 = int(input('Enter your choice: '))
             print()
             while choice3 < COLLECT_FIRSTAID or choice3 > ENTER_T45_POWER_ARMOR:
-                choice3 = int(input('Enter your choice: '))
+                choice3 = int(input('Enter a valid choice: '))
                 print()
             if choice3 == COLLECT_FIRSTAID:
-                if FIRST_AID2 not in prevent_exploit:
-                    prevent_exploit.append(FIRST_AID2)
-                    if FIRST_AID2 not in character_inventory2:
-                        character_inventory2.append(FIRST_AID2)
-                        input('SYSTEM: You open the first aid kit by the emergency exit and take it.'+
+                if FIRST_AID2 not in prevent_exploit2:
+                    prevent_exploit2.append(FIRST_AID2)
+                    if FIRST_AID2 not in character_inventory3:
+                        character_inventory3.append(FIRST_AID2)
+                        input('SYSTEM: You open the First Aid Kit by the emergency exit and take it.'+
                           '\n\nIt has been added to your inventory. Press enter to continue. ')
                 else:
                     input('SYSTEM: You have already collected the first aid'+
                           '\n\nkit. Press enter to continue. ')
             elif choice3 == COLLECT_CASH:
-                if CASH2 not in prevent_exploit:
-                    prevent_exploit.append(CASH2)
+                if CASH2 not in prevent_exploit2:
+                    prevent_exploit2.append(CASH2)
                     MONEY = MONEY + CASH2
                     input('SYSTEM: You look inside the muesuem\'s old ticket booth'+
-                          '\n\nand find $251. It was well hidden. It has'+
+                          '\n\nand find $250. It was well hidden. It has'+
                           '\n\nbeen added to your inventory. ')
                 else:
                     input('SYSTEM: You have already collected the $250 inside the'+
@@ -807,8 +951,8 @@ def concord(character_inventory, character_inventory2,
                       '\n\nPatrick, how about you come to work and actually WORK sometime. I get tired'+
                       '\n\nof getting called in because you\'re too much of a lazy bum to do anything. But'+
                       '\n\nsince you all are about to lose your jobs you\'ve got all day to do that.'+
-                      '\n\nElizabeth you should stop gossiping about people behind their back. I feel'+
-                      '\n\nlike I am in high school all over again everyday I come here listening to you'+
+                      '\n\nElizabeth you should stop gossiping about people behind their back. I felt'+
+                      '\n\nlike I was in high school all over again everyday I came there listening to you'+
                       '\n\ntalk about somebody. Jackson how about you stop being so rude to customer\'s?'+
                       '\n\nI\'m sure you\'ll find lots of time to practice that in your bathroom mirror'+
                       '\n\nsince all of you are soon about to be out of a job. Jocelyn you should learn to'+
@@ -827,9 +971,9 @@ def concord(character_inventory, character_inventory2,
                       '\n\nBut if you guys get tired of me shutting the place done so often: this is all you'+
                       '\n\nhave to do. Type in the new password I set on this computer\'s security gate and'+
                       '\n\nit will open. The password is: ThePersonnelHereAreLosers. Type it exactly like'+
-                      '\n\nthat. No spaces. Then you can remove the fusion core behind the computer\'s'+
-                      '\n\nsecurity gate and you will have removed this place\'s source of power and then'+
-                      '\n\nyou all can go find a new job if you so choose.'+
+                      '\n\nthat. No spaces. Then you can remove the fusion core behind this computer\'s'+
+                      '\n\nsecurity gate and you will have removed this place\'s source of power permanently.'+
+                      '\n\nThen you all can go find a new job if you so choose.'+
                       '\n\n-"TJ"'+
                       '\nAugust 21, 2077')
                 print()
@@ -839,9 +983,12 @@ def concord(character_inventory, character_inventory2,
                     think_inventory.append(THINK_SELF12)
                     print('Thinking to self: Wow. What a riot. I actually remember seeing this on'+
                           '\n\nthe national news headline. This guy was never found. Crazy. This'+
-                          '\n\nwas 210 years ago. He said the password to the public computer in this'+
-                          '\n\nbuilding is: ThePersonnelHereAreLosers. No spaces, spelled exactly'+
-                          '\n\nlike that. I\'ll remember it just in case.')
+                          '\n\nwas 210 years ago. To think that they all died when the bombs fell'+
+                          '\n\nonly two months and two days later... So unfortunate. At least this'+
+                          '\n\ndispute is just as dead as they are. He said the password to the'+
+                          '\n\npublic computer in this building is: ThePersonnelHereAreLosers. No'+
+                          '\n\nspaces, spelled exactly like that. I\'ll remember it just in case.')
+                    print()
                     print()
                 if MUESUEM_PASSWORD not in character_inventory2:
                     input('SYSTEM: The muesuem\'s public computer password has been added to your'+
@@ -850,5 +997,133 @@ def concord(character_inventory, character_inventory2,
                 else:
                     input('SYSTEM: You already have this muesuem\'s public computer'+
                           '\n\npassword. Press enter to continue. ')
-                    print()            
+                    print()
+
+            elif choice3 == COLLECT_FUSION_CORE:
+                input('Press enter to access computer. ')
+                print()
+                print('---------------------------------------------------------------------------')
+                print()
+                print('-Muesuem of Freedom\'s public computer')
+                print()
+                # the variable MuesuemPublicComputerPass is used to
+                # validate the muesuem's public computer password
+                MuesuemPublicComputerPass = input('Enter the password: ')
+                print()
+                if MuesuemPublicComputerPass != 'ThePersonnelHereAreLosers':
+                    input('COMPUTER: ERROR. That password is incorrect.'+
+                          '\n\nSYSTEM: Check your inventory for the'+
+                          '\n\nMuesuem of Freedom\'s public computer'+
+                          '\n\npassword. Or search around the muesuem'+
+                          '\n\nto see if you can find it. Press enter'+
+                          '\n\n to continue. ')
+                else:
+                    choice4 = 0
+                    OPEN_SECURITY_GATE = 1
+                    choice4 = int(input(' Computer: Access Granted: Enter 1 to open the security gate: '))
+                    print()
+                    while choice4 < OPEN_SECURITY_GATE or choice4 > OPEN_SECURITY_GATE:
+                        choice4 = int(input('Enter a valid choice: '))
+                        print()
+                    if choice4 == OPEN_SECURITY_GATE:
+                        if FUSION_CORE1 not in prevent_exploit:
+                            prevent_exploit.append(FUSION_CORE1)
+                            if FUSION_CORE1 not in character_inventory2:
+                                character_inventory2.append(FUSION_CORE1)
+                                input('SYSTEM: You open the security gate and are able to'+
+                              '\n\ntake the fusion core out of the power generator'+
+                              '\n\nthat it is sitting in. Since the fusion core'+
+                              '\n\nwas the power source that gave power to the'+
+                              '\n\nentire muesuem: all of the power went out in'+
+                              '\n\nthe muesuem after you took the fusion core out'+
+                              '\n\nof the power generator. The fusion core has'+
+                              '\n\nbeen added to your inventory. Press enter to'+
+                              '\n\ncontinue. ')
+                        else:
+                            input('SYSTEM: You have already collected the fusion core'+
+                                  '\n\nbehind this computer\'s security gate. Press'+
+                                  '\n\nenter to continue. ')
+                                
+            elif choice3 == COLLECT_ASSUALT_RIFLE:
+                if WEAPON2 not in character_inventory2:
+                    character_inventory2.append(WEAPON2)
+                    input('SYSTEM: On the roof, you enter a crashed military'+
+                          '\n\nhelicopter and notice someone\'s skeleton in it.'+
+                          '\n\nThey are wearing a U.S. military\'s pilot uniform'+
+                          '\n\nwith the name and title, "Junior Officer Garret"'+
+                          '\n\nwritten on the their junior officer\'s uniform jacket.'+
+                          '\n\nYou notice an Assualt Rifle in the pilot seat and'+
+                          '\n\ntake it knowing it is a better weapon than what you'+
+                          '\n\ncurrently have. The Assualt Rifle has been added to'+
+                          '\n\nyour inventory. Press enter to continue. ')
+                    print()
+                    print()
+                    if READ_RED_ROCKET_COMPUTER in quest_inventory:
+                        if THINK_SELF13 not in think_inventory:
+                            think_inventory.append(THINK_SELF13)
+                            input('Thinking to self: So this is Junior Officer Garret'+
+                                  '\n\nthat I read about at the Red Rocket Truck Stop.'+
+                                  '\n\nLooking at his skeleton it seems as if his neck'+
+                                  '\n\nwas snapped in half. Officer Miles had killed Garret'+
+                                  '\n\nwith only one arm after Garret tried to kill him.'+
+                                  '\n\nOfficer miles must have been one tough pilot. I\'m'+
+                                  '\n\ngoing to have to take his assualt rifle though.'+
+                                  '\n\n(SYSTEM: Press enter to continue. ) ')
+                            print()
+                else:
+                    input('You have already collected the assualt rifle inside of'+
+                          '\n\nthe crashed helicopter. Press enter to continue. ')
+
+            elif choice3 == COLLECT_ASSUALT_RIFLE_AMMO:
+                if AMMO2 not in character_inventory3:
+                    character_inventory3.append(AMMO2)
+                    input('SYSTEM: Inside the crashed military helicopter on the'+
+                          '\n\nroof: you search the co-pilot\'s seat and find a'+
+                          '\n\nbox of 5.56 Assualt Rifle Ammunition. It has been'+
+                          '\n\nadded to your inventory. Press enter to continue. ')
+                    print()
+                else:
+                    input('SYSTEM: You have already collected the 5.56 Assualt'+
+                          '\n\nRifle Ammunition. Press enter to continue. ')
+
+            elif choice3 == ENTER_T45_POWER_ARMOR:
+                if ARMOR2 not in prevent_exploit:
+                    prevent_exploit.append(ARMOR2)
+                    if FUSION_CORE1 in character_inventory2:
+                        if ARMOR2 not in character_inventory3:
+                            character_inventory3.append(ARMOR2)
+                            input('SYSTEM: You notice that there is T-45 Power Armor'+
+                              '\n\nnext to the crashed helicopter. You turn the power'+
+                              '\n\narmor on by inserting the fusion core. You then open'+
+                              '\n\nthe power armor by twisting the opening valve: the'+
+                              '\n\nback of the power suit opens. You then get inside of'+
+                              '\n\nthe power armor from the back, as that is the only way'+
+                              '\n\nto get inside of it. The back of the power armor then'+
+                              '\n\nproceeds to close: fully encompassing you inside of it'+
+                              '\n\nand covering every inch of your body in militarty grade'+
+                              '\n\nsteel. Press enter to continue. ')
+                            print()
+                            print()
+                            input('Power Armor Computer speaking: Systems initializing. Power armor'+
+                              '\n\ncombat readiness grade: B minus. This is because the power armor has'+
+                              '\n\nnot had maintenance in....calculating....calculating...'+
+                              '\n\n210 years. Power armor power percentage: 100%. All systems'+
+                              '\n\nonline and ready.'+
+                              '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            if THINK_SELF14 not in think_inventory:
+                                think_inventory.append(THINK_SELF14)
+                                input('Thinking to self: Being inside of this armor doesn\'t bring back'+
+                                  '\n\nthe best of memories. But I\'ve seen enough to know that it'+
+                                  '\n\nis doing nothing other than helping me right now.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                    else:
+                          input('SYSTEM: You need a fusion core to activate the power armor'+
+                              '\n\nbefore obtaining it. Search the muesuem to see if you'+
+                              '\n\ncan find a fusion core. Press enter to continue. ')
+      
+                else:
+                    input('SYSTEM: T-45 Power Armor is already in your'+
+                          '\n\ninventory. Press enter to continue. ')
 main()
