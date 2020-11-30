@@ -1,4 +1,4 @@
-
+        
 import characterinventory
 import characterinventory2
 import characterinventory3
@@ -47,6 +47,11 @@ WEAPON2 = 'Assualt Rifle'
 AMMO2 = '5.56 Assualt Rifle Ammunition'
 ARMOR2 = 'T-45 Power Armor' # this variable also goes in the
                             # prevent_exploit list
+                            
+ARMOR3 = 'T-60 Power Armor' # this variable also goes in the
+                            # prevent_exploit list
+WEAPON3 = 'MiniGun'
+WEAPON4 = '.50 Cal Sniper'
 
 
     
@@ -57,6 +62,8 @@ MAN_SIZED_RATS = 'Man-sized rats already defeated'
 MUTANT_DOGS = 'Mutant dogs already defeated'
 READ_RED_ROCKET_COMPUTER = 'Read computer at Red Rocket Truck Stop'
 RAIDERS_1 = 'Raiders already defeated'
+DEATH_CLAW = 'Death Claw already defeated'
+TALKED_TO_NICK = 'Nick has explained much about the CommonWealth'
 
 
 
@@ -151,6 +158,11 @@ def main():
     global ARMOR2 # this variable also goes in the
                   # prevent_exploit list
 
+    global ARMOR3 # this variable also goes in the
+                  # prevent_exploit list
+    global WEAPON3
+    global WEAPON4
+
 
         
 
@@ -161,6 +173,8 @@ def main():
     global MUTANT_DOGS
     global READ_RED_ROCKET_COMPUTER
     global RAIDERS_1
+    global DEATH_CLAW
+    global TALKED_TO_NICK
 
 
     
@@ -411,18 +425,18 @@ def sanctuary_hills(character_inventory, quest_inventory,
 '\n\nSanctuary Hills would ring true to it\'s name, but it has not. Honestly,'+
 '\n\nanywhere anyone goes there are people ready to shoot you for food and water, and then'+
 '\n\nthere are the animals that want to rip your head off. The animals are abnormally vicious and 10 times'+
-'\n\nbigger due to the radiation that comes from the atomic bombs that dropped 210 years ago. I stored'+
-'\n\nsome canned beans in a safe at Red Rocket Truck Stop so that I can have a guaranteed meal in the case'+
-'\n\nof an emergency. Reminder to self: the passcode to that safe is 12345. There is also some light kevlar'+
-'\n\narmor in there. It helps to wear armor since so many people and things want to hurt one another in this'+
-'\n\npost apocalyptic world. I also put $250 behind the Red Rocket Truck Stop\'s public toilet and a first aid'+
-'\n\nkit in the storage room\'s file cabinet. I would carry all these things on me, but I have enough on me'+
-'\n\nalready. So, all of the things I\'m storing at the Red Rocket Truck Stop are just backup items. Honestly,'+
-'\n\nI\'m crying as I write this. Life is so hard out here. I had three options and all of them were bad. I'+
-'\n\ncould have stayed in Diamond City and risked the danger of the Institute and their synths. I could leave'+
-'\n\nDiamond City and hope to find a better place to settle; I chose this and it is not going well. Or I could'+
-'\n\nhave chosen to leave the CommonwWealth in the hope of something better being out there. But that is too'+
-'\n\nrisky if you ask me.'+
+'\n\nbigger due to the radiation that comes from the atomic bombs that dropped 210 years ago. I wish I could'+
+'\n\nhave seen what animals were like in the pre-apocalyptic world: I hate that I was born in this post-apocalyptic'+
+'\n\nworld. I stored some canned beans in a safe at Red Rocket Truck Stop so that I can have a guaranteed meal'+
+'\n\nin the case of an emergency. Reminder to self: the passcode to that safe is 12345. There is also some light'+
+'\n\nkevlar armor in there. It helps to wear armor since so many people and things want to hurt one another in this'+
+'\n\npost-apocalyptic world. I also put $250 behind the Red Rocket Truck Stop\'s public toilet and a first aid'+
+'\n\nkit in the storage room\'s file cabinet. I would carry all these things on me, but I have don\'t want to draw'+
+'\n\nto much attention to myself. Honestly I\'m crying as I write this. Life is so hard out here. I had three'+
+'\n\noptions and all of them were bad. I could have stayed in Diamond City and risked the danger of the Institute'+
+'\n\nand their synths. I could leave Diamond City and hope to find a better place to settle; I chose this and it'+
+'\n\nis not going well. Or I could have chosen to leave the CommonwWealth in the hope of something better being'+
+'\n\nout there. But that is too risky if you ask me.'+
 '\n\n-Rebecca'+
 '\nSeptember 25, 2287')
                     print()
@@ -442,10 +456,10 @@ def sanctuary_hills(character_inventory, quest_inventory,
                               '\n\nsafe in your inventory. Press enter to continue. ')
                     else:
                         character_inventory.append(RED_ROCKET_PASSWORD)
-                        input('SYSTEM: Password to Red Rocket Truck Stop Safe has been added to your inventory.'+
+                        input('SYSTEM: Password to Red Rocket Truck Stop safe has been added to your inventory.'+
                           '\n\nPress enter to continue. ')
             else:
-                input('SYSTEM: You need a weapon and ammunition for the weapon before coming here! There are rats' +
+                input('SYSTEM: You need a weapon and ammunition for the weapon before coming here. There are rats' +
 '\n\nthe size of a man that are threatning to attack you if you come any closer! Don\'t be like the woman who'+
                       '\n\nwas killed! You can see her corpse nearby! Press enter to continue. ')
                     
@@ -472,7 +486,8 @@ def sanctuary_hills(character_inventory, quest_inventory,
                            '\n\nand find a 10mm Pistol. It has been added to your'+
                            '\n\ninventory. Press enter to continue. ')
                  else:
-                     input('SYSTEM: 10mm Pistol is already in your inventory. Press enter to continue. ')
+                     input('SYSTEM: You have already opened the safe and collected the 10mm Pistol'+
+                           '\n\nthat was inside of it. Press enter to continue. ')
              elif choice4 == READ_COMPUTER2:
                 input('Press enter to read computer. ')
                 print()
@@ -529,8 +544,9 @@ def sanctuary_hills(character_inventory, quest_inventory,
                           '\n\nfind a box of 10mm Pistol Ammunition. It has been'+
                           '\n\nadded to your inventory. Press enter to continue. ')
                 else:
-                    input('SYSTEM: 10mm Pistol Ammunition is already in'+
-                          ' your inventory. Press enter to continue. ')
+                    input('SYSTEM: You have already opened the glove compartment and have'+
+                          '\n\ncollected the 10mm Pistol Ammunition that was inside of'+
+                          '\n\nit. Press enter to continue. ')
             elif choice5 == READ_COMPUTER3:
                 input('Press enter to read computer. ')
                 print()
@@ -619,8 +635,8 @@ def sanctuary_hills(character_inventory, quest_inventory,
                 print()
             if choice6 == COLLECT_RINGS:
                 if RING1 and RING2 in character_inventory:
-                    input('SYSTEM: The wedding rings are already in your inventory.'+
-                      '\n\nPress enter to continue. ')
+                    input('SYSTEM: You have already collected the wedding'+
+                          '\n\nrings. Press enter to continue. ')
                 else:
                     character_inventory.append(RING1)
                     character_inventory.append(RING2)
@@ -758,7 +774,7 @@ def redrocket_truckstop(character_inventory, character_inventory2,
                       '\n\nit went dead. I had to leave behind my assualt rifle as well.'+
                       '\n\nWhat can I do with it? I lost an arm after my helicopter crashed.'+
                       '\n\nMy co-pilot, Junior Officer Garret, helped slow the bleeding and'+
-                      '\n\nPatched up my wound. But this patching won\'t hold forever. If'+
+                      '\n\npatched up my wound. But this patching won\'t hold forever. If'+
                       '\n\nsomeone doesn\'t get here and help me within the next few hours,'+
                       '\n\nthen I\'m a dead man. Junior Officer Garret unfortunately tried to'+
                       '\n\nkill me realizing that we are stranded and have little food'+
@@ -773,17 +789,17 @@ def redrocket_truckstop(character_inventory, character_inventory2,
                 input('Press enter to continue. ')
                 print()
                 if THINK_SELF10 not in think_inventory:
-                    print('Thinking to self: How terrible. I\'m no doofus, but I should try to take'+
-                      '\n\nthat T-45 Power armor and that assualt rifle on the roof of the Muesuem'+
-                      '\n\nof Freedom in Concord. I\'m sure it\'s still there since Officer Miles'+
-                      '\n\nnever got a response from anyone to his distress call. Power armor was'+
-                      '\n\nthe military\'s strongest combat armor. I should know being a war veteran'+
-                      '\n\nwho used it in the American-Russian War from 2073-2076. I\'ll take anything'+
-                      '\n\nthat\'ll help me survive in this post apocalyptic world so that I can find'+
-                      '\n\nShaun.')
+                    print('Thinking to self: How terrible. I wonder if I can head that way and'+
+                          '\n\nretrieve Officer Miles\' gear. But I wonder: how I can power up his'+
+                          '\n\npower armor? He said that the fusion core went dead. If I find a'+
+                          '\n\nway to power it up there\'s no doubt that I can use it. I know how'+
+                          '\n\nto after all: I did serve my country fighting in power armor for'+
+                          '\n\nthe special forces. Plus, they had us learn how to operate practically'+
+                          '\n\nany type of weapon we come across: I\'m more than sure that I still'+
+                          '\n\nknow how to shoot a simple Assualt Rifle properly.')
                     think_inventory.append(THINK_SELF10)
                     print()
-                input('Press enter to continue. ')
+                    input('Press enter to continue. ')
                     
             elif choice2 == COLLECT_CASH:
                 if CASH1 not in prevent_exploit:
@@ -955,11 +971,13 @@ def concord(character_inventory, character_inventory2,
                       '\n\nlike I was in high school all over again everyday I came there listening to you'+
                       '\n\ntalk about somebody. Jackson how about you stop being so rude to customer\'s?'+
                       '\n\nI\'m sure you\'ll find lots of time to practice that in your bathroom mirror'+
-                      '\n\nsince all of you are soon about to be out of a job. Jocelyn you should learn to'+
+                      '\n\nsince all of you are soon about to be out of a job. Jackson you should also stop'+
+                      '\n\nstealing money out of the cash register and hiding it in the ticket booth so that'+
+                      '\n\nyou can take it for later: no you are not slick. Jocelyn you should learn to'+
                       '\n\nrespect people\'s personal space and should try taking a shower sometime. One'+
                       '\n\nday you came by my work space and I swear I was about to pass out. Koby, you'+
                       '\n\nneed to decide what you want to do with your life. Work a full time job or sell'+
-                      '\n\ndrugs. I got tired of police coming to the muesuem every other day asking ME'+
+                      '\n\ndrugs. I got tired of seeing police coming to the muesuem every other day asking PETER'+
                       '\n\nquestions about YOU. And lately there had been some rough looking guys coming'+
                       '\n\nto the muesuem asking where you were. I\'m not trying to die because you cheated'+
                       '\n\nsome thugs their 5 grams and they shoot up the muesuem. The police won\'t even'+
@@ -1104,11 +1122,10 @@ def concord(character_inventory, character_inventory2,
                               '\n\nsteel. Press enter to continue. ')
                             print()
                             print()
-                            input('Power Armor Computer speaking: Systems initializing. Power armor'+
-                              '\n\ncombat readiness grade: B minus. This is because the power armor has'+
-                              '\n\nnot had maintenance in....calculating....calculating...'+
-                              '\n\n210 years. Power armor power percentage: 100%. All systems'+
-                              '\n\nonline and ready.'+
+                            input('Power Armor Computer speaking (robotically): Systems initializing. Power armor'+
+                              '\n\ncombat readiness grade: B minus. This is because the power armor has not had'+
+                              '\n\nmaintenance in....calculating....calculating... 210 years. Power armor hull'+
+                              '\n\nintegrity: 100%. Emergency Attack Mode: Online. All other systems online and ready.'+
                               '\n\n(SYSTEM: Press enter to continue.) ')
                             print()
                             print()
@@ -1124,6 +1141,198 @@ def concord(character_inventory, character_inventory2,
                               '\n\ncan find a fusion core. Press enter to continue. ')
       
                 else:
-                    input('SYSTEM: T-45 Power Armor is already in your'+
-                          '\n\ninventory. Press enter to continue. ')
+                    input('SYSTEM: You have already collected the T-45'+
+                          '\n\npower armor. Press enter to continue. ')
+        
+        elif choice2 == MYSTERIOUS_SEWER:
+            if ARMOR2 in character_inventory3:
+                if WEAPON2 in character_inventory2 or WEAPON3 or WEAPON4 in character_inventory3:
+                    if TALKED_TO_NICK not in quest_inventory:
+                        if DEATH_CLAW not in quest_inventory:
+                            quest_inventory.append(DEATH_CLAW)
+                            input('SYSTEM: You go down the street from the Muesuem of Freedom'+
+                          '\n\nand you notice that something is growling while banging'+
+                          '\n\non a sewer lid. You get closer and some creature springs'+
+                          '\n\nout from the inside of the sewer: it towers over you at'+
+                          '\n\naround 10 feet tall, (you are 6 feet tall but due to being'+
+                          '\n\nin your power armor you are 7 feet tall) it\'s hands are'+
+                          '\n\nclaw-like, it has the horns of a bull (but 10 times bigger,'+
+                          '\n\nand they point forward and straight instead of wide and upward),'+
+                          '\n\nand it\'s skin appears to be very thick.'+
+                          '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('Creature: RAAAAAAAAGGGGGGGHHHHHHHH....RAAAAGGGHHHHH!!!!'+
+                                  '\n\n(SYSTEM: Press enter to continue.)')
+                            print()
+                            print()
+                            input('SYSTEM: The creature charges at you, but you manage to evade it.'+
+                          '\n\nBut this was pure luck. It is obviously much faster than you: you are'+
+                          '\n\nin a steel suit after all. It got it\'s horns stuck inside of a nearby'+
+                          '\n\nrusted car, but he quickly recovers. You manage to pull out one of your'+
+                          '\n\nstrongest weapons and start to shoot at it. This is obviously working as'+
+                          '\n\nthe creature is starting to weaken, but it doesn\'t stop him from relentlessly'+
+                          '\n\ncharging at you. This is because the bullets do not fully penetrate his thick'+
+                          '\n\nskin. He grabs hold of you, picks you up while inside of your T-45 power armor,'+
+                          '\n\nand slams you into the ground while ramming his horns into the torso of your armor.'+
+                          '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You screaming in pain: AGGGGGGHHHHH!!!'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('Power Armor Computer speaking (robotically): Warning! Momentous damage'+
+                                  '\n\ntaken in the armor\'s torso. Power armor hull integrity is now at'+
+                                  '\n\n58%. Proceed attentively and fully combat ready.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You yelling at Power Armor Computer: I KNOW THAT DANG IT! '+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You speaking aloud: *heavy breathing* I know that this power armor'+
+                                  '\n\nis an older model, but it can take on *heavy breathing* multiple'+
+                                  '\n\ntank shells with minimum damage. How did this thing nearly put a'+
+                                  '\n\nhole in the sturdiest part of my armor?!?!'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('SYSTEM: After pinning you down and ramming it\'s horns into your'+
+                                  '\n\narmor\'s torso: the creature runs backwards preparing for it\'s'+
+                                  '\n\nfinal charge, but it staggers and falls a few times because you'+
+                                  '\n\nweakend it by shooting it with one of your stronger weapons earlier.'+
+                                  '\n\nYou hurry to your feet and shower the creature with as many bullets'+
+                                  '\n\nas you can, but again, none of the bullets fully penetrate him. As'+
+                                  '\n\nit is about to reach you, you have to reload, but have no time to do so.'+
+                                  '\n\nYou choose to not use the gun....'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You yelling at Power Armor Computer: **heavier breathing**'+
+                                  '\n\nCOMPUTER INITIATE EMERGENCY ATTACK MODE RIGHT NOW!!'+
+                                  '\n\n(SYSTEM: Press enter to continue. )')
+                            print()
+                            print()
+                            input('Power Armor Computer speaking (robotically): Warning! Emergency attack'+
+                                  '\n\nmode strains the power source of the power armor (the fusion core) to'+
+                                  '\n\nincrease your physical attack energy output by 3,257% for 5 seconds.'+
+                                  '\n\nThere is a 35%-40% chance that the power armor will go dead upon'+
+                                  '\n\nactivation of this mode due to straining it\'s power source. If that happens...'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('Creature: RAGGHHHHHHHH... RAGGGHHHHH'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You yelling at Power Armor Computer: DO IT NOOOOWWWW!!!'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('Power Armor Computer speaking fast (robotically): Desperation'+
+                                  '\n\ndetected! Emergency Attack Mode initiated. Emergency Attack'+
+                                  '\n\nMode successfully activated. Warning! Power source (fusion core)'+
+                                  '\n\nbeing strained! Warning! Emergency Attack Mode will last only 5'+
+                                  '\n\nseconds!'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('SYSTEM: As the creature is about to grab a hold of you, you dodge it\'s'+
+                                  '\n\nclaw-like hands extremely fast: earlier you dodged him out of pure luck,'+
+                                  '\n\nbut this time it\'s thanks to Emergency Attack Mode. You prepare to'+
+                                  '\n\npunch it as hard as you can.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You screaming as you prepare a devestating punch: AAAAGGGGGHHHHH!!!!'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('SYSTEM: You punch a hole through the thick skin of the creature (in'+
+                                  '\n\nthe chest area) that not even bullets from your strongest weapons'+
+                                  '\n\ncould penetrate. You drive the creature not only to the ground,'+
+                                  '\n\nbut somewhat through the ground: creating a mini-crater that\'s'+
+                                  '\n\nabout 4 feet deep.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You speaking to Power Armor Computer: **heavy breathing** Computer'+
+                                  '\n\n**heavy breathing** scan the enemy **heavy breathing** and give'+
+                                  '\n\nme an after battle report.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('Power Armor Computer speaking (robotically): Scanning'+
+                                  '\n\nenemy..........Enemy\'s heart is missing. The enemy'+
+                                  '\n\nhas passed. After battle report:........Emergency'+
+                                  '\n\nAttack Mode Deactivated. The 5 seconds are over.'+
+                                  '\n\nPower source (fusion core) no longer being strained.'+
+                                  '\n\nPower armor hull intergrity: 58% as last reported.'+
+                                  '\n\nMomentous damage was taken to the torso of the armor'+
+                                  '\n\n. Scanning your vitals....Scan complete. Serious medical'+
+                                  '\n\nhelp: not needed. However, you have experienced an'+
+                                  '\n\nadrenaline rush. Immediate treatment: if possible'+
+                                  '\n\nsit down and try to control your breathing.'+
+                                  '\n\nTo help I will activate the power armor\'s oxygen'+
+                                  '\n\nreserves, because you are lacking oxygen.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You speaking to Power Armor Computer: ***much heavier breathing*** No!'+
+                                  '\n\nDeactivate ***Wheezing*** the oxygen ***much heavier breathing'+
+                                  '\n\n*** reserves. You don\'t ***Wheezing*** act without my'+
+                                  '\n\n****much heavier breathing**** permission.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('Power Armor Computer speaking (robotically): I am programmed'+
+                                  '\n\nto keep the user of the armor alive. Oxygen will continue'+
+                                  '\n\nto be released. Scanners indicate that without at least 11'+
+                                  '\n\nmore minutes of using the oxygen reserves: you will surely'+
+                                  '\n\ndie from shortness of breath. Sit down and breath in and out'+
+                                  '\n\nslowly.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You speaking to Power Armor Computer: *lessened heavy breathing*'+
+                                  '\n\nOk....*lessened heavy breathing* you win...*lessened heavy'+
+                                  '\n\nbreathing*'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+
+                        else:
+                            input('SYSTEM: You have already defeated the creature that'+
+                                  '\n\ncame out of the sewer. '+
+                                  '\n\nPress enter to continue. ')
+                    else:
+                        
+                                  
+                            
+                            
+
+                else:
+                    input('SYSTEM: You go down the street from the Muesuem of Freedom'+
+                      '\n\nand you notice that something is growling while banging'+
+                      '\n\non a sewer lid. You look intensely and notice that it is'+
+                      '\n\nsome huge creature staring intently at you. You book it'+
+                      '\n\nout of there. (You need a stronger weapon before coming'+
+                      '\n\nhere.) Press enter to continue. ')
+                    
+
+            else:
+                if ARMOR3 in character_inventory3:
+                    if WEAPON2 in character_inventory2:
+
+
+
+
+
+                else:
+                    input('SYSTEM: You go down the street from the Muesuem of Freedom'+
+                      '\n\nand you notice that something is growling while banging'+
+                      '\n\non a sewer lid. You look intensely and notice that it is'+
+                      '\n\nsome huge creature staring intently at you. You book it'+
+                      '\n\nout of there. (You need stronger armor before coming'+
+                      '\n\nhere.) Press enter to continue. ')                   
 main()
