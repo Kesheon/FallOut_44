@@ -1,7 +1,8 @@
-        
+                
 import characterinventory
 import characterinventory2
 import characterinventory3
+import characterinventory4
 import pickle
 
 INVENTORY = 1
@@ -21,6 +22,7 @@ RING1 = 'Nora\'s wedding ring'
 RING2 = 'Your wedding ring'
 BOTTLED_WATER = 'Bottled Purified Water' # this variable also goes in the
                                          # prevent_exploit list
+                                         
 RED_ROCKET_PASSWORD = 'Password to Red Rocket Truck Stop safe: 12345'
 
 
@@ -51,7 +53,11 @@ ARMOR2 = 'T-45 Power Armor' # this variable also goes in the
 ARMOR3 = 'T-60 Power Armor' # this variable also goes in the
                             # prevent_exploit list
 WEAPON3 = 'MiniGun'
-WEAPON4 = '.50 Cal Sniper'
+WEAPON4 = 'Scoped .50 Cal Sniper'
+DEATHCLAW_MEAT = 'DeathClaw Meat' # this variable can pontentially be
+                                  # assigned a different name than
+                                  # what it is currently assigned
+                                  # 'Sewer Creature Meat'
 
 
     
@@ -89,10 +95,10 @@ THINK_SELF14 = 'Fourteenth thought'
 # Variables for the first aid kits that can be collected
 # in various places within the program
 #--------------------------------------------------------------------------------
-FIRST_AID1 = 'First Aid Kit' # this variable goes in both the character_inventory
+FIRST_AID1 = 'First Aid Kit' # this variable goes in both the character_inventory2
                              # list and the prevent_exploit list
                              
-FIRST_AID2 = 'First Aid Kit' # this variable goes in both the character_inventory2
+FIRST_AID2 = 'First Aid Kit' # this variable goes in both the character_inventory3
                              # list and the prevent_exploit2 list
 
 
@@ -109,7 +115,10 @@ MONEY = 0.0
 # places within the program
 #------------------------------------------------------------
 CASH1 = 250 # this variable goes in the prevent_exploit list
+
 CASH2 = 250 # this variable goes in the prevent_exploit2 list
+
+DEATH_CLAW_MEAT = 500 
 
 
 
@@ -162,6 +171,9 @@ def main():
                   # prevent_exploit list
     global WEAPON3
     global WEAPON4
+    global DEATHCLAW_MEAT # this variable can pontentially be
+                          # assigned a different name than
+                          # what it is currently assigned
 
 
         
@@ -209,17 +221,21 @@ def main():
     # places within the program
     #----------------------------------------------------------------
     global CASH1 # this variable goes in the prevent_exploit list
+    
     global CASH2 # this variable goes in the prevent_exploit2 list
+
+    global DEATH_CLAW_MEAT 
+                    
 
     
     
     # global variables for the first aid kits that can be collected
     # in various places within the program
     #--------------------------------------------------------------
-    global FIRST_AID1 # this variable goes in both the character_inventory
+    global FIRST_AID1 # this variable goes in both the character_inventory2
                       # list and the prevent_exploit list
                       
-    global FIRST_AID2 # this variable goes in both the character_inventory2
+    global FIRST_AID2 # this variable goes in both the character_inventory3
                       # list and the prevent_exploit2 list
 
                       
@@ -273,7 +289,6 @@ def main():
     # and FIRST_AID2 from being collected more than once/ exploited
     #--------------------------------------------------------------
     prevent_exploit2 = []
-
     
     choice = 0 
     while choice != QUIT:
@@ -789,17 +804,17 @@ def redrocket_truckstop(character_inventory, character_inventory2,
                 input('Press enter to continue. ')
                 print()
                 if THINK_SELF10 not in think_inventory:
-                    print('Thinking to self: How terrible. I wonder if I can head that way and'+
+                    input('Thinking to self: How terrible. I wonder if I can head that way and'+
                           '\n\nretrieve Officer Miles\' gear. But I wonder: how I can power up his'+
                           '\n\npower armor? He said that the fusion core went dead. If I find a'+
                           '\n\nway to power it up there\'s no doubt that I can use it. I know how'+
-                          '\n\nto after all: I did serve my country fighting in power armor for'+
-                          '\n\nthe special forces. Plus, they had us learn how to operate practically'+
-                          '\n\nany type of weapon we come across: I\'m more than sure that I still'+
-                          '\n\nknow how to shoot a simple Assualt Rifle properly.')
+                          '\n\nto after all: I did fight in power armor for the special forces in'+
+                          '\n\nthe American-Russian war. Plus, they had us learn how to operate'+
+                          '\n\npractically any type of weapon we come across: I\'m more than sure'+
+                          '\n\nthat I still know how to shoot a simple Assualt Rifle properly.'+
+                          '\n\n(SYSTEM: Press enter to continue. ')
                     think_inventory.append(THINK_SELF10)
                     print()
-                    input('Press enter to continue. ')
                     
             elif choice2 == COLLECT_CASH:
                 if CASH1 not in prevent_exploit:
@@ -837,6 +852,8 @@ def concord(character_inventory, character_inventory2,
     global MONEY
     global CASH1
     global CASH2
+    global DEATH_CLAW_MEAT
+    global DEATHCLAW_MEAT
     
     choice2 = 0
     MUESUEM_OF_FREEDOM = 1
@@ -1125,7 +1142,8 @@ def concord(character_inventory, character_inventory2,
                             input('Power Armor Computer speaking (robotically): Systems initializing. Power armor'+
                               '\n\ncombat readiness grade: B minus. This is because the power armor has not had'+
                               '\n\nmaintenance in....calculating....calculating... 210 years. Power armor hull'+
-                              '\n\nintegrity: 100%. Emergency Attack Mode: Online. All other systems online and ready.'+
+                              '\n\nintegrity: 100%. Emergency Attack Mode: Available. All other systems online'+
+                              '\n\nand ready.'+
                               '\n\n(SYSTEM: Press enter to continue.) ')
                             print()
                             print()
@@ -1146,7 +1164,7 @@ def concord(character_inventory, character_inventory2,
         
         elif choice2 == MYSTERIOUS_SEWER:
             if ARMOR2 in character_inventory3:
-                if WEAPON2 in character_inventory2 or WEAPON3 or WEAPON4 in character_inventory3:
+                if WEAPON2 in character_inventory2 and AMMO2 in character_inventory3:
                     if TALKED_TO_NICK not in quest_inventory:
                         if DEATH_CLAW not in quest_inventory:
                             quest_inventory.append(DEATH_CLAW)
@@ -1192,10 +1210,22 @@ def concord(character_inventory, character_inventory2,
                                   '\n\n(SYSTEM: Press enter to continue.) ')
                             print()
                             print()
-                            input('You speaking aloud: *heavy breathing* I know that this power armor'+
+                            input('You speaking fast: *heavy breathing* I know that this power armor'+
                                   '\n\nis an older model, but it can take on *heavy breathing* multiple'+
-                                  '\n\ntank shells with minimum damage. How did this thing nearly put a'+
-                                  '\n\nhole in the sturdiest part of my armor?!?!'+
+                                  '\n\ntank shells with mild damage. How did this creature nearly put a'+
+                                  '\n\nhole in the sturdiest part of my armor?!?! *heavy breathing*'+
+                                  '\n\nIs the physical force of his horn ramming my armor seriously'+
+                                  '\n\nequivalent to about 12 exploding tank shells hitting me all'+
+                                  '\n\nat the same time but in one concentrated shot?!?!'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('Power Armor Computer speaking (robotically): Calculating'+
+                                  '\n\ndamage...............That is precise, actually.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You yelling at Power Armor Computer: SHUT UP!'+
                                   '\n\n(SYSTEM: Press enter to continue.) ')
                             print()
                             print()
@@ -1215,11 +1245,12 @@ def concord(character_inventory, character_inventory2,
                                   '\n\n(SYSTEM: Press enter to continue. )')
                             print()
                             print()
-                            input('Power Armor Computer speaking (robotically): Warning! Emergency attack'+
-                                  '\n\nmode strains the power source of the power armor (the fusion core) to'+
-                                  '\n\nincrease your physical attack energy output by 3,257% for 5 seconds.'+
-                                  '\n\nThere is a 35%-40% chance that the power armor will go dead upon'+
-                                  '\n\nactivation of this mode due to straining it\'s power source. If that happens...'+
+                            input('Power Armor Computer speaking fast (robotically): Urgency detected!'+
+                                  '\n\nWarning! Emergency attack mode strains the power source of the'+
+                                  '\n\npower armor (the fusion core) to increase your physical attack energy'+
+                                  '\n\noutput by 3,257% and your attack speed by 250% for 5 seconds. There is'+
+                                  '\n\na 35%-40% chance that the power armor will go dead upon activation of'+
+                                  '\n\nthis mode due to straining it\'s power source. If that happens...'+
                                   '\n\n(SYSTEM: Press enter to continue.) ')
                             print()
                             print()
@@ -1231,7 +1262,7 @@ def concord(character_inventory, character_inventory2,
                                   '\n\n(SYSTEM: Press enter to continue.) ')
                             print()
                             print()
-                            input('Power Armor Computer speaking fast (robotically): Desperation'+
+                            input('Power Armor Computer speaking even faster (robotically): Desperation'+
                                   '\n\ndetected! Emergency Attack Mode initiated. Emergency Attack'+
                                   '\n\nMode successfully activated. Warning! Power source (fusion core)'+
                                   '\n\nbeing strained! Warning! Emergency Attack Mode will last only 5'+
@@ -1241,8 +1272,8 @@ def concord(character_inventory, character_inventory2,
                             print()
                             input('SYSTEM: As the creature is about to grab a hold of you, you dodge it\'s'+
                                   '\n\nclaw-like hands extremely fast: earlier you dodged him out of pure luck,'+
-                                  '\n\nbut this time it\'s thanks to Emergency Attack Mode. You prepare to'+
-                                  '\n\npunch it as hard as you can.'+
+                                  '\n\nbut this time it\'s thanks to the speed Emergency Attack Mode provides.'+
+                                  '\n\nYou prepare to punch the creature as hard as you can.'+
                                   '\n\n(SYSTEM: Press enter to continue.) ')
                             print()
                             print()
@@ -1254,29 +1285,35 @@ def concord(character_inventory, character_inventory2,
                                   '\n\nthe chest area) that not even bullets from your strongest weapons'+
                                   '\n\ncould penetrate. You drive the creature not only to the ground,'+
                                   '\n\nbut somewhat through the ground: creating a mini-crater that\'s'+
-                                  '\n\nabout 4 feet deep.'+
+                                  '\n\nabout 4 feet deep. It\'s as if Emergency Attack Mode strapped a'+
+                                  '\n\nrocket to your arm to create such a devestating punch.'+
                                   '\n\n(SYSTEM: Press enter to continue.) ')
                             print()
                             print()
                             input('You speaking to Power Armor Computer: **heavy breathing** Computer'+
                                   '\n\n**heavy breathing** scan the enemy **heavy breathing** and give'+
-                                  '\n\nme an after battle report.'+
+                                  '\n\nme a battle report.'+
                                   '\n\n(SYSTEM: Press enter to continue.) ')
                             print()
                             print()
                             input('Power Armor Computer speaking (robotically): Scanning'+
                                   '\n\nenemy..........Enemy\'s heart is missing. The enemy'+
-                                  '\n\nhas passed. After battle report:........Emergency'+
+                                  '\n\nhas passed. Battle report:..............Emergency'+
                                   '\n\nAttack Mode Deactivated. The 5 seconds are over.'+
                                   '\n\nPower source (fusion core) no longer being strained.'+
                                   '\n\nPower armor hull intergrity: 58% as last reported.'+
-                                  '\n\nMomentous damage was taken to the torso of the armor'+
-                                  '\n\n. Scanning your vitals....Scan complete. Serious medical'+
-                                  '\n\nhelp: not needed. However, you have experienced an'+
-                                  '\n\nadrenaline rush. Immediate treatment: if possible'+
-                                  '\n\nsit down and try to control your breathing.'+
-                                  '\n\nTo help I will activate the power armor\'s oxygen'+
-                                  '\n\nreserves, because you are lacking oxygen.'+
+                                  '\n\nMomentous damage was taken to the torso of the armor.'+
+                                  '\n\nScanning your vitals....Scan complete. You have ex-'+
+                                  '\n\nperienced an adrenaline rush and a PTSD attack: which'+
+                                  '\n\nmay be a result of past battle experiences haunting'+
+                                  '\n\nyour mental psyche. However you have handled it well.'+
+                                  '\n\nImmediate treatment: if possible sit down and try to'+
+                                  '\n\ncontrol your breathing. To help I will activate the power'+
+                                  '\n\narmor\'s oxygen reserves, because you are lacking oxygen.'+
+                                  '\n\nSerious medical help: not needed. However, after regaining'+
+                                  '\n\nyour breath you should exit the armor for a while and apply'+
+                                  '\n\n1 or 2 first aid kits to yourself. The armor\'s torso area'+
+                                  '\n\ncaved in much and has your chest area slighly bleeding.'+
                                   '\n\n(SYSTEM: Press enter to continue.) ')
                             print()
                             print()
@@ -1296,36 +1333,603 @@ def concord(character_inventory, character_inventory2,
                                   '\n\n(SYSTEM: Press enter to continue.) ')
                             print()
                             print()
-                            input('You speaking to Power Armor Computer: *lessened heavy breathing*'+
-                                  '\n\nOk....*lessened heavy breathing* you win...*lessened heavy'+
-                                  '\n\nbreathing*'+
+                            input('You softly speaking to Power Armor Computer: *lessened heavy breathing*'+
+                                  '\n\nOk.............*lessened heavy breathing* you win...*lessened heavy'+
+                                  '\n\nbreathing*.'+
                                   '\n\n(SYSTEM: Press enter to continue.) ')
+                            if FIRST_AID1 in character_inventory2:
+                                character_inventory2.remove(FIRST_AID1)
+                            elif FIRST_AID2 in character_inventory3:
+                                character_inventory3.remove(FIRST_AID2)
+                            print()
+                            print()
+                            input('SYSTEM: After calming down, regaining your breath, and applying 1 or'+
+                                  '\n\nfirst aid kits to yourself: you skin the creature by breaking off'+
+                                  '\n\na sharp piece of steel off of a nearby rusted car and use it as'+
+                                  '\n\na knife. You then store it\'s meat in your inventory. You do this'+
+                                  '\n\nknowing that it might be good to sale: if you can find a buyer.'+
+                                  '\n\nPress enter to continue. ')
+                            
+                            DEATHCLAW_MEAT = 'Sewer Creature Meat'
+                            if DEATHCLAW_MEAT not in character_inventory3:
+                                character_inventory3.append(DEATHCLAW_MEAT)
 
                         else:
-                            input('SYSTEM: You have already defeated the creature that'+
-                                  '\n\ncame out of the sewer. '+
+                            input('SYSTEM: You have already defeated the'+
+                                  '\n\ncreature that came out of the sewer. '+
                                   '\n\nPress enter to continue. ')
                     else:
-                        
-                                  
+                        if DEATH_CLAW not in quest_inventory:
+                            quest_inventory.append(DEATH_CLAW)
+                            input('SYSTEM: You go down the street from the Muesuem of Freedom'+
+                          '\n\nand you notice that something is growling while banging'+
+                          '\n\non a sewer lid. You get closer and a DeathClaw springs'+
+                          '\n\nout from the inside of the sewer: it towers over you at'+
+                          '\n\naround 10 feet tall, (you are 6 feet tall but due to being'+
+                          '\n\nin your power armor you are 7 feet tall) it\'s hands are'+
+                          '\n\nclaw-like, it has the horns of a bull (but 10 times bigger,'+
+                          '\n\nand they point forward and straight instead of wide and upward),'+
+                          '\n\nand it\'s skin appears to be very thick. The DeathClaw\'s'+
+                          '\n\nappearance fits the description Nick Valentine gave you in'+
+                          '\n\nback in Diamond City.'+
+                          '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('DeathClaw: RAAAAAAAAGGGGGGGHHHHHHHH....RAAAAGGGHHHHH!!!!'+
+                                  '\n\n(SYSTEM: Press enter to continue.)')
+                            print()
+                            print()
+                            input('SYSTEM: The DeathClaw charges at you, but you manage to evade it.'+
+                          '\n\nBut this was pure luck. It is obviously much faster than you: you are'+
+                          '\n\nin a steel suit after all. It got it\'s horns stuck inside of a nearby'+
+                          '\n\nrusted car, but he quickly recovers. You manage to pull out one of your'+
+                          '\n\nstrongest weapons and start to shoot at it. This is obviously working as'+
+                          '\n\nthe DeathClaw is starting to weaken, but it doesn\'t stop him from relentlessly'+
+                          '\n\ncharging at you. This is because the bullets do not fully penetrate his thick'+
+                          '\n\nskin. He grabs hold of you, picks you up while inside of your T-45 power armor,'+
+                          '\n\nand slams you into the ground while ramming his horns into the torso of your armor.'+
+                          '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You screaming in pain: AGGGGGGHHHHH!!!'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('Power Armor Computer speaking (robotically): Warning! Momentous damage'+
+                                  '\n\ntaken in the armor\'s torso. Power armor hull integrity is now at'+
+                                  '\n\n58%. Proceed attentively and fully combat ready.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You yelling at Power Armor Computer: I KNOW THAT DANG IT! '+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You speaking fast: *heavy breathing* I know that this power armor'+
+                                  '\n\nis an older model, but it can take on *heavy breathing* multiple'+
+                                  '\n\ntank shells with mild damage. How did this DeathClaw nearly put a'+
+                                  '\n\nhole in the sturdiest part of my armor?!?! *heavy breathing*'+
+                                  '\n\nIs the physical force of his horn ramming my armor seriously'+
+                                  '\n\nequivalent to about 12 exploding tank shells hitting me all'+
+                                  '\n\nat the same time but in one concentrated shot?!?!'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('Power Armor Computer speaking (robotically): Calculating'+
+                                  '\n\ndamage...............That is precise, actually.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You yelling at Power Armor Computer: SHUT UP!'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('SYSTEM: After pinning you down and ramming it\'s horns into your'+
+                                  '\n\narmor\'s torso: the DeathClaw runs backwards preparing for it\'s'+
+                                  '\n\nfinal charge, but it staggers and falls a few times because you'+
+                                  '\n\nweakend it by shooting it with one of your stronger weapons earlier.'+
+                                  '\n\nYou hurry to your feet and shower the DeathClaw with as many bullets'+
+                                  '\n\nas you can, but again, none of the bullets fully penetrate him. As'+
+                                  '\n\nit is about to reach you, you have to reload, but have no time to.'+
+                                  '\n\ndo so. You choose to not use the gun....'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You yelling at Power Armor Computer: **heavier breathing**'+
+                                  '\n\nCOMPUTER INITIATE EMERGENCY ATTACK MODE RIGHT NOW!!'+
+                                  '\n\n(SYSTEM: Press enter to continue. )')
+                            print()
+                            print()
+                            input('Power Armor Computer speaking fast (robotically): Urgency detected!'+
+                                  '\n\nWarning! Emergency attack mode strains the power source of the'+
+                                  '\n\npower armor (the fusion core) to increase your physical attack energy'+
+                                  '\n\noutput by 3,257% and your attack speed by 250% for 5 seconds. There is'+
+                                  '\n\na 35%-40% chance that the power armor will go dead upon activation of'+
+                                  '\n\nthis mode due to straining it\'s power source. If that happens...'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('DeathClaw: RAGGHHHHHHHH... RAGGGHHHHH!!!'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You yelling at Power Armor Computer: DO IT NOOOOWWWW!!!'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('Power Armor Computer speaking even faster (robotically): Desperation'+
+                                  '\n\ndetected! Emergency Attack Mode initiated. Emergency Attack'+
+                                  '\n\nMode successfully activated. Warning! Power source (fusion core)'+
+                                  '\n\nbeing strained! Warning! Emergency Attack Mode will last only 5'+
+                                  '\n\nseconds!'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('SYSTEM: As the DeathClaw is about to grab a hold of you, you dodge it\'s'+
+                                  '\n\nclaw-like hands extremely fast: earlier you dodged him out of pure luck,'+
+                                  '\n\nbut this time it\'s thanks to the speed Emergency Attack Mode provides.'+
+                                  '\n\nYou prepare to punch the DeathClaw as hard as you can.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You screaming as you prepare a devestating punch: AAAAGGGGGHHHHH!!!!'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('SYSTEM: You punch a hole through the thick skin of the DeathClaw (in'+
+                                  '\n\nthe chest area) that not even bullets from your strongest weapons'+
+                                  '\n\ncould penetrate. You drive the DeathClaw not only to the ground,'+
+                                  '\n\nbut somewhat through the ground: creating a mini-crater that\'s'+
+                                  '\n\nabout 4 feet deep. It\'s as if Emergency Attack Mode strapped a'+
+                                  '\n\nrocket to your arm to create such a devestating punch.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You speaking to Power Armor Computer: **heavy breathing** Computer'+
+                                  '\n\n**heavy breathing** scan the enemy **heavy breathing** and give'+
+                                  '\n\nme a battle report.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('Power Armor Computer speaking (robotically): Scanning'+
+                                  '\n\nenemy..........Enemy\'s heart is missing. The enemy'+
+                                  '\n\nhas passed. Battle report:..............Emergency'+
+                                  '\n\nAttack Mode Deactivated. The 5 seconds are over.'+
+                                  '\n\nPower source (fusion core) no longer being strained.'+
+                                  '\n\nPower armor hull intergrity: 58% as last reported.'+
+                                  '\n\nMomentous damage was taken to the torso of the armor.'+
+                                  '\n\nScanning your vitals....Scan complete. You have ex-'+
+                                  '\n\nperienced an adrenaline rush and a PTSD attack: which'+
+                                  '\n\nmay be a result of past battle experiences haunting'+
+                                  '\n\nyour mental psyche. However you have handled it well.'+
+                                  '\n\nImmediate treatment: if possible sit down and try to'+
+                                  '\n\ncontrol your breathing. To help I will activate the power'+
+                                  '\n\narmor\'s oxygen reserves, because you are lacking oxygen.'+
+                                  '\n\nSerious medical help: not needed. However, after regaining'+
+                                  '\n\nyour breath you should exit the armor for a while and apply'+
+                                  '\n\n1 or 2 first aid kits to yourself. The armor\'s torso area'+
+                                  '\n\ncaved in much and has your chest area slighly bleeding.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You speaking to Power Armor Computer: ***much heavier breathing*** No!'+
+                                  '\n\nDeactivate ***Wheezing*** the oxygen ***much heavier breathing'+
+                                  '\n\n*** reserves. You don\'t ***Wheezing*** act without my'+
+                                  '\n\n****much heavier breathing**** permission.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('Power Armor Computer speaking (robotically): I am programmed'+
+                                  '\n\nto keep the user of the armor alive. Oxygen will continue'+
+                                  '\n\nto be released. Scanners indicate that without at least 11'+
+                                  '\n\nmore minutes of using the oxygen reserves: you will surely'+
+                                  '\n\ndie from shortness of breath. Sit down and breath in and out'+
+                                  '\n\nslowly.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            print()
+                            print()
+                            input('You softly speaking to Power Armor Computer: *lessened heavy breathing*'+
+                                  '\n\nOk.............*lessened heavy breathing* you win...*lessened heavy'+
+                                  '\n\nbreathing*.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                            if FIRST_AID1 in character_inventory2:
+                                character_inventory2.remove(FIRST_AID1)
+                            elif FIRST_AID2 in character_inventory3:
+                                character_inventory3.remove(FIRST_AID2)
+                            print()
+                            print()
+                            input('SYSTEM: After calming down, regaining your breath, and applying 1 or'+
+                                  '\n\nfirst aid kits to yourself: you skin the DeathClaw by breaking off'+
+                                  '\n\na sharp piece of steel off of a nearby rusted car and use it as a'+
+                                  '\n\nknife. You then store it\'s meat in your inventory. You do this'+
+                                  '\n\nknowing that it might be good to sale: if you can find a buyer.'+
+                                  '\n\nPress enter to continue. ')
                             
+                            if DEATHCLAW_MEAT not in character_inventory3:
+                                character_inventory3.append(DEATHCLAW_MEAT)
+
+                        else:
+                            input('SYSTEM: You have already defeated the De-'+
+                                  '\n\nathClaw that came out of the sewer.'+
+                                  '\n\nPress enter to continue. ')
                             
 
                 else:
-                    input('SYSTEM: You go down the street from the Muesuem of Freedom'+
-                      '\n\nand you notice that something is growling while banging'+
-                      '\n\non a sewer lid. You look intensely and notice that it is'+
-                      '\n\nsome huge creature staring intently at you. You book it'+
-                      '\n\nout of there. (You need a stronger weapon before coming'+
-                      '\n\nhere.) Press enter to continue. ')
-                    
-
+                    if TALKED_TO_NICK in quest_inventory:
+                        input('SYSTEM: You go down the street from the Muesuem of Freedom'+
+                              '\n\nand you notice that something is growling while banging'+
+                              '\n\non a sewer lid. You look intensely and notice that it is'+
+                              '\n\na DeathClaw staring intently at you through the lid. You'+
+                              '\n\nbook it out of there. (You need a stronger weapon and ammo'+
+                              '\n\nfor the weapon before coming here.'+
+                              '\n\nPress enter to continue. ')
+                    else:
+                        input('SYSTEM: You go down the street from the Muesuem of Freedom'+
+                              '\n\nand you notice that something is growling while banging'+
+                              '\n\non a sewer lid. You look intensely and notice that it is'+
+                              '\n\na strange creature staring intently at you through the'+
+                              '\n\nlid. You book it out of there. (You need a stronger'+
+                              '\n\nweapon and ammmo for the weapon before coming here.'+
+                              '\n\nPress enter to continue. ')
             else:
                 if ARMOR3 in character_inventory3:
-                    if WEAPON2 in character_inventory2:
+                    if WEAPON2 in character_inventory2 and AMMO2 in character_inventory3: 
+                        if TALKED_TO_NICK not in quest_inventory:
+                            if DEATH_CLAW not in quest_inventory:
+                                quest_inventory.append(DEATH_CLAW)
+                                input('SYSTEM: You go down the street from the Muesuem of Freedom'+
+                                      '\n\nand you notice that something is growling while banging'+
+                                      '\n\non a sewer lid. You get closer and some creature springs'+
+                                      '\n\nout from the inside of the sewer: it towers over you at'+
+                                      '\n\naround 10 feet tall, (you are 6 feet tall but due to being'+
+                                      '\n\nin your power armor you are 7 feet tall) it\'s hands are'+
+                                      '\n\nclaw-like, it has the horns of a bull (but 10 times bigger,'+
+                                      '\n\nand they point forward and straight instead of wide and upward),'+
+                                      '\n\nand it\'s skin appears to be very thick.'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('Creature: RAAAAAAAAGGGGGGGHHHHHHHH....RAAAAGGGHHHHH!!!!'+
+                                  '\n\n(SYSTEM: Press enter to continue.)')
+                                print()
+                                print()
+                                input('SYSTEM: The creature charges at you, but you manage to evade it.'+
+                          '\n\nIt got it\'s horns stuck inside of a nearby rusted car, but he quickly'+
+                          '\n\nrecovers. You manage to pull out one of your strongest weapons and start'+
+                          '\n\nto shoot at it. This is obviously working as the creature is starting to'+
+                          '\n\nweaken, but it doesn\'t stop him from relentlessly charging at you. This'+
+                          '\n\nis because the bullets do not fully penetrate his thick skin. He grabs'+
+                          '\n\nhold of you, picks you up while inside of your T-60 power armor, and slams'+
+                          '\n\nyou into the ground while ramming his horns into the torso of your armor.'+
+                          '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('You speaking aloud: You\'ll have to do better than that.'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('Power Armor Computer speaking (robotically): Reporting:'+
+                                     '\n\nno damage taken, only mild scratches on the armor\'s'+
+                                     '\n\ntorso. Power armor hull integrity: 100%. Proceed att-'+
+                                     '\n\nentively and fully combat ready.'+
+                                     '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('You replying confidently to Power Armor Computer: I always do. '+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('You confidently speaking aloud: Good thing I\'m wearing the latest model'+
+                                     '\n\nof power armor. This T-60 was made to take on any explosives'+
+                                     '\n\nand/or bullets coming from a fighter jet. Of course this cr-'+
+                                     '\n\neature can\'t take me on.'+
+                                     '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('Power Armor Computer speaking (robotically): Do not grow'+
+                                      '\n\noverconfident. You will find yourself dead should you'+
+                                      '\n\nremain smug.'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('You replying to Power Armor Computer: Shut up...'+
+                                      '\n\n(SYSTEM: Press enter to continue. ')
+                                print()
+                                print()
+                                input('SYSTEM: After pinning you down and ramming it\'s horns into your'+
+                                  '\n\narmor\'s torso: the creature runs backwards preparing for it\'s'+
+                                  '\n\nfinal charge, but it staggers and falls a few times because you'+
+                                  '\n\nweakend it by shooting it with one of your stronger weapons earlier.'+
+                                  '\n\nYou hurry to your feet and shower the creature with as many bullets'+
+                                  '\n\nas you can, but again, none of the bullets fully penetrate him. As'+
+                                  '\n\nit is about to reach you, you have to reload, but have no time to do so.'+
+                                  '\n\nYou choose to not use the gun....'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('You speaking to Power Armor Computer: Computer,'+
+                                      '\n\ninitiate Emergency Attack Mode.'+
+                                      '\n\n(SYSTEM: Press enter to continue. ')
+                                print()
+                                print()
+                                input('Power Armor Computer speaking (robotically): There'+
+                                      '\n\nis no need to do so. This enemy only put mild'+
+                                      '\n\nscratches on the armor. The hull integrity is at'+
+                                      '\n\n100%. You are simply trying to show out and would'+
+                                      '\n\nbe....'+
+                                      '\n\n(SYSTEM: Press enter to continue. ')
+                                print()
+                                print()
+                                input('You yelling at Power Armor Computer: I'+
+                                      '\n\nSAID DO IT NOW!!!'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('Power Armor Computer speaking fast (robotically): Urgency Detected!'+
+                                      '\n\nWarning! Emergency attack mode strains the power source of the'+
+                                      '\n\npower armor (the fusion core) to increase your physical'+
+                                      '\n\nattack energy output by 3,257% and your attack speed by'+
+                                      '\n\n250% for 5 seconds. There is a 35%-40% chance that the'+
+                                      '\n\npower armor will go dead upon activation this mode due to'+
+                                      '\n\nstraining it\'s power source. If that happens...'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('Creature: RAGGHHHHHHHH... RAGGGHHHHH'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('You yelling at Power Armor Computer: NOW!!!'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('Power Armor Computer speaking even faster (robotically): Emergency'+
+                                      '\n\nAttack Mode initiated... Emergency Attack Mode successfully act-'+
+                                      '\n\nivated. Warning! Power source (fusion core) being strained!'+
+                                      '\n\nWarning! Emergency Attack Mode will last only 5 seconds!'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('SYSTEM: As the creature is about to grab a hold of you, you dodge it\'s'+
+                                  '\n\nclaw-like hands extremely fast: he was no match for you from the start,'+
+                                  '\n\nbut with Emergency Attack Mode activated you are simply dominating the'+
+                                  '\n\ncreature. You prepare to punch the creature as hard as you can.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('You screaming as you prepare a devestating punch: AAAAGGGGGHHHHH!!!!'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('SYSTEM: You punch a hole through the thick skin of the creature (in'+
+                                  '\n\nthe chest area) that not even bullets from your strongest weapons'+
+                                  '\n\ncould penetrate. You drive the creature not only to the ground,'+
+                                  '\n\nbut somewhat through the ground: creating a mini-crater that\'s'+
+                                  '\n\nabout 4 feet deep. It\'s as if Emergency Attack Mode strapped a'+
+                                  '\n\nrocket to your arm to create such a devestating punch.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('You speaking to Power Armor Computer: Computer'+
+                                  '\n\nscan the enemy and give me a battle report.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('Power Armor Computer speaking (robotically): Scanning'+
+                                  '\n\nenemy..........Enemy\'s heart is missing. The enemy'+
+                                  '\n\nhas passed. Battle report:..............Emergency'+
+                                  '\n\nAttack Mode Deactivated. The 5 seconds are over.'+
+                                  '\n\nPower source (fusion core) no longer being strained.'+
+                                  '\n\nPower armor hull intergrity: 100% as last reported.'+
+                                  '\n\nNo damage was taken to the torso of the armor: except'+
+                                  '\n\nminor scratches. Scanning your vitals....Scan complete.'+
+                                  '\n\nYou\'re condition: good.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('SYSTEM: After dominating the creature: you skin the creature by'+
+                                      '\n\nbreaking off a sharp piece of steel off of a nearby rusted'+
+                                      '\n\ncar and use it as a knife. You then store it\'s meat in your'+
+                                      '\n\ninventory. You do this knowing that it might be good to sale:'+
+                                      '\n\nif you can find a buyer.'+
+                                      '\n\nPress enter to continue. ')
+                            
+                                DEATHCLAW_MEAT = 'Sewer Creature Meat'
+                                if DEATHCLAW_MEAT not in character_inventory3:
+                                    character_inventory3.append(DEATHCLAW_MEAT)
 
+                            else:
+                                input('SYSTEM: You have already defeated the'+
+                                  '\n\ncreature that came out of the sewer. '+
+                                  '\n\nPress enter to continue. ')
 
+                        else:
+                            if DEATH_CLAW not in quest_inventory:
+                                quest_inventory.append(DEATH_CLAW)
+                                input('SYSTEM: You go down the street from the Muesuem of Freedom'+
+                                      '\n\nand you notice that something is growling while banging'+
+                                      '\n\non a sewer lid. You get closer and a DeathClaw springs'+
+                                      '\n\nout from the inside of the sewer: it towers over you at'+
+                                      '\n\naround 10 feet tall, (you are 6 feet tall but due to being'+
+                                      '\n\nin your power armor you are 7 feet tall) it\'s hands are'+
+                                      '\n\nclaw-like, it has the horns of a bull (but 10 times bigger,'+
+                                      '\n\nand they point forward and straight instead of wide and upward),'+
+                                      '\n\nand it\'s skin appears to be very thick. The DeathClaw\'s'+
+                                      '\n\nappearance fits the description Nick Valentine gave you in'+
+                                      '\n\nback in Diamond City.'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('DeathClaw: RAAAAAAAAGGGGGGGHHHHHHHH....RAAAAGGGHHHHH!!!!'+
+                                      '\n\n(SYSTEM: Press enter to continue.)')
+                                print()
+                                print()
+                                input('SYSTEM: The DeathClaw charges at you, but you manage to evade it.'+
+                          '\n\nIt got it\'s horns stuck inside of a nearby rusted car, but he quickly'+
+                          '\n\nrecovers. You manage to pull out one of your strongest weapons and start'+
+                          '\n\nto shoot at it. This is obviously working as the DeathClaw is starting to'+
+                          '\n\nweaken, but it doesn\'t stop him from relentlessly charging at you. This'+
+                          '\n\nis because the bullets do not fully penetrate his thick skin. He grabs'+
+                          '\n\nhold of you, picks you up while inside of your T-60 power armor, and slams'+
+                          '\n\nyou into the ground while ramming his horns into the torso of your armor.'+
+                          '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('You speaking aloud: You\'ll have to do better than that.'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('Power Armor Computer speaking (robotically): Reporting:'+
+                                      '\n\nno damage taken, only mild scratches on the armor\'s'+
+                                      '\n\ntorso. Power armor hull integrity: 100%. Proceed att-'+
+                                      '\n\nentively and fully combat ready.'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('You replying confidently to Power Armor Computer: I always do. '+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('You confidently speaking aloud: Good thing I\'m wearing the latest m-'+
+                                      '\n\nodel of power armor. This T-60 was made to take on any explosives'+
+                                      '\n\nand/or bullets coming from a fighter jet. Of course this cr-'+
+                                      '\n\neature can\'t take me on.'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('Power Armor Computer speaking (robotically): Do not grow'+
+                                      '\n\noverconfident. You will find yourself dead should you'+
+                                      '\n\nremain smug.'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('You replying to Power Armor Computer: Shut up...'+
+                                      '\n\n(SYSTEM: Press enter to continue. ')
+                                print()
+                                print()
+                                input('SYSTEM: After pinning you down and ramming it\'s horns into your'+
+                                      '\n\narmor\'s torso: the creature runs backwards preparing for it\'s'+
+                                      '\n\nfinal charge, but it staggers and falls a few times because you'+
+                                      '\n\nweakend it by shooting it with one of your stronger weapons earlier.'+
+                                      '\n\nYou hurry to your feet and shower the creature with as many bullets'+
+                                      '\n\nas you can, but again, none of the bullets fully penetrate him. As'+
+                                      '\n\nit is about to reach you, you have to reload, but have no time to do so.'+
+                                      '\n\nYou choose to not use the gun....'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('You speaking to Power Armor Computer: Computer,'+
+                                      '\n\ninitiate Emergency Attack Mode.'+
+                                      '\n\n(SYSTEM: Press enter to continue. ')
+                                print()
+                                print()
+                                input('Power Armor Computer speaking (robotically): There'+
+                                      '\n\nis no need to do so. This enemy only put mild'+
+                                      '\n\nscratches on the armor. The hull integrity is at'+
+                                      '\n\n100%. You are simply trying to show out and would'+
+                                      '\n\nbe....'+
+                                      '\n\n(SYSTEM: Press enter to continue. ')
+                                print()
+                                print()
+                                input('You yelling at Power Armor Computer: I'+
+                                      '\n\nSAID DO IT NOW!!!'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('Power Armor Computer speaking fast (robotically): Urgency Detected!'+
+                                      '\n\nWarning! Emergency attack mode strains the power source of the'+
+                                      '\n\npower armor (the fusion core) to increase your physical'+
+                                      '\n\nattack energy output by 3,257% and your attack speed by'+
+                                      '\n\n250% for 5 seconds. There is a 35%-40% chance that the'+
+                                      '\n\npower armor will go dead upon activation this mode due to'+
+                                      '\n\nstraining it\'s power source. If that happens...'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('DeathClaw: RAGGHHHHHHHH... RAGGGHHHHH'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('You yelling at Power Armor Computer: NOW!!!'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('Power Armor Computer speaking even faster (robotically): Emergency'+
+                                      '\n\nAttack Mode initiated... Emergency Attack Mode successfully act-'+
+                                      '\n\nivated. Warning! Power source (fusion core) being strained!'+
+                                      '\n\nWarning! Emergency Attack Mode will last only 5 seconds!'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('SYSTEM: As the DeathClaw is about to grab a hold of you, you dodge it\'s'+
+                                  '\n\nclaw-like hands extremely fast: he was no match for you from the start,'+
+                                  '\n\nbut with Emergency Attack Mode activated you are simply dominating the'+
+                                  '\n\ncreature. You prepare to punch the creature as hard as you can.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('You screaming as you prepare a devestating punch: AAAAGGGGGHHHHH!!!!'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('SYSTEM: You punch a hole through the thick skin of the DeathClaw (in'+
+                                  '\n\nthe chest area) that not even bullets from your strongest weapons'+
+                                  '\n\ncould penetrate. You drive the DeathClaw not only to the ground,'+
+                                  '\n\nbut somewhat through the ground: creating a mini-crater that\'s'+
+                                  '\n\nabout 4 feet deep. It\'s as if Emergency Attack Mode strapped a'+
+                                  '\n\nrocket to your arm to create such a devestating punch.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('You speaking to Power Armor Computer: Computer'+
+                                  '\n\nscan the enemy and give me a battle report.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('Power Armor Computer speaking (robotically): Scanning'+
+                                  '\n\nenemy..........Enemy\'s heart is missing. The enemy'+
+                                  '\n\nhas passed. Battle report:..............Emergency'+
+                                  '\n\nAttack Mode Deactivated. The 5 seconds are over.'+
+                                  '\n\nPower source (fusion core) no longer being strained.'+
+                                  '\n\nPower armor hull intergrity: 100% as last reported.'+
+                                  '\n\nNo damage was taken to the torso of the armor: except'+
+                                  '\n\nminor scratches. Scanning your vitals....Scan complete.'+
+                                  '\n\nYou\'re condition: good.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                input('SYSTEM: After dominating the DeathClaw: you skin the DeathClaw by'+
+                                      '\n\nbreaking off a sharp piece of steel off of a nearby rusted'+
+                                      '\n\ncar and use it as a knife. You then store it\'s meat in your'+
+                                      '\n\ninventory. You do this knowing that it might be good to sale:'+
+                                      '\n\nif you can find a buyer.'+
+                                      '\n\nPress enter to continue. ')
+                            
+                                if DEATHCLAW_MEAT not in character_inventory3:
+                                    character_inventory3.append(DEATHCLAW_MEAT)
 
+                            else:
+                                input('SYSTEM: You have already defeated the'+
+                                  '\n\nDeathClaw that came out of the sewer. '+
+                                  '\n\nPress enter to continue. ')
+
+                    else:
+                        if TALKED_TO_NICK in quest_inventory:
+                            input('SYSTEM: You go down the street from the Muesuem of Freedom'+
+                              '\n\nand you notice that something is growling while banging'+
+                              '\n\non a sewer lid. You look intensely and notice that it is'+
+                              '\n\na DeathClaw staring intently at you through the lid. You'+
+                              '\n\nbook it out of there. (You need a stronger weapon and ammo'+
+                              '\n\nfor the weapon before coming here.'+
+                              '\n\nPress enter to continue. ')
+                        else:
+                            input('SYSTEM: You go down the street from the Muesuem of Freedom'+
+                              '\n\nand you notice that something is growling while banging'+
+                              '\n\non a sewer lid. You look intensely and notice that it is'+
+                              '\n\na strange creature staring intently at you through the'+
+                              '\n\nlid. You book it out of there. (You need a stronger'+
+                              '\n\nweapon and ammo for the weapon before coming here.)'+
+                              '\n\nPress enter to continue. ')
 
 
                 else:
@@ -1334,5 +1938,6 @@ def concord(character_inventory, character_inventory2,
                       '\n\non a sewer lid. You look intensely and notice that it is'+
                       '\n\nsome huge creature staring intently at you. You book it'+
                       '\n\nout of there. (You need stronger armor before coming'+
-                      '\n\nhere.) Press enter to continue. ')                   
+                      '\n\nhere.) Press enter to continue. ')
+                               
 main()
