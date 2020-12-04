@@ -1,4 +1,4 @@
-                
+        
 import characterinventory
 import characterinventory2
 import characterinventory3
@@ -18,8 +18,12 @@ QUIT = 8
 #-------------------------------------------------------------------
 WEAPON1 = '10mm Pistol'
 AMMO1 = '10mm Pistol Ammunition'
-RING1 = 'Nora\'s wedding ring'
-RING2 = 'Your wedding ring'
+RING1 = 'Nora\'s wedding ring' # this variable also goes in the
+                               # prevent_exploit list
+                               
+RING2 = 'Your wedding ring' # this variable also goes in the
+                            # prevent_exploit list
+
 BOTTLED_WATER = 'Bottled Purified Water' # this variable also goes in the
                                          # prevent_exploit list
                                          
@@ -52,12 +56,28 @@ ARMOR2 = 'T-45 Power Armor' # this variable also goes in the
                             
 ARMOR3 = 'T-60 Power Armor' # this variable also goes in the
                             # prevent_exploit list
-WEAPON3 = 'MiniGun'
-WEAPON4 = 'Scoped .50 Cal Sniper'
-DEATHCLAW_MEAT = 'DeathClaw Meat' # this variable can pontentially be
+WEAPON3 = 'Scoped .50 Cal Sniper'
+WEAPON4 = 'MiniGun'
+DEATHCLAW_MEAT = 'DeathClaw Meat' # This variable can pontentially be
                                   # assigned a different name than
-                                  # what it is currently assigned
-                                  # 'Sewer Creature Meat'
+                                  # what it is currently assigned,
+                                  # that other name is:
+                                  # 'Sewer Creature Meat'. This can
+                                  # be seen under the concord def
+                                  # function: choice2/MYSTERIOUS_SEWER
+
+    
+
+
+
+
+# Variables that go into the character_inventory4 list under def main
+#--------------------------------------------------------------------
+    # FIRST_AID3 goes in this list but also goes into the
+    # prevent_exploit3 list
+
+FUSION_CORE2 = 'Fusion Core' # this variable also goes in the
+                             # prevent_exploit2 list
 
 
     
@@ -65,11 +85,14 @@ DEATHCLAW_MEAT = 'DeathClaw Meat' # this variable can pontentially be
 # Variables that go into the quest_inventory list under def main
 #---------------------------------------------------------------
 MAN_SIZED_RATS = 'Man-sized rats already defeated'
+READ_ABOUT_NICK = 'Knew about Nick before going to Diamond City'
 MUTANT_DOGS = 'Mutant dogs already defeated'
 READ_RED_ROCKET_COMPUTER = 'Read computer at Red Rocket Truck Stop'
 RAIDERS_1 = 'Raiders already defeated'
 DEATH_CLAW = 'Death Claw already defeated'
+DIAMOND_CITY_TRAVEL = 'Your first time going to Diamond City'
 TALKED_TO_NICK = 'Nick has explained much about the CommonWealth'
+TALKED_TO_MERCHANT = 'Unique dialouge with merchant was read'
 
 
 
@@ -89,6 +112,11 @@ THINK_SELF11 = 'Eleventh thought'
 THINK_SELF12 = 'Twelveth thought'
 THINK_SELF13 = 'Thirteenth thought'
 THINK_SELF14 = 'Fourteenth thought'
+THINK_SELF15 = 'Fifteenth thought'
+THINK_SELF16 = 'Sixteenth thought'
+# there is a "think to self" in the diamond city def func
+# under MERCHANT (option2) but it is not included here as
+# it is exceptional
 
 
 
@@ -101,24 +129,40 @@ FIRST_AID1 = 'First Aid Kit' # this variable goes in both the character_inventor
 FIRST_AID2 = 'First Aid Kit' # this variable goes in both the character_inventory3
                              # list and the prevent_exploit2 list
 
+FIRST_AID3 = 'First Aid Kit' # this variable goes in both the character_inventory3
+                             # list and the prevent_exploit3 list 
+
 
                              
 
 # Variable that hold's that players money
 #----------------------------------------
-MONEY = 0.0
+MONEY = 6000
 
 
 
 
-# Variables for the money that can be collected in various
-# places within the program
+# Variables for the money and the value of in game items
 #------------------------------------------------------------
 CASH1 = 250 # this variable goes in the prevent_exploit list
 
 CASH2 = 250 # this variable goes in the prevent_exploit2 list
 
-DEATH_CLAW_MEAT = 500 
+SNIPER_VALUE = 1500
+
+MINIGUN_VALUE = 1500
+
+FIRSTAIDKIT3_VALUE = 100
+
+ARMOR3_VALUE = 3000 
+
+FUSION_CORE2_VALUE = 1100
+
+RING1_VALUE = 1250
+
+RING2_VALUE = 1250
+
+DEATH_CLAW_MEAT_VALUE = 500 
 
 
 
@@ -132,8 +176,12 @@ def main():
     #-------------------------------------------------------
     global WEAPON1
     global AMMO1
-    global RING1
-    global RING2
+    global RING1 # this variable also goes in the
+                 # prevent_exploit list
+                 
+    global RING2 # this variable also goes in the
+                 # prevent_exploit list
+    
     global BOTTLED_WATER # this variable also goes in the
                          # prevent_exploit list
                          
@@ -151,6 +199,7 @@ def main():
         # also belongs to the prevent_exploit list.
         
     global MUESUEM_PASSWORD
+    
     global FUSION_CORE1 # this variable also goes in the
                         # prevent_exploit list
     global WEAPON2
@@ -171,9 +220,26 @@ def main():
                   # prevent_exploit list
     global WEAPON3
     global WEAPON4
-    global DEATHCLAW_MEAT # this variable can pontentially be
+    global DEATHCLAW_MEAT # This variable can pontentially be
                           # assigned a different name than
-                          # what it is currently assigned
+                          # what it is currently assigned,
+                          # that other name is:
+                          # 'Sewer Creature Meat'. This can
+                          # be seen under the concord def
+                          # function: choice2/MYSTERIOUS_SEWER
+
+                          
+
+
+    # global variables that go into the character_inventory4 list
+    #------------------------------------------------------------
+
+        # FIRST_AID3 goes in this list but also goes into the
+        # prevent_exploit3 list
+        
+    global FUSION_CORE2 # this variable goes in this list but also
+                        # goes into the prevent_exploit2 list
+
 
 
         
@@ -182,11 +248,14 @@ def main():
     # global variables that go into the quest_inventory list
     #-------------------------------------------------------
     global MAN_SIZED_RATS
+    global READ_ABOUT_NICK
     global MUTANT_DOGS
     global READ_RED_ROCKET_COMPUTER
     global RAIDERS_1
     global DEATH_CLAW
+    global DIAMOND_CITY_TRAVEL
     global TALKED_TO_NICK
+    global TALKED_TO_MERCHANT
 
 
     
@@ -207,24 +276,42 @@ def main():
     global THINK_SELF12
     global THINK_SELF13
     global THINK_SELF14
+    global THINK_SELF15
+    global THINK_SELF16
+    # there is a "think to self" in the diamond city def func
+    # under MERCHANT (option2) but it is not included here as
+    # it is exceptional
 
 
     
 
-     # global variable that holds the player's money
-     #----------------------------------------------
+    # global variable that holds the player's money
+    #----------------------------------------------
     global MONEY
 
     
 
-    # global variables for the money that can be collected in various
-    # places within the program
+    # global variables for the money and the value of in game items
     #----------------------------------------------------------------
     global CASH1 # this variable goes in the prevent_exploit list
     
     global CASH2 # this variable goes in the prevent_exploit2 list
 
-    global DEATH_CLAW_MEAT 
+    global SNIPER_VALUE
+
+    global MINIGUN_VALUE
+
+    global FIRSTAIDKIT3_VALUE
+
+    global ARMOR3_VALUE 
+
+    global FUSION_CORE2_VALUE
+
+    global RING1_VALUE
+
+    global RING2_VALUE
+
+    global DEATH_CLAW_MEAT_VALUE
                     
 
     
@@ -238,12 +325,15 @@ def main():
     global FIRST_AID2 # this variable goes in both the character_inventory3
                       # list and the prevent_exploit2 list
 
+    global FIRST_AID3 #this variable goes in both the character_inventory3
+                      # list and the prevent_exploit3 list
+
                       
 
     # character_inventory is a list that stores the players collected items
     # It is an object imported from the characterinvenory file
     #--------------------------------------------------------------------------------------
-    character_inventory = []
+    character_inventory = [BOTTLED_WATER, WEAPON1, AMMO1, RING1, RING2]
     inventory = characterinventory.CharacterInventory(character_inventory)
 
     
@@ -251,7 +341,7 @@ def main():
     # character_inventory2 is a second list that stores the players collected items
     # It is an object imported from the characterinventory2 file
     #------------------------------------------------------------------------------
-    character_inventory2 = []
+    character_inventory2 = [FOOD1, WEAPON2]
     inventory2 = characterinventory2.CharacterInventory2(character_inventory2)
 
     
@@ -259,15 +349,24 @@ def main():
     # character_inventory3 is a third list that stores the players collected items
     # It is an object imported from the characterinventory3 file
     #-----------------------------------------------------------------------------
-    character_inventory3 = []
+    character_inventory3 = [ARMOR2, AMMO2 ]
     inventory3 = characterinventory3.CharacterInventory3(character_inventory3)
+
+
+
+
+    #character_inventory4 is a fourth list that stores the players collected items
+    # It is an object importred from the characterinventory4 file
+    #-----------------------------------------------------------------------------
+    character_inventory4 = []
+    inventory4 = characterinventory4.CharacterInventory4(character_inventory4)
 
     
 
     # quest_inventory is a list that prevents the same messages for various quest
     # from being displayed more than once in certain areas of the program
     #----------------------------------------------------------------------------
-    quest_inventory = []
+    quest_inventory = [TALKED_TO_NICK]
 
     
 
@@ -278,17 +377,25 @@ def main():
     
 
     # prevent_exploit is a list that prevents variables CASH1,
-    # FIRST_AID1, BOTTLED_WATER, FOOD1, FUSION_CORE1, and ARMOR2 
-    # from being collected more than once/ exploited
-    #--------------------------------------------------------
+    # FIRST_AID1, BOTTLED_WATER, FOOD1, FUSION_CORE1, ARMOR2,
+    # RING1, and RING2 from being collected more than once/ exploited
+    #----------------------------------------------------------------
     prevent_exploit = []
 
 
 
-    # prevent_exploit2 is a list that prevents variables CASH2
-    # and FIRST_AID2 from being collected more than once/ exploited
+    # prevent_exploit2 is a list that prevents variables CASH2,
+    # FIRST_AID2, and FUSION_CORE2 from being collected more
+    # than once/ exploited
     #--------------------------------------------------------------
     prevent_exploit2 = []
+
+
+    # prevent_exploit3 is a list that prevents the variables
+    # FIRST_AID3 and ARMOR3 from being collected
+    # more than once/ exploited
+    #-------------------------------------------------------
+    prevent_exploit3 = []
     
     choice = 0 
     while choice != QUIT:
@@ -301,6 +408,8 @@ def main():
             print(character_inventory2)
             print()
             print(character_inventory3)
+            print()
+            print(character_inventory4)
             print()
             print('Money:\t$',format(MONEY, ',.2f'), sep='')
             print()
@@ -317,6 +426,13 @@ def main():
                               character_inventory3, quest_inventory,
                               think_inventory, prevent_exploit,
                               prevent_exploit2)
+
+        elif choice == DIAMOND_CITY:
+            Diamond_City = diamond_city(character_inventory, character_inventory2,
+                                        character_inventory3, character_inventory4,
+                                        quest_inventory, think_inventory,
+                                        prevent_exploit, prevent_exploit2,
+                                        prevent_exploit3)
             
 def get_menu_choice():
     print()
@@ -583,6 +699,8 @@ def sanctuary_hills(character_inventory, quest_inventory,
                     think_inventory.append(THINK_SELF5)
                     print()
                 input('Press enter to read computer entry 2. ')
+                if READ_ABOUT_NICK not in quest_inventory:
+                    quest_inventory.append(READ_ABOUT_NICK)
                 print()
                 print('---------------------------------------------------------------------------')
                 print()
@@ -627,7 +745,7 @@ def sanctuary_hills(character_inventory, quest_inventory,
             if THINK_SELF7 not in think_inventory:
                 print('Thinking to self: I sure miss being here. My son Shaun is out there'+
                   '\n\nsomewhere, my wife, Nora, was gunned down in front of me, and'+
-                  '\n\nhere I am in our home 210 years later: alone. Wait a minute...'+
+                  '\n\nhere I am in our home 210 years later: alone..... Wait a minute...'+
                   '\n\nIs that my wedding ring and Nora\'s on the nightstand? It is!'+
                   '\n\nWe didn\'t have them on the day the bombs fell because they'+
                   '\n\nneeded repairing. They are surprisingly in good condition.'+
@@ -649,10 +767,12 @@ def sanctuary_hills(character_inventory, quest_inventory,
                 choice6 = int(input('Enter a valid choice: '))
                 print()
             if choice6 == COLLECT_RINGS:
-                if RING1 and RING2 in character_inventory:
+                if RING1 and RING2 in prevent_exploit:
                     input('SYSTEM: You have already collected the wedding'+
                           '\n\nrings. Press enter to continue. ')
                 else:
+                    prevent_exploit.append(RING1)
+                    prevent_exploit.append(RING2)
                     character_inventory.append(RING1)
                     character_inventory.append(RING2)
                     input('SYSTEM: You place your wedding ring on your hand and'+
@@ -698,13 +818,13 @@ def redrocket_truckstop(character_inventory, character_inventory2,
     if WEAPON1 and AMMO1 in character_inventory:
         if MUTANT_DOGS not in quest_inventory:
             quest_inventory.append(MUTANT_DOGS)
-            input('You kill all of the mutant dogs that are outside of'+
+            input('SYSTEM: You kill all of the mutant dogs that are outside of'+
                   '\n\nRed Rocket Truck Stop with a weapon of your choice.'+
                   '\n\nYou then enter the Red Rocket Truck Stop. Press'+
                   '\n\nenter to continue. ')
         else:
             input('SYSTEM: You have already killed all of the mutant dogs that'+
-                          '\n\nwere here earlier. You walk by their corpses. Press'+
+                  '\n\nwere here earlier. You walk by their corpses. Press'+
                   '\n\nenter to continue. ')
         choice2 = 0
         OPEN_SAFE = 1
@@ -809,9 +929,9 @@ def redrocket_truckstop(character_inventory, character_inventory2,
                           '\n\npower armor? He said that the fusion core went dead. If I find a'+
                           '\n\nway to power it up there\'s no doubt that I can use it. I know how'+
                           '\n\nto after all: I did fight in power armor for the special forces in'+
-                          '\n\nthe American-Russian war. Plus, they had us learn how to operate'+
-                          '\n\npractically any type of weapon we come across: I\'m more than sure'+
-                          '\n\nthat I still know how to shoot a simple Assualt Rifle properly.'+
+                          '\n\nthe World War 3. Plus, they had us learn how to operate practically'+
+                          '\n\nany type of weapon we come across: I\'m more than sure that I still'+
+                          '\n\nknow how to shoot a simple Assualt Rifle properly.'+
                           '\n\n(SYSTEM: Press enter to continue. ')
                     think_inventory.append(THINK_SELF10)
                     print()
@@ -848,11 +968,9 @@ def concord(character_inventory, character_inventory2,
             character_inventory3, quest_inventory,
             think_inventory, prevent_exploit,
             prevent_exploit2):
-    
+
     global MONEY
-    global CASH1
     global CASH2
-    global DEATH_CLAW_MEAT
     global DEATHCLAW_MEAT
     
     choice2 = 0
@@ -888,17 +1006,19 @@ def concord(character_inventory, character_inventory2,
                                   '\n\ndown with your weapon of choice. However, you'+
                                   '\n\nwere shot in the left shoulder and use a first aid'+
                                   '\n\nkit to take care of it. Press enter to continue. ')
+                        print()
+                        print()
                         if FIRST_AID1 in character_inventory2:
                             character_inventory2.remove(FIRST_AID1)
                     else:
-                            input('SYSTEM: You have already killed the "Raiders" that were here. You'+
+                        input('SYSTEM: You have already killed the "Raiders" that were here. You'+
                           '\n\nwalk by their corpses. Press enter to continue. ')
-                            print()
-                            print()
+                        print()
+                        print()
                     print('Inside of the Muesuem of Freedom')
                     print('--------------------------------')
                     print()
-                    if THINK_SELF11 in think_inventory:
+                    if THINK_SELF11 not in think_inventory:
                         print('Thinking to self: Man this place is run-down. There\'s a'+
                           '\n\nhole in the roof up there. The elevators have been destroyed'+
                               '\n\nit seems. I\'ll take the stairs if I need to go up.')
@@ -912,255 +1032,256 @@ def concord(character_inventory, character_inventory2,
                           '\n6. Search the co-pilot seat of the crashed helicopter (rooftop)'+
                           '\n7. Enter and collect T-45 Power Armor next to the crashed helicopter (rooftop)')
                     print()
-                           
-                else:
-                    input('SYSTEM: Check your inventory! You need either a 10mm Pistol,'+
-                              '\n\n10mm Pistol Ammunition, Light Kevlar Armor, and/or a First'+
-                              '\n\nAid Kit before coming here. There are men outside who are'+
-                              '\n\narmed and they do not look friendly. It seems they are'+
-                              '\n\nlooking for something inside of the muesuem... Press'+
-                              '\n\nenter to continue. ')
-            else:
-                input('SYSTEM: Check your inventory! You need either a 10mm pistol,'+
-                              '\n\n10mm Pistol Ammunition, Light Kevlar Armor, and/or a First'+
-                              '\n\nAid Kit before coming here. There are men outside who are'+
-                              '\n\narmed and they do not look friendly. It seems they are'+
-                              '\n\nlooking for something inside of the muesuem... Press'+
-                              '\n\nenter to continue. ')
-            COLLECT_FIRSTAID = 1
-            COLLECT_CASH = 2
-            READ_COMPUTER = 3
-            COLLECT_FUSION_CORE = 4
-            COLLECT_ASSUALT_RIFLE = 5
-            COLLECT_ASSUALT_RIFLE_AMMO = 6
-            ENTER_T45_POWER_ARMOR = 7
-            choice3 = 0
-            choice3 = int(input('Enter your choice: '))
-            print()
-            while choice3 < COLLECT_FIRSTAID or choice3 > ENTER_T45_POWER_ARMOR:
-                choice3 = int(input('Enter a valid choice: '))
-                print()
-            if choice3 == COLLECT_FIRSTAID:
-                if FIRST_AID2 not in prevent_exploit2:
-                    prevent_exploit2.append(FIRST_AID2)
-                    if FIRST_AID2 not in character_inventory3:
-                        character_inventory3.append(FIRST_AID2)
-                        input('SYSTEM: You open the First Aid Kit by the emergency exit and take it.'+
-                          '\n\nIt has been added to your inventory. Press enter to continue. ')
-                else:
-                    input('SYSTEM: You have already collected the first aid'+
-                          '\n\nkit. Press enter to continue. ')
-            elif choice3 == COLLECT_CASH:
-                if CASH2 not in prevent_exploit2:
-                    prevent_exploit2.append(CASH2)
-                    MONEY = MONEY + CASH2
-                    input('SYSTEM: You look inside the muesuem\'s old ticket booth'+
-                          '\n\nand find $250. It was well hidden. It has'+
-                          '\n\nbeen added to your inventory. ')
-                else:
-                    input('SYSTEM: You have already collected the $250 inside the'+
-                          '\n\nmuesuem\'s ticket booth. Press enter to continue. ')
-
-            elif choice3 == READ_COMPUTER:
-                input('Press enter to read computer. ')
-                print()
-                print('---------------------------------------------------------------------------')
-                print()
-                print('-Muesuem of Freedom\'s public computer')
-                print()
-                print('Computer entry 1: GOOD RIDDANCE!'+
-                      '\n\nI am SICK AND TIRED of working with everyone here. I AM DONE! PERIOD!'+
-                      '\n\nI am typing this on the public computer, so that ANYONE, even'+
-                      '\n\ncustomers, may come and read this. I am able to shut off all of this'+
-                      '\n\nfacilitie\'s power and keep it that way for as long as I want. The fusion'+
-                      '\n\ncore behind this security gate powers this entire place and I can hack'+
-                      '\n\ninto it and shut it down from where-ever I please at anytime. And no you'+
-                      '\n\nwon\'t be able to trace my signal. Good luck trying to fix it. Who\'s hobby'+
-                      '\n\nof hacking computers is worthless now, Peter? Peter, I hope you, Patrick,'+
-                      '\n\nElizabeth, Jackson, Jocelyn, and Koby all lose your jobs. Everyday'+
-                      '\n\nyou guys open up the muesuem I will shut the power off for 3/4 of the time'+
-                      '\n\nthe muesuem is open. Good luck generating income. Peter just because'+
-                      '\n\nyou\'re the boss does not give you the right to talk to me like I\'m a child.'+
-                      '\n\nPatrick, how about you come to work and actually WORK sometime. I get tired'+
-                      '\n\nof getting called in because you\'re too much of a lazy bum to do anything. But'+
-                      '\n\nsince you all are about to lose your jobs you\'ve got all day to do that.'+
-                      '\n\nElizabeth you should stop gossiping about people behind their back. I felt'+
-                      '\n\nlike I was in high school all over again everyday I came there listening to you'+
-                      '\n\ntalk about somebody. Jackson how about you stop being so rude to customer\'s?'+
-                      '\n\nI\'m sure you\'ll find lots of time to practice that in your bathroom mirror'+
-                      '\n\nsince all of you are soon about to be out of a job. Jackson you should also stop'+
-                      '\n\nstealing money out of the cash register and hiding it in the ticket booth so that'+
-                      '\n\nyou can take it for later: no you are not slick. Jocelyn you should learn to'+
-                      '\n\nrespect people\'s personal space and should try taking a shower sometime. One'+
-                      '\n\nday you came by my work space and I swear I was about to pass out. Koby, you'+
-                      '\n\nneed to decide what you want to do with your life. Work a full time job or sell'+
-                      '\n\ndrugs. I got tired of seeing police coming to the muesuem every other day asking PETER'+
-                      '\n\nquestions about YOU. And lately there had been some rough looking guys coming'+
-                      '\n\nto the muesuem asking where you were. I\'m not trying to die because you cheated'+
-                      '\n\nsome thugs their 5 grams and they shoot up the muesuem. The police won\'t even'+
-                      '\n\nknow where to find me since you hired me illegally, Peter. I gave you my'+
-                      '\n\npaperwork and you said you\'d, "keep it on file." I literally heard and saw you'+
-                      '\n\nshred it not even 30 seconds later. You have no records of me that can be used to'+
-                      '\n\ntrace me, so you\'re all done for. You guys didn\'t even know my real name. I'+
-                      '\n\ndeleted all footage of me as well. The police will have no leads on me at all.'+
-                      '\n\nBut if you guys get tired of me shutting the place done so often: this is all you'+
-                      '\n\nhave to do. Type in the new password I set on this computer\'s security gate and'+
-                      '\n\nit will open. The password is: ThePersonnelHereAreLosers. Type it exactly like'+
-                      '\n\nthat. No spaces. Then you can remove the fusion core behind this computer\'s'+
-                      '\n\nsecurity gate and you will have removed this place\'s source of power permanently.'+
-                      '\n\nThen you all can go find a new job if you so choose.'+
-                      '\n\n-"TJ"'+
-                      '\nAugust 21, 2077')
-                print()
-                input('Press enter to continue. ')
-                print()
-                if THINK_SELF12 not in think_inventory:
-                    think_inventory.append(THINK_SELF12)
-                    print('Thinking to self: Wow. What a riot. I actually remember seeing this on'+
-                          '\n\nthe national news headline. This guy was never found. Crazy. This'+
-                          '\n\nwas 210 years ago. To think that they all died when the bombs fell'+
-                          '\n\nonly two months and two days later... So unfortunate. At least this'+
-                          '\n\ndispute is just as dead as they are. He said the password to the'+
-                          '\n\npublic computer in this building is: ThePersonnelHereAreLosers. No'+
-                          '\n\nspaces, spelled exactly like that. I\'ll remember it just in case.')
                     print()
-                    print()
-                if MUESUEM_PASSWORD not in character_inventory2:
-                    input('SYSTEM: The muesuem\'s public computer password has been added to your'+
-                          '\n\ninventory. Press enter to continue. ')
-                    print()
-                else:
-                    input('SYSTEM: You already have this muesuem\'s public computer'+
-                          '\n\npassword. Press enter to continue. ')
-                    print()
-
-            elif choice3 == COLLECT_FUSION_CORE:
-                input('Press enter to access computer. ')
+                    COLLECT_FIRSTAID = 1
+                COLLECT_CASH = 2
+                READ_COMPUTER = 3
+                COLLECT_FUSION_CORE = 4
+                COLLECT_ASSUALT_RIFLE = 5
+                COLLECT_ASSUALT_RIFLE_AMMO = 6
+                ENTER_T45_POWER_ARMOR = 7
+                choice3 = 0
+                choice3 = int(input('Enter your choice: '))
                 print()
-                print('---------------------------------------------------------------------------')
-                print()
-                print('-Muesuem of Freedom\'s public computer')
-                print()
-                # the variable MuesuemPublicComputerPass is used to
-                # validate the muesuem's public computer password
-                MuesuemPublicComputerPass = input('Enter the password: ')
-                print()
-                if MuesuemPublicComputerPass != 'ThePersonnelHereAreLosers':
-                    input('COMPUTER: ERROR. That password is incorrect.'+
-                          '\n\nSYSTEM: Check your inventory for the'+
-                          '\n\nMuesuem of Freedom\'s public computer'+
-                          '\n\npassword. Or search around the muesuem'+
-                          '\n\nto see if you can find it. Press enter'+
-                          '\n\n to continue. ')
-                else:
-                    choice4 = 0
-                    OPEN_SECURITY_GATE = 1
-                    choice4 = int(input(' Computer: Access Granted: Enter 1 to open the security gate: '))
+                while choice3 < COLLECT_FIRSTAID or choice3 > ENTER_T45_POWER_ARMOR:
+                    choice3 = int(input('Enter a valid choice: '))
                     print()
-                    while choice4 < OPEN_SECURITY_GATE or choice4 > OPEN_SECURITY_GATE:
-                        choice4 = int(input('Enter a valid choice: '))
-                        print()
-                    if choice4 == OPEN_SECURITY_GATE:
-                        if FUSION_CORE1 not in prevent_exploit:
-                            prevent_exploit.append(FUSION_CORE1)
-                            if FUSION_CORE1 not in character_inventory2:
-                                character_inventory2.append(FUSION_CORE1)
-                                input('SYSTEM: You open the security gate and are able to'+
-                              '\n\ntake the fusion core out of the power generator'+
-                              '\n\nthat it is sitting in. Since the fusion core'+
-                              '\n\nwas the power source that gave power to the'+
-                              '\n\nentire muesuem: all of the power went out in'+
-                              '\n\nthe muesuem after you took the fusion core out'+
-                              '\n\nof the power generator. The fusion core has'+
-                              '\n\nbeen added to your inventory. Press enter to'+
-                              '\n\ncontinue. ')
-                        else:
-                            input('SYSTEM: You have already collected the fusion core'+
-                                  '\n\nbehind this computer\'s security gate. Press'+
-                                  '\n\nenter to continue. ')
-                                
-            elif choice3 == COLLECT_ASSUALT_RIFLE:
-                if WEAPON2 not in character_inventory2:
-                    character_inventory2.append(WEAPON2)
-                    input('SYSTEM: On the roof, you enter a crashed military'+
-                          '\n\nhelicopter and notice someone\'s skeleton in it.'+
-                          '\n\nThey are wearing a U.S. military\'s pilot uniform'+
-                          '\n\nwith the name and title, "Junior Officer Garret"'+
-                          '\n\nwritten on the their junior officer\'s uniform jacket.'+
-                          '\n\nYou notice an Assualt Rifle in the pilot seat and'+
-                          '\n\ntake it knowing it is a better weapon than what you'+
-                          '\n\ncurrently have. The Assualt Rifle has been added to'+
-                          '\n\nyour inventory. Press enter to continue. ')
-                    print()
-                    print()
-                    if READ_RED_ROCKET_COMPUTER in quest_inventory:
-                        if THINK_SELF13 not in think_inventory:
-                            think_inventory.append(THINK_SELF13)
-                            input('Thinking to self: So this is Junior Officer Garret'+
-                                  '\n\nthat I read about at the Red Rocket Truck Stop.'+
-                                  '\n\nLooking at his skeleton it seems as if his neck'+
-                                  '\n\nwas snapped in half. Officer Miles had killed Garret'+
-                                  '\n\nwith only one arm after Garret tried to kill him.'+
-                                  '\n\nOfficer miles must have been one tough pilot. I\'m'+
-                                  '\n\ngoing to have to take his assualt rifle though.'+
-                                  '\n\n(SYSTEM: Press enter to continue. ) ')
-                            print()
-                else:
-                    input('You have already collected the assualt rifle inside of'+
-                          '\n\nthe crashed helicopter. Press enter to continue. ')
-
-            elif choice3 == COLLECT_ASSUALT_RIFLE_AMMO:
-                if AMMO2 not in character_inventory3:
-                    character_inventory3.append(AMMO2)
-                    input('SYSTEM: Inside the crashed military helicopter on the'+
-                          '\n\nroof: you search the co-pilot\'s seat and find a'+
-                          '\n\nbox of 5.56 Assualt Rifle Ammunition. It has been'+
-                          '\n\nadded to your inventory. Press enter to continue. ')
-                    print()
-                else:
-                    input('SYSTEM: You have already collected the 5.56 Assualt'+
-                          '\n\nRifle Ammunition. Press enter to continue. ')
-
-            elif choice3 == ENTER_T45_POWER_ARMOR:
-                if ARMOR2 not in prevent_exploit:
-                    prevent_exploit.append(ARMOR2)
-                    if FUSION_CORE1 in character_inventory2:
-                        if ARMOR2 not in character_inventory3:
-                            character_inventory3.append(ARMOR2)
-                            input('SYSTEM: You notice that there is T-45 Power Armor'+
-                              '\n\nnext to the crashed helicopter. You turn the power'+
-                              '\n\narmor on by inserting the fusion core. You then open'+
-                              '\n\nthe power armor by twisting the opening valve: the'+
-                              '\n\nback of the power suit opens. You then get inside of'+
-                              '\n\nthe power armor from the back, as that is the only way'+
-                              '\n\nto get inside of it. The back of the power armor then'+
-                              '\n\nproceeds to close: fully encompassing you inside of it'+
-                              '\n\nand covering every inch of your body in militarty grade'+
-                              '\n\nsteel. Press enter to continue. ')
-                            print()
-                            print()
-                            input('Power Armor Computer speaking (robotically): Systems initializing. Power armor'+
-                              '\n\ncombat readiness grade: B minus. This is because the power armor has not had'+
-                              '\n\nmaintenance in....calculating....calculating... 210 years. Power armor hull'+
-                              '\n\nintegrity: 100%. Emergency Attack Mode: Available. All other systems online'+
-                              '\n\nand ready.'+
-                              '\n\n(SYSTEM: Press enter to continue.) ')
-                            print()
-                            print()
-                            if THINK_SELF14 not in think_inventory:
-                                think_inventory.append(THINK_SELF14)
-                                input('Thinking to self: Being inside of this armor doesn\'t bring back'+
-                                  '\n\nthe best of memories. But I\'ve seen enough to know that it'+
-                                  '\n\nis doing nothing other than helping me right now.'+
-                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                if choice3 == COLLECT_FIRSTAID:
+                    if FIRST_AID2 not in prevent_exploit2:
+                        prevent_exploit2.append(FIRST_AID2)
+                        if FIRST_AID2 not in character_inventory3:
+                            character_inventory3.append(FIRST_AID2)
+                            input('SYSTEM: You open the First Aid Kit by the emergency exit and take it.'+
+                                  '\n\nIt has been added to your inventory. Press enter to continue. ')
                     else:
-                          input('SYSTEM: You need a fusion core to activate the power armor'+
-                              '\n\nbefore obtaining it. Search the muesuem to see if you'+
-                              '\n\ncan find a fusion core. Press enter to continue. ')
+                        input('SYSTEM: You have already collected the first aid'+
+                          '\n\nkit. Press enter to continue. ')
+                elif choice3 == COLLECT_CASH:
+                    if CASH2 not in prevent_exploit2:
+                        prevent_exploit2.append(CASH2)
+                        MONEY = MONEY + CASH2
+                        input('SYSTEM: You look inside the muesuem\'s old ticket booth'+
+                              '\n\nand find $250. It was well hidden. It has'+
+                              '\n\nbeen added to your inventory. ')
+                    else:
+                        input('SYSTEM: You have already collected the $250 inside the'+
+                              '\n\nmuesuem\'s ticket booth. Press enter to continue. ')
+                elif choice3 == READ_COMPUTER:
+                    input('Press enter to read computer. ')
+                    print()
+                    print('---------------------------------------------------------------------------')
+                    print()
+                    print('-Muesuem of Freedom\'s public computer')
+                    print()
+                    print('Computer entry 1: GOOD RIDDANCE!'+
+                          '\n\nI am SICK AND TIRED of working with everyone here. I AM DONE! PERIOD!'+
+                          '\n\nI am typing this on the public computer, so that ANYONE, even'+
+                          '\n\ncustomers, may come and read this. I am able to shut off all of this'+
+                          '\n\nfacilitie\'s power and keep it that way for as long as I want. The fusion'+
+                          '\n\ncore behind this security gate powers this entire place and I can hack'+
+                          '\n\ninto it and shut it down from where-ever I please at anytime. And no you'+
+                          '\n\nwon\'t be able to trace my signal. Good luck trying to fix it. Who\'s hobby'+
+                          '\n\nof hacking computers is worthless now, Peter? Peter, I hope you, Patrick,'+
+                          '\n\nElizabeth, Jackson, Jocelyn, and Koby all lose your jobs. Everyday'+
+                          '\n\nyou guys open up the muesuem I will shut the power off for 3/4 of the time'+
+                          '\n\nthe muesuem is open. Good luck generating income. Peter just because'+
+                          '\n\nyou\'re the boss does not give you the right to talk to me like I\'m a child.'+
+                          '\n\nPatrick, how about you come to work and actually WORK sometime. I get tired'+
+                          '\n\nof getting called in because you\'re too much of a lazy bum to do anything. But'+
+                          '\n\nsince you all are about to lose your jobs you\'ve got all day to do that.'+
+                          '\n\nElizabeth you should stop gossiping about people behind their back. I felt'+
+                          '\n\nlike I was in high school all over again everyday I came there listening to you'+
+                          '\n\ntalk about somebody. Jackson how about you stop being so rude to customer\'s?'+
+                          '\n\nI\'m sure you\'ll find lots of time to practice that in your bathroom mirror'+
+                          '\n\nsince all of you are soon about to be out of a job. Jackson you should also stop'+
+                          '\n\nstealing money out of the cash register and hiding it in the ticket booth so that'+
+                          '\n\nyou can take it for later: no you are not slick. Jocelyn you should learn to'+
+                          '\n\nrespect people\'s personal space and should try taking a shower sometime. One'+
+                          '\n\nday you came by my work space and I swear I was about to pass out. Koby, you'+
+                          '\n\nneed to decide what you want to do with your life. Work a full time job or sell'+
+                          '\n\ndrugs. I got tired of seeing police coming to the muesuem every other day asking PETER'+
+                          '\n\nquestions about YOU. And lately there had been some rough looking guys coming'+
+                          '\n\nto the muesuem asking where you were. I\'m not trying to die because you cheated'+
+                          '\n\nsome thugs their 5 grams and they shoot up the muesuem. The police won\'t even'+
+                          '\n\nknow where to find me since you hired me illegally, Peter. I gave you my'+
+                          '\n\npaperwork and you said you\'d, "keep it on file." I literally heard and saw you'+
+                          '\n\nshred it not even 30 seconds later. You have no records of me that can be used to'+
+                          '\n\ntrace me, so you\'re all done for. You guys didn\'t even know my real name. I'+
+                          '\n\ndeleted all footage of me as well. The police will have no leads on me at all.'+
+                          '\n\nBut if you guys get tired of me shutting the place done so often: this is all you'+
+                          '\n\nhave to do. Type in the new password I set on this computer\'s security gate and'+
+                          '\n\nit will open. The password is: ThePersonnelHereAreLosers. Type it exactly like'+
+                          '\n\nthat. No spaces. Then you can remove the fusion core behind this computer\'s'+
+                          '\n\nsecurity gate and you will have removed this place\'s source of power permanently.'+
+                          '\n\nThen you all can go find a new job if you so choose.'+
+                          '\n\n-"TJ"'+
+                          '\nAugust 21, 2077')
+                    print()
+                    input('Press enter to continue. ')
+                    print()
+                    if THINK_SELF12 not in think_inventory:
+                        think_inventory.append(THINK_SELF12)
+                        print('Thinking to self: Wow. What a riot. I actually remember seeing this on'+
+                              '\n\nthe national news headline. This guy was never found. Crazy. This'+
+                              '\n\nwas 210 years ago. To think that they all died when the bombs fell'+
+                              '\n\nonly two months and two days later... So unfortunate. At least this'+
+                              '\n\ndispute is just as dead as they are. He said the password to the'+
+                              '\n\npublic computer in this building is: ThePersonnelHereAreLosers. No'+
+                              '\n\nspaces, spelled exactly like that. I\'ll remember it just in case.')
+                        print()
+                        print()
+                    if MUESUEM_PASSWORD not in character_inventory2:
+                        input('SYSTEM: The muesuem\'s public computer password has been added to your'+
+                              '\n\ninventory. Press enter to continue. ')
+                        print()
+                    else:
+                        input('SYSTEM: You already have this muesuem\'s public computer'+
+                              '\n\npassword. Press enter to continue. ')
+                        print()
+
+                elif choice3 == COLLECT_FUSION_CORE:
+                    input('Press enter to access computer. ')
+                    print()
+                    print('---------------------------------------------------------------------------')
+                    print()
+                    print('-Muesuem of Freedom\'s public computer')
+                    print()
+                    # the variable MuesuemPublicComputerPass is used to
+                    # validate the muesuem's public computer password
+                    MuesuemPublicComputerPass = input('Enter the password: ')
+                    print()
+                    if MuesuemPublicComputerPass != 'ThePersonnelHereAreLosers':
+                        input('COMPUTER: ERROR. That password is incorrect.'+
+                              '\n\nSYSTEM: Check your inventory for the'+
+                              '\n\nMuesuem of Freedom\'s public computer'+
+                              '\n\npassword. Or search around the muesuem'+
+                              '\n\nto see if you can find it. Press enter'+
+                              '\n\n to continue. ')
+                    else:
+                        choice4 = 0
+                        OPEN_SECURITY_GATE = 1
+                        choice4 = int(input(' Computer: Access Granted: Enter 1 to open the security gate: '))
+                        print()
+                        while choice4 < OPEN_SECURITY_GATE or choice4 > OPEN_SECURITY_GATE:
+                            choice4 = int(input('Enter a valid choice: '))
+                            print()
+                        if choice4 == OPEN_SECURITY_GATE:
+                            if FUSION_CORE1 not in prevent_exploit:
+                                prevent_exploit.append(FUSION_CORE1)
+                                if FUSION_CORE1 not in character_inventory2:
+                                    character_inventory2.append(FUSION_CORE1)
+                                    input('SYSTEM: You open the security gate and are able to'+
+                                          '\n\ntake the fusion core out of the power generator'+
+                                          '\n\nthat it is sitting in. Since the fusion core'+
+                                          '\n\nwas the power source that gave power to the'+
+                                          '\n\nentire muesuem: all of the power went out in'+
+                                          '\n\nthe muesuem after you took the fusion core out'+
+                                          '\n\nof the power generator. The fusion core has'+
+                                          '\n\nbeen added to your inventory. Press enter to'+
+                                          '\n\ncontinue. ')
+                            else:
+                                input('SYSTEM: You have already collected the fusion core'+
+                                      '\n\nbehind this computer\'s security gate. Press'+
+                                      '\n\nenter to continue. ')
+                                
+                elif choice3 == COLLECT_ASSUALT_RIFLE:
+                    if WEAPON2 not in character_inventory2:
+                        character_inventory2.append(WEAPON2)
+                        input('SYSTEM: On the roof, you enter a crashed military'+
+                              '\n\nhelicopter and notice someone\'s skeleton in it.'+
+                              '\n\nThey are wearing a U.S. military\'s pilot uniform'+
+                              '\n\nwith the name and title, "Junior Officer Garret"'+
+                              '\n\nwritten on the their junior officer\'s uniform jacket.'+
+                              '\n\nYou notice an Assualt Rifle in the pilot seat and'+
+                              '\n\ntake it knowing it is a better weapon than what you'+
+                              '\n\ncurrently have. The Assualt Rifle has been added to'+
+                              '\n\nyour inventory. Press enter to continue. ')
+                        print()
+                        print()
+                        if READ_RED_ROCKET_COMPUTER in quest_inventory:
+                            if THINK_SELF13 not in think_inventory:
+                                think_inventory.append(THINK_SELF13)
+                                input('Thinking to self: So this is Junior Officer Garret'+
+                                      '\n\nthat I read about at the Red Rocket Truck Stop.'+
+                                      '\n\nLooking at his skeleton it seems as if his neck'+
+                                      '\n\nwas snapped in half. Officer Miles had killed Garret'+
+                                      '\n\nwith only one arm after Garret tried to kill him.'+
+                                      '\n\nOfficer miles must have been one tough pilot. I\'m'+
+                                      '\n\ngoing to have to take his assualt rifle though.'+
+                                      '\n\n(SYSTEM: Press enter to continue. ) ')
+                                print()
+                    else:
+                        input('You have already collected the assualt rifle inside of'+
+                              '\n\nthe crashed helicopter. Press enter to continue. ')
+
+                elif choice3 == COLLECT_ASSUALT_RIFLE_AMMO:
+                    if AMMO2 not in character_inventory3:
+                        character_inventory3.append(AMMO2)
+                        input('SYSTEM: Inside the crashed military helicopter on the'+
+                              '\n\nroof: you search the co-pilot\'s seat and find a'+
+                              '\n\nbox of 5.56 Assualt Rifle Ammunition. It has been'+
+                              '\n\nadded to your inventory. Press enter to continue. ')
+                        print()
+                    else:
+                        input('SYSTEM: You have already collected the 5.56 Assualt'+
+                              '\n\nRifle Ammunition. Press enter to continue. ')
+
+                elif choice3 == ENTER_T45_POWER_ARMOR:
+                    if ARMOR2 not in prevent_exploit:
+                        prevent_exploit.append(ARMOR2)
+                        if FUSION_CORE1 in character_inventory2:
+                            if ARMOR2 not in character_inventory3:
+                                character_inventory3.append(ARMOR2)
+                                input('SYSTEM: You notice that there is T-45 Power Armor'+
+                                      '\n\nnext to the crashed helicopter. You turn the power'+
+                                      '\n\narmor on by inserting the fusion core. You then open'+
+                                      '\n\nthe power armor by twisting the opening valve: the'+
+                                      '\n\nback of the power suit opens. You then get inside of'+
+                                      '\n\nthe power armor from the back, as that is the only way'+
+                                      '\n\nto get inside of it. The back of the power armor then'+
+                                      '\n\nproceeds to close: fully encompassing you inside of it'+
+                                      '\n\nand covering every inch of your body in militarty grade'+
+                                      '\n\nsteel. Press enter to continue. ')
+                                print()
+                                print()
+                                input('Power Armor Computer speaking (robotically): Systems initializing. Power armor'+
+                                      '\n\ncombat readiness grade: B minus. This is because the power armor has not had'+
+                                      '\n\nmaintenance in....calculating....calculating... 210 years. Power armor hull'+
+                                      '\n\nintegrity: 100%. Emergency Attack Mode: Available. All other systems online'+
+                                      '\n\nand ready.'+
+                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                print()
+                                print()
+                                if THINK_SELF14 not in think_inventory:
+                                    think_inventory.append(THINK_SELF14)
+                                    input('Thinking to self: Being inside of this armor doesn\'t bring back'+
+                                          '\n\nthe best of memories. But I\'ve seen enough to know that it'+
+                                          '\n\nis doing nothing other than helping me right now.'+
+                                          '\n\n(SYSTEM: Press enter to continue.) ')
+                            else:
+                                input('SYSTEM: You need a fusion core to activate the power armor'+
+                                      '\n\nbefore obtaining it. Search the muesuem to see if you'+
+                                      '\n\ncan find a fusion core. Press enter to continue. ')
       
+                    else:
+                        input('SYSTEM: You have already collected the T-45'+
+                              '\n\npower armor. Press enter to continue. ')
+                    
                 else:
-                    input('SYSTEM: You have already collected the T-45'+
-                          '\n\npower armor. Press enter to continue. ')
+                    input('SYSTEM: Check your inventory! You need stronger armor before'+
+                          '\n\nhere. There are men outside who are armed and they do not'+
+                          '\n\nlook friendly. It seems they are looking for something'+
+                          '\n\ninside of the muesuem...'+
+                          '\n\nPress enter to continue. ')
+                    
+
+            else:
+                input('SYSTEM: Check your inventory! You need a stronger weapon and'+
+                      '\n\nammunition for the weapon before coming here. There are'+
+                      '\n\nmen outside who are armed and they do not look friendly.'+
+                      '\n\nIt seems they are looking for something inside of the'+
+                      '\n\nmuesuem...'+
+                      '\n\nPress enter to continue. ')
         
         elif choice2 == MYSTERIOUS_SEWER:
             if ARMOR2 in character_inventory3:
@@ -1169,15 +1290,15 @@ def concord(character_inventory, character_inventory2,
                         if DEATH_CLAW not in quest_inventory:
                             quest_inventory.append(DEATH_CLAW)
                             input('SYSTEM: You go down the street from the Muesuem of Freedom'+
-                          '\n\nand you notice that something is growling while banging'+
-                          '\n\non a sewer lid. You get closer and some creature springs'+
-                          '\n\nout from the inside of the sewer: it towers over you at'+
-                          '\n\naround 10 feet tall, (you are 6 feet tall but due to being'+
-                          '\n\nin your power armor you are 7 feet tall) it\'s hands are'+
-                          '\n\nclaw-like, it has the horns of a bull (but 10 times bigger,'+
-                          '\n\nand they point forward and straight instead of wide and upward),'+
-                          '\n\nand it\'s skin appears to be very thick.'+
-                          '\n\n(SYSTEM: Press enter to continue.) ')
+                                  '\n\nand you notice that something is growling while banging'+
+                                  '\n\non a sewer lid. You get closer and some creature springs'+
+                                  '\n\nout from the inside of the sewer: it towers over you at'+
+                                  '\n\naround 10 feet tall, (you are 6 feet tall but due to being'+
+                                  '\n\nin your power armor you are 7 feet tall) it\'s hands are'+
+                                  '\n\nclaw-like, it has the horns of a bull (but 10 times bigger,'+
+                                  '\n\nand they point forward and straight instead of wide and upward),'+
+                                  '\n\nand it\'s skin appears to be very thick.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
                             print()
                             print()
                             input('Creature: RAAAAAAAAGGGGGGGHHHHHHHH....RAAAAGGGHHHHH!!!!'+
@@ -1185,15 +1306,15 @@ def concord(character_inventory, character_inventory2,
                             print()
                             print()
                             input('SYSTEM: The creature charges at you, but you manage to evade it.'+
-                          '\n\nBut this was pure luck. It is obviously much faster than you: you are'+
-                          '\n\nin a steel suit after all. It got it\'s horns stuck inside of a nearby'+
-                          '\n\nrusted car, but he quickly recovers. You manage to pull out one of your'+
-                          '\n\nstrongest weapons and start to shoot at it. This is obviously working as'+
-                          '\n\nthe creature is starting to weaken, but it doesn\'t stop him from relentlessly'+
-                          '\n\ncharging at you. This is because the bullets do not fully penetrate his thick'+
-                          '\n\nskin. He grabs hold of you, picks you up while inside of your T-45 power armor,'+
-                          '\n\nand slams you into the ground while ramming his horns into the torso of your armor.'+
-                          '\n\n(SYSTEM: Press enter to continue.) ')
+                                  '\n\nBut this was pure luck. It is obviously much faster than you: you are'+
+                                  '\n\nin a steel suit after all. It got it\'s horns stuck inside of a nearby'+
+                                  '\n\nrusted car, but he quickly recovers. You manage to pull out one of your'+
+                                  '\n\nstrongest weapons and start to shoot at it. This is obviously working as'+
+                                  '\n\nthe creature is starting to weaken, but it doesn\'t stop him from relentlessly'+
+                                  '\n\ncharging at you. This is because the bullets do not fully penetrate his thick'+
+                                  '\n\nskin. He grabs hold of you, picks you up while inside of your T-45 power armor,'+
+                                  '\n\nand slams you into the ground while ramming his horns into the torso of your armor.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
                             print()
                             print()
                             input('You screaming in pain: AGGGGGGHHHHH!!!'+
@@ -1230,14 +1351,14 @@ def concord(character_inventory, character_inventory2,
                             print()
                             print()
                             input('SYSTEM: After pinning you down and ramming it\'s horns into your'+
-                                  '\n\narmor\'s torso: the creature runs backwards preparing for it\'s'+
-                                  '\n\nfinal charge, but it staggers and falls a few times because you'+
-                                  '\n\nweakend it by shooting it with one of your stronger weapons earlier.'+
-                                  '\n\nYou hurry to your feet and shower the creature with as many bullets'+
-                                  '\n\nas you can, but again, none of the bullets fully penetrate him. As'+
-                                  '\n\nit is about to reach you, you have to reload, but have no time to do so.'+
-                                  '\n\nYou choose to not use the gun....'+
-                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                 '\n\narmor\'s torso: the creature runs backwards preparing for it\'s'+
+                                 '\n\nfinal charge, but it staggers and falls a few times because you'+
+                                 '\n\nweakend it by shooting it with one of your stronger weapons earlier.'+
+                                 '\n\nYou hurry to your feet and shower the creature with as many bullets'+
+                                 '\n\nas you can, but again, none of the bullets fully penetrate him. As'+
+                                 '\n\nit is about to reach you, you have to reload, but have no time to do so.'+
+                                 '\n\nYou choose to not use the gun....'+
+                                 '\n\n(SYSTEM: Press enter to continue.) ')
                             print()
                             print()
                             input('You yelling at Power Armor Computer: **heavier breathing**'+
@@ -1362,17 +1483,17 @@ def concord(character_inventory, character_inventory2,
                         if DEATH_CLAW not in quest_inventory:
                             quest_inventory.append(DEATH_CLAW)
                             input('SYSTEM: You go down the street from the Muesuem of Freedom'+
-                          '\n\nand you notice that something is growling while banging'+
-                          '\n\non a sewer lid. You get closer and a DeathClaw springs'+
-                          '\n\nout from the inside of the sewer: it towers over you at'+
-                          '\n\naround 10 feet tall, (you are 6 feet tall but due to being'+
-                          '\n\nin your power armor you are 7 feet tall) it\'s hands are'+
-                          '\n\nclaw-like, it has the horns of a bull (but 10 times bigger,'+
-                          '\n\nand they point forward and straight instead of wide and upward),'+
-                          '\n\nand it\'s skin appears to be very thick. The DeathClaw\'s'+
-                          '\n\nappearance fits the description Nick Valentine gave you in'+
-                          '\n\nback in Diamond City.'+
-                          '\n\n(SYSTEM: Press enter to continue.) ')
+                                  '\n\nand you notice that something is growling while banging'+
+                                  '\n\non a sewer lid. You get closer and a DeathClaw springs'+
+                                  '\n\nout from the inside of the sewer: it towers over you at'+
+                                  '\n\naround 10 feet tall, (you are 6 feet tall but due to being'+
+                                  '\n\nin your power armor you are 7 feet tall) it\'s hands are'+
+                                  '\n\nclaw-like, it has the horns of a bull (but 10 times bigger,'+
+                                  '\n\nand they point forward and straight instead of wide and upward),'+
+                                  '\n\nand it\'s skin appears to be very thick. The DeathClaw\'s'+
+                                  '\n\nappearance fits the description Nick Valentine gave you in'+
+                                  '\n\nback in Diamond City.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
                             print()
                             print()
                             input('DeathClaw: RAAAAAAAAGGGGGGGHHHHHHHH....RAAAAGGGHHHHH!!!!'+
@@ -1380,15 +1501,15 @@ def concord(character_inventory, character_inventory2,
                             print()
                             print()
                             input('SYSTEM: The DeathClaw charges at you, but you manage to evade it.'+
-                          '\n\nBut this was pure luck. It is obviously much faster than you: you are'+
-                          '\n\nin a steel suit after all. It got it\'s horns stuck inside of a nearby'+
-                          '\n\nrusted car, but he quickly recovers. You manage to pull out one of your'+
-                          '\n\nstrongest weapons and start to shoot at it. This is obviously working as'+
-                          '\n\nthe DeathClaw is starting to weaken, but it doesn\'t stop him from relentlessly'+
-                          '\n\ncharging at you. This is because the bullets do not fully penetrate his thick'+
-                          '\n\nskin. He grabs hold of you, picks you up while inside of your T-45 power armor,'+
-                          '\n\nand slams you into the ground while ramming his horns into the torso of your armor.'+
-                          '\n\n(SYSTEM: Press enter to continue.) ')
+                                  '\n\nBut this was pure luck. It is obviously much faster than you: you are'+
+                                  '\n\nin a steel suit after all. It got it\'s horns stuck inside of a nearby'+
+                                  '\n\nrusted car, but he quickly recovers. You manage to pull out one of your'+
+                                  '\n\nstrongest weapons and start to shoot at it. This is obviously working as'+
+                                  '\n\nthe DeathClaw is starting to weaken, but it doesn\'t stop him from relentlessly'+
+                                  '\n\ncharging at you. This is because the bullets do not fully penetrate his thick'+
+                                  '\n\nskin. He grabs hold of you, picks you up while inside of your T-45 power armor,'+
+                                  '\n\nand slams you into the ground while ramming his horns into the torso of your armor.'+
+                                  '\n\n(SYSTEM: Press enter to continue.) ')
                             print()
                             print()
                             input('You screaming in pain: AGGGGGGHHHHH!!!'+
@@ -1939,5 +2060,2087 @@ def concord(character_inventory, character_inventory2,
                       '\n\nsome huge creature staring intently at you. You book it'+
                       '\n\nout of there. (You need stronger armor before coming'+
                       '\n\nhere.) Press enter to continue. ')
+
+def diamond_city(character_inventory, character_inventory2,
+                 character_inventory3, character_inventory4,
+                 quest_inventory, think_inventory,
+                 prevent_exploit, prevent_exploit2,
+                 prevent_exploit3):
+    global MONEY
+    global CASH1
+    global CASH2
+    global SNIPER_VALUE
+    global MINIGUN_VALUE
+    global FIRSTAIDKIT3_VALUE
+    global FUSION_CORE2_VALUE
+    global RING1_VALUE
+    global RING2_VALUE
+    global DEATH_CLAW_MEAT
+    global DEATHCLAW_MEAT
+    if ARMOR2 in character_inventory3:
+        if WEAPON2 in character_inventory2:
+            if AMMO2 in character_inventory3:
+                if BOTTLED_WATER in character_inventory:
+                    if FOOD1 in character_inventory2:
+                        if DIAMOND_CITY_TRAVEL not in quest_inventory:
+                            quest_inventory.append(DIAMOND_CITY_TRAVEL)
+                            input('SYSTEM: Having all that you need, you set out to find'+
+                                  '\n\nDiamond City. It takes you 4 days to find it. Over'+
+                                  '\n\nthe course of those 4 days: you sparingly drink your'+
+                                  '\n\nwater and eat your canned beans. Fortunately, you ran'+
+                                  '\n\ninto a friendly stranger that pointed you in the right'+
+                                  '\n\ndirection to Diamond City on the early morning of the'+
+                                  '\n\nthird day. He even told you, "Please be-uh careful frien\'.'+
+                                  '\n\nDhere is so much sufferin\' and wrong-doin\' in dis here-uh'+
+                                  '\n\npost-apocalyptic world. But Imma sure you-uh gon\' be ok'+
+                                  '\n\nwearin\' dat suit dhere made of steel and toting dat dhere'+
+                                  '\n\n\'ssualt rifle. HAHAHA!! Anywayuh,I gotta get back to'+
+                                  '\n\nfarmin\' my fall veggies. Again, you-uh be safe!" You made'+
+                                  '\n\nit to Diamond City in the later part of the morning on the'+
+                                  '\n\nfourth day.'+
+                                  '\n\nPress enter to continue. ')
+                            print()
+                            print()
+                            input('SYSTEM: But before entering Diamond City you notice that the'+
+                                  '\n\ncity is actually just the old CommonWealth baseball stadium'+
+                                  '\n\nthat you and your wife Nora used to go to 210+ years ago'+
+                                  '\n\nto watch your favorite professional baseball team: the'+
+                                  '\n\nCommonWealth Blue Sox. You note that these people born into'+
+                                  '\n\nthis post-apocalyptic world must be using the stadium walls'+
+                                  '\n\nas a way to keep unwanted guest out of the inside of the'+
+                                  '\n\nstadium, or the "city".'+
+                                  '\n\nPress enter to continue. ')
+                            print()
+                            print()
+                            input('SYSTEM: You also hear gunfire and people shouting to, "SHOOT BACK!"'+
+                                  '\n\nand "TAKE COVER!" You see men in blue uniforms with heavy kevlar'+
+                                  '\n\narmor and shotguns shooting at something. That something appears'+
+                                  '\n\nto be green men that are about 8 feet tall with extremely large'+
+                                  '\n\nmuscles and they are armed with hunting rifles. They seem to be'+
+                                  '\n\non the less intelligent side as they yell out, "COME AND PLAY LIL\''+
+                                  '\n\nSTUPID HU- HUMANS!", "ALL HUMANS DIE!!", "STOP HIDING BEHIND WALL!",'+
+                                  '\n\n"I GET YOU SOON!" You don\'t know what exactly is going on but you'+
+                                  '\n\nrush torward the scene...'+
+                                  '\n\nPress enter to continue. ')
+                            print()
+                            print()
+                            input('SYSTEM: As you pull up at the scene, you notice that the men in blue'+
+                                  '\n\nuniforms are the security guards of Diamond City. They yell at you'+
+                                  '\n\n"WHAT DO YOU THINK YOU\'RE DOING STRANGER! YOU\'RE GONNA---..." But'+
+                                  '\n\nthey quickly go silent as they realize you are wearing T-45 power'+
+                                  '\n\narmor and start to shoot at the green men with your assualt rifle.'+
+                                  '\n\nYou rid of all of the green men that were attacking the Diamond City'+
+                                  '\n\nsecurity team. The green men tried shooting their hunting rifles at'+
+                                  '\n\nyou while inside of your T-45 Power Armor. But all of their ammunition'+
+                                  '\n\njust bounced right off. The Diamond City security team bombard you with'+
+                                  '\n\nquestions after your amazing display, "Where did you get that power'+
+                                  '\n\narmor?", "How do you even know how to use power armor? Most people'+
+                                  '\n\ntoday can\'t use it: only people in the pre-apocalyptic world that'+
+                                  '\n\nwere assigned it in the military knew how to use it.", "Where did you'+
+                                  '\n\nget an assualt rifle mate?", "How did you even power up that armor?'+
+                                  '\n\nPower Armor suit\'s need fusion cores, we haven\'t seen you around'+
+                                  '\n\nhere before so you definitely didn\'t buy a fusion core from the'+
+                                  '\n\nDiamond City merchant.", "Where are you from?" You answered all of'+
+                                  '\n\ntheir questions. In fact you gave them your whole story. But you tell'+
+                                  '\n\nthem that they musn\'t tell anyone else or their heads are yours. You'+
+                                  '\n\ndon\'t want too much attention being drawn to you as you search for the'+
+                                  '\n\nman that killed your wife and kidnapped your infant son.'+
+                                  '\n\nYou finally make it inside of Diamond City.'+
+                                  '\n\nPress enter to continue. ')
+                            print()
+                            print()
+                            if THINK_SELF15 not in think_inventory:
+                                think_inventory.append(THINK_SELF15)
+                                input('Thinking to self: Wow. So this is Diamond City?'+
+                                      '\n\nThese people have actually turned a baseball'+
+                                      '\n\nstadium into a mini city. It\'s not so diff-'+
+                                      '\n\nerent from the world I once knew. I see some'+
+                                      '\n\npeople are sleeping on dirty mattresses outside'+
+                                      '\n\non the ground, while others live in small sh-'+
+                                      '\n\nacks, and then others are living up further up'+
+                                      '\n\nin the stands in bigger shacks. And I\'ll take'+
+                                      '\n\na wild guess and assume that those that control'+
+                                      '\n\nthe political system of this city are living way'+
+                                      '\n\nup there in the enclosed, and spacious staff and'+
+                                      '\n\nVIP rooms of this stadium. I see businesses to the'+
+                                      '\n\nleft and right of me, and people everywhere just'+
+                                      '\n\ntrying to get by in their everyday life. It\'s like'+
+                                      '\n\nI\'m in a bootleg New York City-- a place that I\'m'+
+                                      '\n\nsure doesn\'t even exist anymore. So much has ch-'+
+                                      '\n\nanged in this world, yet so much is still the'+
+                                      '\n\nsame. This is a post-apocalyptic world and I\'ve'+
+                                      '\n\njust stumbled across a lower class, a middle class,'+
+                                      '\n\nand an upper class system.'+
+                                      '\n\nPress enter to continue. ')
+                                print()
+                                print()
+                                input('Further thinking to self: I\'m not sure how I feel about'+
+                                      '\n\nall of this. This world is clearly worse than before,'+
+                                      '\n\nbut the before was already terrible. There just seems'+
+                                      '\n\nto be no hope at all. We as humans are constantly fi-'+
+                                      '\n\nghting and the result is always the same. But the fi-'+
+                                      '\n\nghting 210+ years ago was the final straw. That nuclear'+
+                                      '\n\nwar ended in every single country dropping nuclear bombs'+
+                                      '\n\nand shooting nuclear missles at one another. The result'+
+                                      '\n\nof that fighting has been before my very eyes since I was'+
+                                      '\n\nmysteriously released from Vault 111.....and I\'ve seen'+
+                                      '\n\nenough of this result already....I hate all of this....'+
+                                      '\n\nPress enter to continue. ')
+                                print()
+
+                        choice2 = 0
+                        NICK_VALENTINES_OFFICE = 1 
+                        MERCHANT = 2
+                        MAFIA_BOSS = 3
+                        BOUNTY_POSTER = 4
+                        QUIT2 = 5
+                        while choice2 != QUIT2:
+                            print()
+                            print('Inside of Diamond City\'s Walls')
+                            print('-------------------------------')
+                            print()
+                            print('1. Nick Valentine\'s Detective Agency'+
+                                  '\n2. Diamond City Merchant'+
+                                  '\n3. Shady man in three piece suit and trilby hat'+
+                                  '\n4. Bounty poster'+
+                                  '\n5. Go back to map (The CommonWealth)')
+                            print()
+                            choice2 = int(input('Enter your choice: '))
+                            print()
+                            while choice2 < NICK_VALENTINES_OFFICE or choice2 > QUIT2:
+                                choice2 = int(input('Enter a valid choice: '))
+                                print()
+                            if choice2 == NICK_VALENTINES_OFFICE:
+                                if TALKED_TO_NICK not in quest_inventory:
+                                    if READ_ABOUT_NICK in quest_inventory:
+                                        input('SYSTEM: You walk into Nick Valentine\'s Detective Agency'+
+                                              '\n\nwanting to get a lead on who kidnapped your infant son'+
+                                              '\n\nand gunned down your wife in Vault 111. But you exit'+
+                                              '\n\nyour power armor before going in. Upon entering you'+
+                                              '\n\nplace your weapons in a large bin that says, "Place'+
+                                              '\n\nweapons here,and make sure they\'re unloaded and off."'+
+                                              '\n\nApparently you are allowed to open carry in Diamond'+
+                                              '\n\nCity: you got lucky. You noticed the big letters on the'+
+                                              '\n\nfront of the building as you walked in, they read:'+
+                                              '\n\n"Nick Valentine\'s Detective Agency". You also noticed'+
+                                              '\n\nthat these letters have neon: they must light up at'+
+                                              '\n\nnight, as do many other businesses in Diamond City.'+
+                                              '\n\nPress enter to continue. ')
+                                        print()
+                                        print()
+                                        if THINK_SELF16 not in think_inventory:
+                                            think_inventory.append(THINK_SELF16)
+                                            input('Thinking to self: Well, I\'m here. I remember reading'+
+                                                  '\n\nsome ex- Diamond City resident\'s computer entry in'+
+                                                  '\n\nSanctuary Hills about this place. He talked about'+
+                                                  '\n\nhow he found Nick Valentine creepy because he is a'+
+                                                  '\n\nsynth. He said that synths aren\'t people? What in'+
+                                                  '\n\nworld is a synth? He also typed about the "broken mask'+
+                                                  '\n\nincident" that happened in Diamond City 10 years ago'+
+                                                  '\n\nin 2277 apparently. What happened exactly? Hopefully'+
+                                                  '\n\nNick can explain more about this post-apocalyptic world'+
+                                                  '\n\nto me, because I\'m so lost.'+
+                                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                            print()
+                                            print()
+                                        input('Handsome young man: *appears very surprised*'+
+                                              '\n\nWhy, Hello. How may I help you sir?'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Yes, I am looking for a, Nick Valentine?'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Handsome young man: *appears very surprised with raised eyebrows*'+
+                                              '\n\nWell, I\'m assuming you must have a case that needs solving if'+
+                                              '\n\nyou\'re walking in here. But I must admit that I am very sur-'+
+                                              '\n\nprised.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: *looking on dumbfoundedly* Please, come again?'+
+                                              '\n\nWhat is there to be surprised about exactly?'+
+                                              '\n\nPress enter to continue.')
+                                        print()
+                                        print()
+                                        input('Handsome young man: *chuckles with hand over mouth and closed eyes*'+
+                                              '\n\nHmmmmmm. You must be new to this city? *runs right hand through'+
+                                              '\n\nhis medium brush up haircut*'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Ok what\'s really going on? Is this place even a legitimate'+
+                                              '\n\nbusiness? I have the feeling your\'re about to try and do'+
+                                              '\n\nsomething to me....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Handsome young man: Don\'t be alarmed friend; I\'ll help anyone'+
+                                              '\n\nthat needs it. It\'s just that I have not had a person walk in'+
+                                              '\n\nhere in over 10 years since I announced to the city that I am'+
+                                              '\n\na synth. I did it right after the broken mask incident; I felt'+
+                                              '\n\nit was better if people knew what I truly am rather than living'+
+                                              '\n\na lie day in and out.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Ok....Hold on...*grabs head with both hands confused*'+
+                                              '\n\nI have three questions and probably a lot more to come.'+
+                                              '\n\n1. You must be telling me that YOU are Nick Valentine'+
+                                              '\n\n2. What is a synth? 3. I have read a computer entry in'+
+                                              '\n\nSanctuary Hills that mentioned this "broken mask'+
+                                              '\n\nincident" Please explain, I am so confused...*sighs*'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Friend, I will have to be quick about all of'+
+                                              '\n\nthis as I want to prioritize your case more so than your'+
+                                              '\n\ncuriosity. Yes, I am Nick Valentine and I am a synth'+
+                                              '\n\ncreated by the Institute. The Institute is a scientific'+
+                                              '\n\norganization that are like ghost. Most of anything people'+
+                                              '\n\nknow about them is that they create us synths, people who'+
+                                              '\n\nappear to be human, everything about us is human. Except'+
+                                              '\n\nthat we have a synth component, or, a computer chip in'+
+                                              '\n\nour brains. We are manufactured by the Insititute. The'+
+                                              '\n\nInstitute is extremely advanced in science. They have'+
+                                              '\n\nmanaged to recreate the human body with beyond high tech'+
+                                              '\n\nmachinery.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                              
+                                        input('Nick Valentine: They send us synths to kill someone and basically'+
+                                              '\n\nsteal their identity, and we are supposed to give reports to'+
+                                              '\n\nInstitute scientist when they visit us so they can see how'+
+                                              '\n\nwell the results of their experiments are going. Often their'+
+                                              '\n\nexperiments succeed. So often, in fact, that most people in this'+
+                                              '\n\ncity, in the CommonWealth period, are distrusting of each other.'+
+                                              '\n\nNo one knows who might get replaced by a synth in the middle of'+
+                                              '\n\nthe night. So there is a lot of paranoia and for good reason.'+
+                                              '\n\nAnd we can easily kill a human, as our bodies are far superior.'+
+                                              '\n\nTo help us rid of the person\'s body, the scientist take it'+
+                                              '\n\nand teleport with it to the Institute and dispose of it somehow:'+
+                                              '\n\nI\'m not sure. And yes you heard me right: they all can teleport'+
+                                              '\n\nthanks to some teleporting machine they created.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        
+                                        input('Nick Valentine: I have never killed anyone myself. I was a prototype'+
+                                              '\n\nsynth, the Institute just dumped me outside of Diamond City one'+
+                                              '\n\nday deciding that I was a failed experiment. They made sure to'+
+                                              '\n\nerase most of my memories. So I can\'t say where they are or expose'+
+                                              '\n\neverything that they do. You\'d think they\'d kill me knowing as much'+
+                                              '\n\nas I do. Yes, my body is far superior to a humans, so you\'d ask,'+
+                                              '\n\n"how can they kill me?". Well those Institute scientist have these'+
+                                              '\n\nsynths called coursers that follow their every command. Basically'+
+                                              '\n\ncoursers are synths in the Institute that have underwent intensive'+
+                                              '\n\ncombat training and had their bodies enhanced with technology. So they'+
+                                              '\n\nare FAR stronger than a regular synth: and a regular synth is already FAR'+
+                                              '\n\nstronger than a human, so you think hard about that. They can teleport'+
+                                              '\n\njust like the scientist too. They are the "ultimate fighting machines"'+
+                                              '\n\nas I recall the Institute scientist saying.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: *Nick stares at you.* I don\'t even know what to'+
+                                              '\n\nsay. Sorry if I seem rude.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Well I\'m not done, so don\'t say anything'+
+                                              '\n\nmore just yet. The broken mask incident happened ten'+
+                                              '\n\nyears ago in Diamond City. It was when the Institute'+
+                                              '\n\naccidentally revealed to the CommonWealth that they'+
+                                              '\n\nexist. They had one of their first synths try to blend'+
+                                              '\n\nin with humans, but he malfunctioned one night drinking'+
+                                              '\n\nat a bar. He whipped out a gun and started blasting every'+
+                                              '\n\nnperson in sight. His name was Micheal. All humans thought'+
+                                              '\n\nhe was the same funny Micheal that used to crack jokes at'+
+                                              '\n\nthe bar on a Friday night after work. But that Micheal was'+
+                                              '\n\nabducted and killed by the Institute. That started all of'+
+                                              '\n\nthis synth and Institute paranoia, but it\'s understandable.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Come friend, I have given you the information'+
+                                              '\n\nyou have sought, now let\'s hear about your case. Come'+
+                                              '\n\nand sit down with me in my office.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('SYSTEM: You follow Nick to his office and he sits you in a'+
+                                              '\n\ncustomer\'s chair while he sits in his chair on the'+
+                                              '\n\nother side of his office desk.'+
+                                              '\n\nPress enter to continue. ')
+                                        print()
+                                        print()
+                                        input('Nick: Sorry, I never got your name.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: It\'s Nate. Nate McPherson. I\'d like to apologize'+
+                                              '\n\nas well. The reason I was so surprised that you were'+
+                                              '\n\nNick Valentine is that fact that you look so young'+
+                                              '\n\nand handsome for a detective. I imagine detectives'+
+                                              '\n\nto be old guys with saggy eye bags because they never'+
+                                              '\n\nget any sleep.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: HAHAHA, HAHAHA. Ok...Oh my goodness, sorry.'+
+                                              '\n\nMan you really are clueless. I suppose I am young. I\'m'+
+                                              '\n\nonly 10 years old, but with the appearnace of a handsome'+
+                                              '\n\nyoung man. But I stole this man\'s identity, like I told'+
+                                              '\n\nyou earlier: I didn\'t kill him, but the Institute did'+
+                                              '\n\nrecreate this man: and I\'m that recreation. They must'+
+                                              '\n\nhave killed him themselves. I took his name and everything.'+
+                                              '\n\nApparently he was an exceptional detective for him to only'+
+                                              '\n\nbe 23 years old. But his age is something I can\'t steal,'+
+                                              '\n\nhe\'d be 33 right now if he weren\'t dead: while I\'m 10.'+
+                                              '\n\nI\'m only an exceptional detective because of him. But it'+
+                                              '\n\ndoesn\'t matter because everyone is so afraid of synths that'+
+                                              '\n\nthey never come to do business with me. I did tell you earlier'+
+                                              '\n\nthat no one has been in here for 10 years. Basically ever since'+
+                                              '\n\nI told everyone I was synth: which I did when I was 10 months'+
+                                              '\n\nold, it was shortly after the broken mask incident. That\'s why'+
+                                              '\n\nI was so surprised when you came in. And before you ask: no.'+
+                                              '\n\nI was never a child, all synths are created with adult bodies'+
+                                              '\n\nand intellect, but again, both are superior to a normal humans.'+
+                                              '\n\nSo I was but a few hours old when I started doing all of this.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Ok, but you\'d think you would at least age huh?'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: No, we synths do not age. You\'d think those'+
+                                              '\n\n"oh so smart" Institute scientist would see that as a'+
+                                              '\n\nflaw. We replace people\'s entire being, so surely their'+
+                                              '\n\nloved ones would notice that we are not aging while they'+
+                                              '\n\nare. That only blows our cover. But again, there is a lot'+
+                                              '\n\nI don\'t remember, I\'m sure they counter it somehow. The'+
+                                              '\n\nInstitute probably replaces the synth with one that looks'+
+                                              '\n\nolder, and they might do this as many times as it takes'+
+                                              '\n\nto make it appear that the synth is aging to all humans.'+
+                                              '\n\nWe also don\'t need food, water, or sleep. We can enjoy'+
+                                              '\n\nthem. But they are not required for us to function.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Ok, all of this is crazy. I don\'t want to believe'+
+                                              '\n\nany of this but I guess I have seen some pretty weird'+
+                                              '\n\nthings already.....'+
+                                               '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: *staring intensely and speaking very serious*'+
+                                              '\n\nNow\'s it\'s my turn to ask questions. Before we discuss'+
+                                              '\n\nyour case, I have to know....Why do you act as if you were'+
+                                              '\n\nborn yesterday? You act like this world is completely new'+
+                                              '\n\nto you....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: *staring back at Nick and speaking very serious*'+
+                                              '\n\nI\'ll give you my story then. Unlucky for you, my'+
+                                              '\n\nentire life from the year 2077 to this year, 2287,'+
+                                              '\n\nis the case. '+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: *very surprised* You\'re telling me your'+
+                                              '\n\n210+ years old? You were born AND raised before this'+
+                                              '\n\nworld had that worldwide nuclear war? How have you'+
+                                              '\n\nlived so long? Only us synths are immortal: unless'+
+                                              '\n\nwe are killed somehow....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: *speaking fast* But hold those thoughts for a'+
+                                              '\n\nmoment, let me get my pen and notepad out to take notes.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('SYSTEM: *Nick Prepares his notepad*'+
+                                              '\n\nPress enter to continue. ')
+                                        print()
+                                        print()
+                                        input('Nick: Ok, open up the dam\'s gates my friend. '+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                                  
+                                        input('You: I served in the U.S. military. It went out of commission the'+
+                                              '\n\nday the nukes exploded worldwide as I\'m sure you know. That'+
+                                              '\n\nday my family and I had coincidentally just signed up for a'+
+                                              '\n\nprogram called Vault-Tec. The world was at war, world war 3.'+
+                                              '\n\nBut a worldwide nuclear war was feared by everyone, because'+
+                                              '\n\neveryday world leaders threatend one another. So this Vault-Tec'+
+                                              '\n\ntook advantage of this and started up their company that offered'+
+                                              '\n\npeople a safe place inside of a vault in the case that the nuclear'+
+                                              '\n\nwar started. Everyone who signed up for the vaults had to pay a'+
+                                              '\n\nmembership, but it was really my wife who convinced me to do it:'+
+                                              '\n\nI hate salesmen with a passion. I hate their job not the person,'+
+                                              '\n\njust to make that clear. Anyways, October 23, 2077: it was reported'+
+                                              '\n\nthat nukes were going off worldwide. Everyone who signed up for the'+
+                                              '\n\nvault rushed to it for dear life: my family included. I had my wife,'+
+                                              '\n\nNora, running beside me, and she had our son, Shaun, in arms. The'+
+                                              '\n\nsirens were so scary. *Tears slowly fall down your eyes as you wipe'+
+                                              '\n\nthem*.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Now, now. One step at a time. It\'s ok.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: The people who didn\'t sign up for the vaults...Nick!'+
+                                              '\n\n*Burst out crying* You should have heard their screams'+
+                                              '\n\nand cries! Entire families killed because of evil men!'+
+                                              '\n\nLittle children: KILLED! Lovers: KILLED! People living'+
+                                              '\n\nhonest lives: KILLED! FOR WHAT?!? BECAUSE HUMANS NEVER'+
+                                              '\n\nLEARN! WHAT IS OUR PROBLEM NICK!??! WHY DOES THIS ALWAYS'+
+                                              '\n\nHAPPEN?!?!'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: *sincerely speaking* Please, try to'+
+                                              '\n\ntake deeps breaths, you\'re getting a bit off'+
+                                              '\n\ntopic. I know this hits close to home, but,'+
+                                              '\n\nplease focus my friend...'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: *slowly but surely calmed down* When we entered the'+
+                                              '\n\nvaults everything was seemingly fine. Vault-Tec told'+
+                                              '\n\nus that to proceed deeper into the vault we would have'+
+                                              '\n\nto be decontaminated in cryogenic pods. Everyone was in'+
+                                              '\n\na state of dissassociation. No one could believe nor'+
+                                              '\n\naccept that the fact that the entire world had just went'+
+                                              '\n\nup in smoke and billions of people with it. I kissed my'+
+                                              '\n\ninfant son, Shaun, on the forehead and told him I loved'+
+                                              '\n\nhim. I proceeded to do the same thing to my wife, but she'+
+                                              '\n\nbeat me to it. We were put in the cryogenic pods and'+
+                                              '\n\nmy wife\'s pod was directly across from mine. Before we'+
+                                              '\n\nwere "decontaminated" my wife and I waved at each other'+
+                                              '\n\nthrough the glass of the cryogenic pods. She had my infant'+
+                                              '\n\nson, Shaun, with her. Nick. Vault-Tec had lied. We didn\'t'+
+                                              '\n\nwake up in a few minutes. We woke up just recently. Hundreds'+
+                                              '\n\nof years later! Vault Tec were just mad scientist doing ex-'+
+                                              '\n\nperiemts on us! And apparently after they experimented on us'+
+                                              '\n\nthey just lived out the rest of their days in that vault and died:'+
+                                              '\n\nleaving us in those cryogenic pods! I don\'t know what the year'+
+                                              '\n\nwas, but my wife was gunned down in front of me by two guys'+
+                                              '\n\nin what seemed like biohazard suits, and a man in an all black'+
+                                              '\n\nleather trench coat with a huge white gun. The details are'+
+                                              '\n\nhazy, but...'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print('You: The guy in the black leather trench coat told my wife to let'+
+                                              '\n\ngo of my son. She refused naturally. And the man told her that,'+
+                                              '\n\n"I\'m only going to tell you once, let go of the child or die."'+
+                                              '\n\nMy wife basically told him to go do himself in and he shot her.'+
+                                              '\n\n*trying to fight your emotions* The people wearing biohazard'+
+                                              '\n\nsuits took my son and the man in the black leather trench coat'+
+                                              '\n\nsaid, "At least we still have the backup.", as he looked at me.'+
+                                              '\n\nI was refrozen by them after all of that happened.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: *looks very anxious* Noooooo, my friend, nooo.'+
+                                              '\n\nOk. I have a very bad feeling. But I\'m going to assume'+
+                                              '\n\nthat feeling is not true and try to be logical and look'+
+                                              '\n\nat all of our options before I jump to any conclusions.'+
+                                              '\n\nI will rule out some things though. I know supermutants'+
+                                              '\n\ndidn\'t do this because they are dumb as rocks and you did'+
+                                              '\n\nsay that people did this, not 8 foot tall green, muscular'+
+                                              '\n\nmen....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Wait, a minute! I saw those when I came to the city!'+
+                                              '\n\nI helped defend the Diamond City security team! I was'+
+                                              '\n\nwondering what those things were....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Ok, I will explain something on a side note here, because'+
+                                              '\n\nyou get off topic very easily. To prevent this from happening again'+
+                                              '\n\nI will explain some things about the world you are currently in since'+
+                                              '\n\nit\'s basically new to you. Supermutants come from the Institute.'+
+                                              '\n\nThey were once humans themselves, but the institute kidnapped them and'+
+                                              '\n\nattempted to make "super humans". This was before their synth research.'+
+                                              '\n\nThere are also these things called DeathClaws. They often are under'+
+                                              '\n\nsewers. They have claw-like hands, are about 10 feet tall, and have horns'+
+                                              '\n\non their heads that point forward and straight instead of wide and upward'+
+                                              '\n\nlike you would see on a bull. These creatures also were created by the'+
+                                              '\n\nInstitute. What were they trying to do? I don\'t know. They do anything'+
+                                              '\n\nin the name of science and care not for the repercussions of their'+
+                                              '\n\nreckless experiments....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: I also know that raiders did not do this as they'+
+                                              '\n\nonly care about robbing people of their valuables: whether'+
+                                              '\n\nthey have to kill the person for them or not. The last thing'+
+                                              '\n\nthey would want is to kill your wife to get an infant child.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        if DEATH_CLAW in quest_inventory:
+                                            input('You: Yeah I definitely have ran into a DeathClaw...'+
+                                                  '\n\nkilled it too...it was back in Concord....'+
+                                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                                  
+                                            print()
+                                            print()
+                                            input('Nick Valentine: What?!?! You....a human.... killed a'+
+                                                  '\n\nDeathClaw? Nevermind that....your case please...'+
+                                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                            print()
+                                            print()
+                                        if DEATHCLAW_MEAT in character_inventory3:
+                                            character_inventory3.remove(DEATHCLAW_MEAT)
+                                            DEATHCLAW_MEAT = 'DeathClaw Meat'
+                                            character_inventory3.append(DEATHCLAW_MEAT)
+
+                                        input('You: I\'ve definitely ran into those raiders you\'re'+
+                                              '\n\ntalking about. I had a shootout with them at the'+
+                                              '\n\nMuesuem of Freedom. Got hit in the left shoulder.'+
+                                              '\n\nI took care of them though.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Well Nate. I also know it that it wasn\'t'+
+                                              '\n\nthe Diamond City Mafia. Those goons only care about'+
+                                              '\n\nhow much money they can make. They\'re not getting'+
+                                              '\n\nany money out of a crying infant and it\'s dead'+
+                                              '\n\nmother. So I apologize. What I was denying earlier'+
+                                              '\n\nis true.....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('SYSTEM: *room goes silent* *Nick stares down'+
+                                              '\n\nat the floor in disbelief*'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Nick! What the heck?!?! What\'s so bad?'+
+                                              '\n\nTell me something...'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: *staring at the floor and speaking very seriously*'+
+                                              '\n\nI wish that I could tell you I\'d be at the bottom of this'+
+                                              '\n\ncase by this weekend.....But Nate.....oh Nate... *facepalms*'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Nick! Stop and tell me! You\'re killing me!'+
+                                              '\n\nOh my goodness! Is it something about those'+
+                                              '\n\nguys in the vault?'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: The Institute killed your wife and'+
+                                              '\n\ntook your child Nate...'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('SYSTEM: There is an eerie silence and a lot of staring at'+
+                                              '\n\nthe floor by both You and Nick for about 5 minutes.'+
+                                              '\n\nPress enter to continue. ')
+                                        print()
+                                        print()
+                                        input('You: Nick this can\'t be true: I mean....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick: Stop! This is the truth. I knew it as soon as'+
+                                              '\n\nyou mentioned what the people were wearing....the'+
+                                              '\n\npeople that killed your wife and took your infant'+
+                                              '\n\nson. But I didn\'t want it to be true.*sigh* Those'+
+                                              '\n\ntwo people wearing biosuits were definitely Institute'+
+                                              '\n\nscientist that needed your son for some type of ex-'+
+                                              '\n\nperiment. The man in the black trench coat, "with a'+
+                                              '\n\nbig white gun" as you said: was definitely an Institute'+
+                                              '\n\ncourser. The gun your wife was killed with was a gun'+
+                                              '\n\nthat shoots blue laser beams. Institute Coursers are'+
+                                              '\n\ntrained to use these deadly weapons. Though I haven\'t'+
+                                              '\n\nseen those weapons in action. So, I\'m not sure how strong'+
+                                              '\n\nthose laser beams are, but they\'d definitely rip right'+
+                                              '\n\nthrough a human and literally melt their flesh and'+
+                                              '\n\ninternal organs upon contact. May I ask, did you look'+
+                                              '\n\nat your wife\'s body after you woke up and got out of your'+
+                                              '\n\ncryogenic pod?'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Yes, and I passed out. I\'m not sure for how long. But'+
+                                              '\n\nI had to be sure....you know? I was in such strong'+
+                                              '\n\ndenial that she was gone. Then I just blanked out.'+
+                                              '\n\nAnd before you ask...I don\'t know how I got out'+
+                                              '\n\nof my pod. It just seemingly stopped the icing'+
+                                              '\n\nprocess or malfunctioned or something and I was'+
+                                              '\n\nable to get out.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Ok, maybe we don\'t have to worry'+
+                                              '\n\nabout how you got out. That\'s not the problem'+
+                                              '\n\nat hand. Can you tell me what that Institute'+
+                                              '\n\ncourser sounded like? What hairstyle he had?'+
+                                              '\n\nMaybe some facial features? I may know his'+
+                                              '\n\nname and his whereabouts. It\'s defintely a'+
+                                              '\n\nsuicide mission to go after him, but as hard'+
+                                              '\n\nas it can be: I\'ll to give you all the inf-'+
+                                              '\n\normation that I can. But he might be one of'+
+                                              '\n\nthose coursers that only work inside of the'+
+                                              '\n\nInstitute and not among us.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: His voice was deep and rough: like sandpaper'+
+                                              '\n\ngoing across your face. He had a buzzcut. And'+
+                                              '\n\nhe had a huge scar going across his entire face.'+
+                                              '\n\nFor you to call coursers so tough, somebody'+
+                                              '\n\ndefinitely did him in with a knife to the face'+
+                                              '\n\nin the past.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: No! Please don\'t ever do that'+
+                                              '\n\nagain! Do not underestimate coursers! The only'+
+                                              '\n\nthing that could have cut his face like that'+
+                                              '\n\nwas another synth that was trying out to become'+
+                                              '\n\na courser that I\'m sure he fought during his'+
+                                              '\n\nintense training. Synths have to kill each other'+
+                                              '\n\nunder that intense training to become coursers.'+
+                                              '\n\nOf course the last man standing is the one who'+
+                                              '\n\nbecomes the Institute\'s newest courser. So the'+
+                                              '\n\ncourser you just insulted killed ten if not hundreds'+
+                                              '\n\nof others abnormally strong synths to get his position.'+
+                                              '\n\nThat\'s how strong he is. He was the last one standing.'+
+                                              '\n\nAnd I know exactly which courser it is and where he is'+
+                                              '\n\ncurrently.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: *eyes grow wide with fear*'+
+                                              '\n\nSo he is one of the most experienced and'+
+                                              '\n\nbattle hardend coursers the Institute has?'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Don\'t grow scared now! You talked'+
+                                              '\n\nabout him like he was just some punk a second'+
+                                              '\n\nago. And yes he is the most experienced courser'+
+                                              '\n\nthat he institute has. Remember how I told you'+
+                                              '\n\nwe synths are FAR stronger than you humans?'+
+                                              '\n\nWell also remember that I told you that coursers'+
+                                              '\n\nare synths that are FAR stronger than regular'+
+                                              '\n\nsynths like myself. And this courser I\'m talking'+
+                                              '\n\nabout: Kellog, is hands down the strongest courser'+
+                                              '\n\nthe Institute has. Not to be rude: but you\'re just'+
+                                              '\n\na human. So to paint the picture even better, I will'+
+                                              '\n\ngo from strongest to weakest: there is Kellog, the'+
+                                              '\n\nstrongest courser the Institute has, then there are'+
+                                              '\n\nall of the other coursers, then there are regular'+
+                                              '\n\nsynths like me, and finally there are you weak'+
+                                              '\n\nhumans. If they sent HIM to help retrieve your'+
+                                              '\n\ninfant son, then your son was defintely used in'+
+                                              '\n\nan experiment that the Institute probably labeled,'+
+                                              '\n\n"confidential". I don\'t know what it could be'+
+                                              '\n\nbut it had to be VERY important to them. And I fear'+
+                                              '\n\nbecause the Institute scientist have no morals. They'+
+                                              '\n\nwill conduct ANY experiment. They see the people of'+
+                                              '\n\nthe CommonWealth as inferior people......'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: The reason for that is because most people living'+
+                                              '\n\nin the CommonWealth have bad genetics. There is radiation'+
+                                              '\n\neverywhere and people are badly affected by it whether they'+
+                                              '\n\nrealize it or not. Now, I don\'t know where the Institute is, but'+
+                                              '\n\nI do know they are in a place where they are not affected by the'+
+                                              '\n\nradiation. I\'ve tried so hard to remember the place, but they'+
+                                              '\n\nwiped my memory pretty darn good. Wherever they are, they must be'+
+                                              '\n\nthe offspring of some pretty intelligent people that somehow'+
+                                              '\n\nsurvived the nuclear war hundreds of years ago...'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Getting back on topic.....Kellog will definitely be'+
+                                              '\n\nstationed at that old military fort for the next few months. I'+
+                                              '\n\nthink the fort\'s name is Fort Hagen. It\'s an old Army base.'+
+                                              '\n\nSurely you know where to find that since you were in the military'+
+                                              '\n\nAND lived during a time when it was still in operation?'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: TO THE PIT WITH KELLOG! Yes, I admit, I am scared.'+
+                                              '\n\nBut one of us is gonna be hanging our combat boots'+
+                                              '\n\nup real soon and it\'s NOT gonna be me. You think'+
+                                              '\n\nI\'m just going to let him DESTROY MY FAMILY, and let'+
+                                              '\n\nhim continue breathing without AT LEAST making him'+
+                                              '\n\nbleed? I\'ll go there as soon as I can, but how do'+
+                                              '\n\nyou know for certain that he is there Nick? And yes,'+
+                                              '\n\nI know exactly where it\'s at. I signed up for the'+
+                                              '\n\nmilitary there hundreds of years back.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Well let\'s just say I know when the Institute'+
+                                              '\n\nis snooping around. I\'ve passed by that Fort Hagen area the'+
+                                              '\n\nother day as I was taking a walk. It was heavily fortified.'+
+                                              '\n\nThere are robot machine gun turrets surrounding it that will'+
+                                              '\n\nshoot at anyone who gets too close. It has to be the Institute'+
+                                              '\n\nrunning some sort of operation over there. Who else could it be?'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Thank you so much Nick! I know nothing is over yet'+
+                                              '\n\nbut I\'ll be leaving your office with such a far deeper'+
+                                              '\n\nunderstanding of everything that is going on around me.'+
+                                              '\n\nAnd you gave me a lead. Since that Kellog guy is a courser'+
+                                              '\n\nhe can teleport to the Insitute. Well....he\'s going to'+
+                                              '\n\ntake me straight to the Institute so that I can find my'+
+                                              '\n\nson. If he doesn\'t want to be calm and collected about'+
+                                              '\n\nit all: then you best bet that one of us is hanging our'+
+                                              '\n\ncombat boots.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: This is what I was afraid of. I knew I wouldn\'t'+
+                                              '\n\nbe able to stop you: you\'re head strong. Of course you are:'+
+                                              '\n\nyou must have served in one of those military special forces for'+
+                                              '\n\ncrazy people. You know, the ones where people undergo stupid'+
+                                              '\n\ncrazy training....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: *smiles at Nick*'+
+                                              '\n\nSYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: *smiles* I\'ll take that as a yes. Do you'+
+                                              '\n\nwant me to help you? I\'m not living for anything else...'+
+                                              '\n\nI\'d be willing to lay my life on the line to help you...'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Nick....I so appreciate you saying that. But I must do this'+
+                                              '\n\nalone.....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Yeah.....you\'re a special type of crazy'+
+                                              '\n\nalright. Well I noticed you had on some power armor'+
+                                              '\n\nwhen you got here. Not to sound creepy, but I was looking'+
+                                              '\n\nthrough the window....You best use that armor to fight him.'+
+                                              '\n\nTo my understanding T-60 power armor was the strongest'+
+                                              '\n\narmor created by the U.S. military hundreds of years ago.'+
+                                              '\n\nSo if you don\'t have that T-60 power armor already I can'+
+                                              '\n\ntell you that the merchant is selling a suit he found at'+
+                                              '\n\nan old military checkpoint. He got together with some other'+
+                                              '\n\nguys and fixed it up. They knew how to fix it because the'+
+                                              '\n\nschematics for it were apparently inside of it. It must\'ve'+
+                                              '\n\nbeen a new suit back in the day. It\'s not like I talk to'+
+                                              '\n\nanyone: everyone hates me because I\'m a synth. I just'+
+                                              '\n\nhappened to walk by one day and.....I guess eavesdropped'+
+                                              '\n\non their conversation.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        if ARMOR3 in character_inventory3:
+                                            input('You: Thanks for the info Nick, but I already have the T-60'+
+                                                  '\n\npower armor. The one you saw me come here in is the T-60.'+
+                                                  '\n\nBut uhhh....how much is your service?'+
+                                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                            print()
+                                            print()
+                                        else:
+                                            input('You: Ok Nick, I\'ll go check that out. Thanks for that info.'+
+                                                  '\n\nBut uhhh....how much is your service?'+
+                                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                            print()
+                                            print()
+
+                                        input('Nick Valentine: HAHAHAHHAHAHA. You really think I\'m going'+
+                                              '\n\nto charge you? What do I even need money for? I don\'t'+
+                                              '\n\nneed food, water, or sleep my man. Just the clothes on'+
+                                              '\n\nmy back. You\'re good to go. But please.....please be'+
+                                              '\n\ncareful. You\'re the only person in my life that has'+
+                                              '\n\ntreated me like a person. The Institute dumped me like'+
+                                              '\n\nlike trash and the people in this city have hated me my'+
+                                              '\n\nentire short life of 10 years. We may not ever become'+
+                                              '\n\nfriends, but I\'d like to visit Fort Hagen one day and'+
+                                              '\n\nsee the remains of "Kellog the Courser". Because I\'ll know'+
+                                              '\n\nexactly who did it. I\'ll know that you got into the'+
+                                              '\n\nInstitute and found your son. Where will you be? I won\'t'+
+                                              '\n\nknow: this may be the last time I see you. But I\'m sure'+
+                                              '\n\nwherever you go Nate, you will make the best of your'+
+                                              '\n\nsituation. Good luck to you: I really enjoyed you and will'+
+                                              '\n\nnever forget this day.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Goodbye, Nick! You may not be human exactly. But I feel'+
+                                              '\n\nif my circumstances had allowed it: we could have been'+
+                                              '\n\nthe best of friends. I\'ll never forget you myself.'+
+                                              '\n\nI\'ll give you something to smile about when you visit'+
+                                              '\n\nFort Hagen: don\'t you worry. I will win, and I will'+
+                                              '\n\nmake the best of my situation: whatever it comes to be.'+
+                                              '\n\nThat\'s all anyone can do. Goodbye, Nick!'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Goodbye, Nate! Be safe!'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('SYSTEM: You leave Nick Valentine\'s Detective Agency:'+
+                                              '\n\nWith a new lead, a smile on your face, and a friend'+
+                                              '\n\nthat you may never see again, but he might be watching'+
+                                              '\n\nyou through the window...You decide to not look back'+
+                                              '\n\nand let the memories be all that you need. You enter'+
+                                              '\n\nyour power armor you left at the entrance of the building'+
+                                              '\n\nyou and have already collected your weapons on your way'+
+                                              '\n\nout of the door.'+
+                                              '\n\nPress enter to contine. ')
+                                            
+                                        if TALKED_TO_NICK not in quest_inventory:
+                                            quest_inventory.append(TALKED_TO_NICK)
+
+
+                                                  
+                                    else:
+                                        input('SYSTEM: You walk into Nick Valentine\'s Detective Agency'+
+                                              '\n\nwanting to get a lead on who kidnapped your infant son'+
+                                              '\n\nand gunned down your wife in Vault 111. But you exit'+
+                                              '\n\nyour power armor before going in. Upon entering you'+
+                                              '\n\nplace your weapons in a large bin that says, "Place'+
+                                              '\n\nweapons here,and make sure they unloaded and off."'+
+                                              '\n\nApparently you are allowed to open carry in Diamond'+
+                                              '\n\nCity: you got lucky. You noticed the big letters on'+
+                                              '\n\nfront of the building as you walked in, they read:'+
+                                              '\n\n"Nick Valentine\'s Detective Agency". You also noticed'+
+                                              '\n\nthat these letters have neon: they must light up at'+
+                                              '\n\nnight, as do many other businesses in Diamond City.'+
+                                              '\n\nPress enter to continue. ')
+                                        print()
+                                        print()
+                                        input('Handsome young man: *appears very surprised*'+
+                                              '\n\nWhy, Hello. How may I help you sir?'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Yes, I am looking for a, Nick Valentine?'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Handsome young man: *appears very surprised with raised eyebrows*'+
+                                              '\n\nWell, I\'m assuming you must have a case that needs solving if'+
+                                              '\n\nyou\'re walking in here. But I must admit that I am very sur-'+
+                                              '\n\nprised.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: *looking on dumbfoundedly* Please, come again?'+
+                                              '\n\nWhat is there to be surprised about exactly?'+
+                                              '\n\nPress enter to continue.')
+                                        print()
+                                        print()
+                                        input('Handsome young man: *chuckles with hand over mouth and closed eyes*'+
+                                              '\n\nHmmmmmm. You must be new to this city? *runs right hand through'+
+                                              '\n\nhis medium brush up haircut*'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Ok what\'s really going on? Is this place even a legitimate'+
+                                              '\n\nbusiness? I have the feeling your\'re about to try and do'+
+                                              '\n\nsomething to me....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Handsome young man: Don\'t be alarmed friend; I\'ll help anyone'+
+                                              '\n\nthat needs it. It\'s just that I have not had a person walk in'+
+                                              '\n\nhere in over 10 years since I announced to the city that I am'+
+                                              '\n\na synth. I did it right after the broken mask incident; I felt'+
+                                              '\n\nit was better if people knew what I truly am rather than living'+
+                                              '\n\na lie day in and out.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Ok....Hold on...*grabs head with both hands confused*'+
+                                              '\n\nI have three questions and probably a lot more to come.'+
+                                              '\n\n1. You must be telling me that YOU are Nick Valentine'+
+                                              '\n\n2. What is a synth? 3. What is the "broken mask incident?"'+
+                                              '\n\nPlease explain, I am so confused...*sighs*'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Friend, I will have to be quick about all of'+
+                                              '\n\nthis as I want to prioritize your case more so than your'+
+                                              '\n\ncuriosity. Yes, I am Nick Valentine and I am a synth'+
+                                              '\n\ncreated by the Institute. The Institute is a scientific'+
+                                              '\n\norganization that are like ghost. Most of anything people'+
+                                              '\n\nknow about them is that they create us synths, people who'+
+                                              '\n\nappear to be human, everything about us is human. Except'+
+                                              '\n\nthat we have a synth component, or, a computer chip in'+
+                                              '\n\nour brains. We are manufactured by the Insititute. The'+
+                                              '\n\nInstitute is extremely advanced in science. They have'+
+                                              '\n\nmanaged to recreate the human body with beyond high tech'+
+                                              '\n\nmachinery.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                                  
+                                        input('Nick Valentine: They send us synths to kill someone and basically'+
+                                              '\n\nsteal their identity, and we are supposed to give reports to'+
+                                              '\n\nInstitute scientist when they visit us so they can see how'+
+                                              '\n\nwell the results of their experiments are going. Often their'+
+                                              '\n\nexperiments succeed. So often, in fact, that most people in this'+
+                                              '\n\ncity, in the CommonWealth period, are distrusting of each other.'+
+                                              '\n\nNo one knows who might get replaced by a synth in the middle of'+
+                                              '\n\nthe night. So there is a lot of paranoia and for good reason.'+
+                                              '\n\nAnd we can easily kill a human, as our bodies are far superior.'+
+                                              '\n\nTo help us rid of the person\'s body, the scientist take it'+
+                                              '\n\nand teleport with it to the Institute and dispose of it somehow:'+
+                                              '\n\nI\'m not sure. And yes you heard me right: they all can teleport'+
+                                              '\n\nthanks to some teleporting machine they created.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                            
+                                        input('Nick Valentine: I have never killed anyone myself. I was a prototype'+
+                                              '\n\nsynth, the Institute just dumped me outside of Diamond City one'+
+                                              '\n\nday deciding that I was a failed experiment. They made sure to'+
+                                              '\n\nerase most of my memories. So I can\'t say where they are or expose'+
+                                              '\n\neverything that they do. You\'d think they kill me knowing as much'+
+                                              '\n\nas I do. Yes, my body is far superior to a humans, so you\'d ask,'+
+                                              '\n\n"how can they kill me?". Well those Institute scientist have these'+
+                                              '\n\nsynths called coursers that follow their every command. Basically'+
+                                              '\n\ncoursers are synths in the Institute that have underwent intensive'+
+                                              '\n\ncombat training and had their bodies enhanced with technology. So they'+
+                                              '\n\nare FAR stronger than a regular synth: and a regular synth is already FAR'+
+                                              '\n\nstronger than a human, so you think hard about that. They can teleport'+
+                                              '\n\njust like the scientist too. They are the "ultimate fighting machines"'+
+                                              '\n\nas I recall the institute scientist saying.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: *Nick stares at you.* I don\'t even know what to'+
+                                              '\n\nsay. Sorry if I seem rude.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Well I\'m not done, so don\'t say anything'+
+                                              '\n\nmore just yet. The broken mask incident happened ten'+
+                                              '\n\nyears ago in Diamond City. It was when the Institute'+
+                                              '\n\naccidentally revealed to the CommonWealth that they'+
+                                              '\n\nexist. They had one of their first synths try to blend'+
+                                              '\n\nin with humans, but he malfunctioned one night drinking'+
+                                              '\n\nat a bar. He whipped out a gun and started blasting every'+
+                                              '\n\nperson in sight. His name was Micheal. All humans thought'+
+                                              '\n\nhe was the same funny Micheal that used to crack jokes at'+
+                                              '\n\nthe bar on a Friday night after work. But that Micheal was'+
+                                              '\n\nabducted and killed by the Institute. That started all of'+
+                                              '\n\nthis synth and Institute paranoia, but it\'s understandable.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Come friend, I have given you the information'+
+                                              '\n\nyou have sought, now let\'s hear about your case. Come'+
+                                              '\n\nand sit down with me in my office.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('SYSTEM: You follow Nick to his office and he sits you in a'+
+                                              '\n\ncustomer\'s chair while he sits in his chair on the'+
+                                              '\n\nother side of his office desk.'+
+                                              '\n\nPress enter to continue. ')
+                                        print()
+                                        print()
+                                        input('Nick: Sorry, I never got your name.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: It\'s Nate. Nate McPherson. I\'d like to apologize'+
+                                              '\n\nas well. The reason I was so surprised that you were'+
+                                              '\n\nNick Valentine is that fact that you look so young'+
+                                              '\n\nand handsome for a detective. I imagine detectives'+
+                                              '\n\nto be old guys with saggy eye bags because they never'+
+                                              '\n\nget any sleep.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: HAHAHA, HAHAHA. Ok...Oh my goodness, sorry.'+
+                                              '\n\nMan you really are clueless. I suppose I am young. I\'m'+
+                                              '\n\nonly 10 years old, but with the appearnace of a handsome'+
+                                              '\n\nyoung man. But I stole this man\'s identity, like I told'+
+                                              '\n\nyou earlier: I didn\'t kill him, but the Institute did'+
+                                              '\n\nrecreate this man: andI\'m that recreation. They must'+
+                                              '\n\nhave killed him themselves. I took his name and everything.'+
+                                              '\n\nApparently he was an exceptional detective for him to only'+
+                                              '\n\nbe 23 years old. But his age is something I can\'t steal,'+
+                                              '\n\nhe\'d be 33 right now if he weren\'t dead: while I\'m 10.'+
+                                              '\n\nI\'m only an exceptional detective because of him. But it'+
+                                              '\n\ndoesn\'t matter because everyone is so afraid of synths that'+
+                                              '\n\nthey never come to do business with me. I did tell you earlier'+
+                                              '\n\nthat no one has been in here for 10 years. Basically ever since'+
+                                              '\n\nI told everyone I was synth: which I did when I was 10 months'+
+                                              '\n\nold, it was shortly after the broken mask incident. That\'s why'+
+                                              '\n\nI was so surprised when you came in. And before you ask: no.'+
+                                              '\n\nI was never a child, all synths are created with adult bodies'+
+                                              '\n\nand intellect, but again, both are superior to a normal humans.'+
+                                              '\n\nSo I was but a few hours old when I started doing all of this.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Ok, but you\'d think you would at least age huh?'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: No, we synths do not age. You\'d think those'+
+                                              '\n\n"oh so smart" Institute scientist would see that as a'+
+                                              '\n\nflaw. We replace people\'s entire being, so surely their'+
+                                              '\n\nloved ones would notice that we are not aging while they'+
+                                              '\n\nare. That only blows our cover. But again, there is a lot'+
+                                              '\n\nI don\'t remember, I\'m sure they counter it somehow. The'+
+                                              '\n\nInstitute probably replaces the synth with one that looks'+
+                                              '\n\nolder, and they might do this as many times as it takes'+
+                                              '\n\nto make it appear that the synth is aging to all humans.'+
+                                              '\n\nWe also don\'t need food, water, or sleep. We can enjoy'+
+                                              '\n\nthem. But they are not required for us to function.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Ok, all of this is crazy. I don\'t want to believe'+
+                                              '\n\nany of this but I guess I have seen some pretty weird'+
+                                              '\n\nthings already.....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: *staring intensely and speaking very serious*'+
+                                              '\n\nNow\'s it\'s my turn to ask questions. Before we discuss'+
+                                              '\n\nyour case, I have to know....Why do you act as if you were'+
+                                              '\n\nborn yesterday? You act like this world is completely new'+
+                                              '\n\nto you....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: *staring back at Nick and speaking very serious*'+
+                                              '\n\nI\'ll give you my story then. Unlucky for you, my'+
+                                              '\n\nentire life from the year 2077 to this year, 2287,'+
+                                              '\n\nis the case. '+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: *very surprised* You\'re telling me your'+
+                                              '\n\n210+ years old? You were born AND raised before this'+
+                                              '\n\nworld had that worldwide nuclear war? How have you'+
+                                              '\n\nlived so long? Only us synths are immortal: unless'+
+                                              '\n\nwe are killed somehow....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: *speaking fast* But hold those thoughts for a'+
+                                              '\n\nmoment, let me get my pen and notepad out to take notes.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('SYSTEM: *Nick Prepares his notepad*'+
+                                              '\n\nPress enter to continue. ')
+                                        print()
+                                        print()
+                                        input('Nick: Ok, open up the dam\'s gates my friend. '+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                                  
+                                        input('You: I served in the U.S. military. It went out of commission the'+
+                                              '\n\nday the nukes exploded worldwide as I\'m sure you know. That'+
+                                              '\n\nday my family and I had coincidentally just signed up for a'+
+                                              '\n\nprogram called Vault-Tec. The world was at war, world war 3.'+
+                                              '\n\nBut a worldwide nuclear war was feared by everyone, because'+
+                                              '\n\neveryday world leaders threatend one another. So this Vault-Tec'+
+                                              '\n\ntook advantage of this and started up their company that offered'+
+                                              '\n\npeople a safe place inside of a vault in the case that the nuclear'+
+                                              '\n\nwar started. Everyone who signed up for the vaults had to pay a'+
+                                              '\n\nmembership, but it was really my wife who convinced me to do it:'+
+                                              '\n\nI hate salesmen with a passion. I hate their job not the person,'+
+                                              '\n\njust to make that clear. Anyways, October 23, 2077: it was reported'+
+                                              '\n\nthat nukes were going off worldwide. Everyone who signed up for the'+
+                                              '\n\nvault rushed to it for dear life: my family included. I had my wife,'+
+                                              '\n\nNora, running beside me, and she had our son, Shaun, in arms. The'+
+                                              '\n\nsirens were so scary. *Tears slowly fall down your eyes as you wipe'+
+                                              '\n\nthem*.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Now, now. One step at a time. It\'s ok.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: The people who didn\'t sign up for the vaults...Nick!'+
+                                              '\n\n*Burst out crying* You should have heard their screams'+
+                                              '\n\nand cries! Entire families killed because of evil men!'+
+                                              '\n\nLittle children: KILLED! Lovers: KILLED! People living'+
+                                              '\n\nhonest lives: KILLED! FOR WHAT?!? BECAUSE HUMANS NEVER'+
+                                              '\n\nLEARN! WHAT IS OUR PROBLEM NICK!??! WHY DOES THIS ALWAYS'+
+                                              '\n\nHAPPEN?!?!'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: *sincerely speaking* Please, try to'+
+                                              '\n\ntake deeps breaths, you\'re getting a bit off'+
+                                              '\n\ntopic. I know this hits close to home, but,'+
+                                              '\n\nplease focus my friend...'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: *slowly but surely calmed down* When we entered the'+
+                                              '\n\nvaults everything was seemingly fine. Vault-Tec told'+
+                                              '\n\nus that to proceed deeper into the vault we would have'+
+                                              '\n\nto be decontaminated in cryogenic pods. Everyone was in'+
+                                              '\n\na state of dissassociation. No one could believe nor'+
+                                              '\n\naccept that the fact that the entire world had just went'+
+                                              '\n\nup in smoke and billions of people with it. I kissed my'+
+                                              '\n\ninfant son, Shaun, on the forehead and told him I loved'+
+                                              '\n\nhim. I proceeded to do the same thing to my wife, but she'+
+                                              '\n\nbeat me too it. We were put in the cryogenic pods and'+
+                                              '\n\nmy wife\'s pod was directly across from mine. Before we'+
+                                              '\n\nwere "decontaminated" my wife and I waved at each other'+
+                                              '\n\nthrough the glass of the cryogenic pods. She had my infant'+
+                                              '\n\nson, Shaun with her. Nick. Vault-Tec had lied. We didn\'t'+
+                                              '\n\nwake up in a few minutes. We woke up just recently. Hundreds'+
+                                              '\n\nof years later! Vault Tec were just mad scientist doing ex-'+
+                                              '\n\nperiemts on us! And apparently after they experimented on us'+
+                                              '\n\nthey just lived out the rest of their days in that vault and died:'+
+                                              '\n\nleaving us in those cryogenic pods! I don\'t know what the year'+
+                                              '\n\nwas, but my wife was gunned down in front of me by two guys'+
+                                              '\n\nin what seemed like biohazard suits, and a man in an all black'+
+                                              '\n\nleather trench coat with a huge white gun. The details are'+
+                                              '\n\nhazy, but...'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: The guy in the black leather trench coat told my wife to let'+
+                                              '\n\ngo of my son. She refused naturally. And the man told her that,'+
+                                              '\n\n"I\'m only going to tell you once, let go of the child or die."'+
+                                              '\n\nMy wife basically told him to go do himself in and he shot her.'+
+                                              '\n\n*trying to fight your emotions* The people wearing biohazard'+
+                                              '\n\nsuits took my son and the man in the black leather trench coat'+
+                                              '\n\nsaid, "At least we still have the backup.", as he looked at me.'+
+                                              '\n\nI was refrozen by them after all of that happened.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: *looks very anxious* Noooooo, my friend, nooo.'+
+                                              '\n\nOk. I have a very bad feeling. But I\'m going to assume'+
+                                              '\n\nthat feeling is not true and try to be logical and look'+
+                                              '\n\nat all of our options before I jump to any conclusions.'+
+                                              '\n\nI will rule out some things though. I know supermutants'+
+                                              '\n\ndidn\'t do this because they are dumb as rocks and you did'+
+                                              '\n\nsay that people did this, not 8 foot tall green, muscular'+
+                                              '\n\nmen....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Wait, a minute! I saw those when I came to the city!'+
+                                              '\n\nI helped defend the Diamond City security team! I was'+
+                                              '\n\nWondering what those things were....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Ok, I will explain something on a side note here, because'+
+                                              '\n\nyou get off topic very easily. To prevent this from happening again'+
+                                              '\n\nI will explain some things about the world you are currently in since'+
+                                              '\n\nit\'s basically new to you. Supermutants come from the Institute.'+
+                                              '\n\nThey were once humans themselves, but the institute kidnapped them and'+
+                                              '\n\nattempted to make "super humans". This was before their synth research.'+
+                                              '\n\nThere are also these things called DeathClaws. They often are under'+
+                                              '\n\nsewers. They have claw-like hands, are about 10 feet tall, and have horns'+
+                                              '\n\non their heads that point forward and straight instead of wide and upward'+
+                                              '\n\nlike you would see on a bull. These creatures also were created by the'+
+                                              '\n\nInstitute. What were they trying to do? I don\'t know. They do anything'+
+                                              '\n\nin the name of science and care not for the repercussions of their'+
+                                              '\n\nreckless experiments....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: I also know that raiders did not do this as they'+
+                                              '\n\nonly care about robbing people of their valuables: whether'+
+                                              '\n\nthey have to kill the person for them or not. The last thing'+
+                                              '\n\nthey would want is to kill your wife to get an infant child.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        if DEATH_CLAW in quest_inventory:
+                                            input('You: Yeah I definitely have ran into a DeathClaw...'+
+                                                  '\n\nkilled it too...it was back in Concord....'+
+                                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                                      
+                                            print()
+                                            print()
+                                            input('Nick Valentine: What?!?! You....a human.... killed a'+
+                                                      '\n\nDeathClaw? Nevermind that....your case please...'+
+                                                      '\n\n(SYSTEM: Press enter to continue.) ')
+                                            print()
+                                            print()
+
+                                        input('You: I\'ve definitely ran into those raiders you\'re'+
+                                              '\n\ntalking about. I had a shootout with them at the'+
+                                              '\n\nMuesuem of Freedom. Got hit in the left shoulder.'+
+                                              '\n\nI took care of them though.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        if DEATHCLAW_MEAT in character_inventory3:
+                                            character_inventory3.remove(DEATHCLAW_MEAT)
+                                            DEATHCLAW_MEAT = 'DeathClaw Meat'
+                                            character_inventory3.append(DEATHCLAW_MEAT)
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Well Nate. I also know it that it wasn\'t'+
+                                              '\n\nthe Diamond City Mafia. Those goons only care about'+
+                                              '\n\nhow much money they can make. They\'re not getting'+
+                                              '\n\nany money out of a crying infant and a it\'s dead'+
+                                              '\n\nmother. So I apologize. What I was denying earlier'+
+                                              '\n\nis true.....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('SYSTEM: *room goes silent* *Nick stares down'+
+                                              '\n\nat the floor in disbelief*'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Nick! What the heck?!?! What\'s so bad?'+
+                                              '\n\nTell me something...'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: *staring at the floor and speaking very seriously*'+
+                                              '\n\nI wish that I could tell you I\'d be at the bottom of this'+
+                                              '\n\ncase by this weekend.....But Nate.....oh Nate... *facepalms*'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Nick! Stop and tell me! You\'re killing me!'+
+                                              '\n\nOh my goodness! Is it something about those'+
+                                              '\n\nguys in the vault?'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: The Institute killed your wife and'+
+                                              '\n\ntook your child Nate...'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('SYSTEM: There is an eerie silence and a lot of staring at'+
+                                              '\n\nthe floor by both You and Nick for about 5 minutes.'+
+                                              '\n\nPress enter to continue. ')
+                                        print()
+                                        print()
+                                        input('You: Nick this can\'t be true: I mean....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick: Stop! This is the truth. I knew it as soon as'+
+                                              '\n\nyou mentioned what the people were wearing....the'+
+                                              '\n\npeople that killed your wife and took your infant'+
+                                              '\n\nson. But I didn\'t want it to be true.*sigh* Those'+
+                                              '\n\ntwo people wearing biosuits were definitely Institute'+
+                                              '\n\nscientist that needed your son for some type of ex-'+
+                                              '\n\nperiment. The man in the black trench coat, "with a'+
+                                              '\n\nbig white gun" as you said: was definitely an Institute'+
+                                              '\n\ncourser. The gun your wife was killed with was a gun'+
+                                              '\n\nthat shoots blue laser beams. Institute Coursers are'+
+                                              '\n\ntrained to use these deadly weapons. Though I haven\'t'+
+                                              '\n\nseen those weapons in action. So, I\'m not sure how strong'+
+                                              '\n\nthose laser beams are, but they\'d definitely rip right'+
+                                              '\n\nthrough a human and literally melt their flesh and'+
+                                              '\n\ninternal organs upon contact. May I ask, did you look'+
+                                              '\n\nat your wife\'s body after you woke up and got out of your'+
+                                              '\n\ncryogenic pod?'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Yes, and I passed out. I\'m not sure for how long. But'+
+                                             '\n\nI had to be sure....you know? I was in such strong'+
+                                             '\n\ndenial that she was gone. Then I just blanked out.'+
+                                             '\n\nAnd before you ask...I don\'t know how I got out'+
+                                             '\n\nof my pod. It just seemingly stopped the icing'+
+                                             '\n\nprocess or malfunctioned or something and I was'+
+                                             '\n\nable to get out.'+
+                                             '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Ok, maybe we don\'t have to worry'+
+                                              '\n\nabout how you got out. That\'s not the problem'+
+                                              '\n\nat hand. Can you tell me what that Institute'+
+                                              '\n\ncourser sounded like? What hairstyle he had?'+
+                                              '\n\nMaybe some facial features? I may know his'+
+                                              '\n\nname and his whereabouts. It\'s defintely a'+
+                                              '\n\nsuicide mission to go after him, but as hard'+
+                                              '\n\nas it can be: I\'ll to give you all the inf-'+
+                                              '\n\normation that I can. But he might be one of'+
+                                              '\n\nthose coursers that only work inside of the'+
+                                              '\n\nInstitute and not so much among us.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: His voice was deep and rough: like sandpaper'+
+                                              '\n\ngoing across your face. He had a buzzcut. And'+
+                                              '\n\nhe had a huge scar going across his entire face.'+
+                                              '\n\nFor you to call coursers so tough, somebody'+
+                                              '\n\ndefinitely did him in with a knife to the face'+
+                                              '\n\nin the past.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: No! Please don\'t ever do that'+
+                                              '\n\nagain! Do not underestimate coursers! The only'+
+                                              '\n\nthing that could have cut his face like that'+
+                                              '\n\nwas another synth that was trying out to become'+
+                                              '\n\na courser that I\'m sure he fought during his'+
+                                              '\n\nintense training. Synths have to kill each other'+
+                                              '\n\nunder that intense training to become coursers.'+
+                                              '\n\nOf course the last man standing is the one who'+
+                                              '\n\nbecomes the Institute\'s newest courser. So the'+
+                                              '\n\ncourser you just insulted killed ten if not hundreds'+
+                                              '\n\nof others abnormally strong synths to get his position.'+
+                                              '\n\nThat\'s how strong he is. He was the last one standing.'+
+                                              '\n\nAnd I know exactly which courser it is and where he is'+
+                                              '\n\ncurrently.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: *eyes grow wide with fear*'+
+                                              '\n\nSo he is one of the most experienced and'+
+                                              '\n\nbattle hardend coursers the Institute has?'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Don\'t grow scared now! You talked'+
+                                              '\n\nabout him like he was just some punk a second'+
+                                              '\n\nago. And yes he is the most experienced courser'+
+                                              '\n\nthat he institute has. Remember how I told you'+
+                                              '\n\nwe synths are FAR stronger than you humans?'+
+                                              '\n\nWell also remember that I told you that coursers'+
+                                              '\n\nare synths that are FAR stronger than regular'+
+                                              '\n\nsynths like myself. And this courser I\'m talking'+
+                                              '\n\nabout: Kellog, is hands down the strongest courser'+
+                                              '\n\nthe Institute has. Not to be rude: but you\'re just'+
+                                              '\n\na human. So to paint the picture even better, I will'+
+                                              '\n\ngo from strongest to weakest: there is Kellog, the'+
+                                              '\n\nstrongest courser the Institute has, then there are'+
+                                              '\n\nall of the other coursers, then there are regular'+
+                                              '\n\nsynths like me, and finally there are you weak'+
+                                              '\n\nhumans. If they sent HIM to help retrieve your'+
+                                              '\n\ninfant son, then your son was defintely used in'+
+                                              '\n\nan experiment that the Institute probably labeled,'+
+                                              '\n\n"confidential". I don\'t know what it could be'+
+                                              '\n\nbut it had to be VERY important to them. And I fear'+
+                                              '\n\nbecause the Institute scientist have no morals. They'+
+                                              '\n\nwill conduct ANY experiment. They see the people of'+
+                                              '\n\nthe CommonWealth as inferior people......'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: The reason for that is because most people living'+
+                                              '\n\nin the CommonWealth have bad genetics. There is radiation'+
+                                              '\n\neverywhere and people are badly affected by it whether they'+
+                                              '\n\nrealize it or not. Now, I don\'t know where the Institute is, but'+
+                                              '\n\nI do know they are in a place where they are not affected by the'+
+                                              '\n\nradiation. I\'ve tried so hard to remember the place, but they'+
+                                              '\n\nwiped my memory pretty darn good. Wherever they are, they must be'+
+                                              '\n\nthe offspring of some pretty intelligent people that somehow'+
+                                              '\n\nsurvived the nuclear war hundreds of years ago...'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Getting back on topic.....Kellog will definitely be'+
+                                              '\n\nstationed at that old military fort for the next few months. I'+
+                                              '\n\nthink the fort\'s name is Fort Hagen. It\'s an old Army base.'+
+                                              '\n\nSurely you know where to find that since you were in the military'+
+                                              '\n\nAND lived during a time when it was still in operation?'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: TO THE PIT WITH KELLOG! Yes, I admit, I am scared.'+
+                                              '\n\nBut one of us is gonna be hanging our combat boots'+
+                                              '\n\nup real soon and it\'s NOT gonna be me. You think'+
+                                              '\n\nI\'m just going to let him DESTROY MY FAMILY, and let'+
+                                              '\n\nhim continue breathing without AT LEAST making him'+
+                                              '\n\nbleed? I\'ll go there as soon as I can, but how do'+
+                                              '\n\nyou know for certain that he is there Nick? And yes,'+
+                                              '\n\nI know exactly where it\'s at. I signed up for the'+
+                                              '\n\nmilitary there hundreds of years back.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Well let\'s just say I know when the Institute'+
+                                              '\n\nis snooping around. I\'ve passed by that Fort Hagen area the'+
+                                              '\n\nother day as I was taking a walk. It was heavily fortified.'+
+                                              '\n\nThere are robot machine gun turrets surrounding it that will'+
+                                              '\n\nshoot at anyone who gets too close. It has to be the Institute'+
+                                              '\n\nrunning some sort of operation over there. Who else could it be?'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Thank you so much Nick! I know nothing is over yet'+
+                                              '\n\nbut I\'ll be leaving your office with such a far deeper'+
+                                              '\n\nunderstanding of everything that is going on around me.'+
+                                              '\n\nAnd you gave me a lead. Since that Kellog guy is a courser'+
+                                              '\n\nhe can teleport to the Insitute. Well....he\'s going to'+
+                                              '\n\ntake me straight to the Institute so that I can find my'+
+                                              '\n\nson. If he doesn\'t want to be calm and collected about'+
+                                              '\n\nit all: then you best bet that one of us is hanging our'+
+                                              '\n\ncombat boots.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: This is what I was afraid of. I knew I wouldn\'t'+
+                                              '\n\nbe able to stop you: you\'re head strong. Of course you are:'+
+                                              '\n\nYou must have served in one of those military special forces for'+
+                                              '\n\ncrazy people. You know, the ones where people undergo stupid'+
+                                              '\n\ncrazy training....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: *smiles at Nick*'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: *smiles* I\'ll take that as a yes. Do you'+
+                                              '\n\nwant me to help you? I\'m not living for anything else...'+
+                                              '\n\nI\'d be willing to lay my life on the line to help you...'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Nick....I so appreciate you saying that. But I must do this'+
+                                              '\n\nalone.....'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Yeah.....you\'re a special type of crazy'+
+                                              '\n\nalright. Well I noticed you had on some power armor'+
+                                              '\n\nwhen you got here. Not to sound creepy, but I was looking'+
+                                              '\n\nthrough the window....You best use that armor to fight him.'+
+                                              '\n\nTo my understanding T-60 power armor was the strongest'+
+                                              '\n\narmor created by the U.S. military hundreds of years ago.'+
+                                              '\n\nSo if you don\'t have that T-60 power armor already I can'+
+                                              '\n\ntell you that the merchant is selling a suit he found at'+
+                                              '\n\nan old military checkpoint. He got together with some other'+
+                                              '\n\nguys and fixed it up. They knew how to fix it because the'+
+                                              '\n\nschematics for it were apparently inside of it. It must\'ve'+
+                                              '\n\nbeen a new suit back in the day. It\'s not like I talk to'+
+                                              '\n\nanyone: everyone hates me because I\'m a synth. I just'+
+                                              '\n\nhappened to walk by one day and.....I guess eavesdropped'+
+                                              '\n\non their conversation.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        if ARMOR3 in character_inventory3:
+                                            input('You: Thanks for the info Nick, but I already have the T-60'+
+                                                  '\n\npower armor. The one you saw me come here in is the T-60.'+
+                                                  '\n\nBut uhhh....how much is your service?'+
+                                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                            print()
+                                            print()
+                                        else:
+                                            input('You: Ok Nick, I\'ll go check that out. Thanks for that info.'+
+                                                  '\n\nBut uhhh....how much is your service?'+
+                                                  '\n\n(SYSTEM: Press enter to continue.) ')
+                                            print()
+                                            print()
+
+                                        input('Nick Valentine: HAHAHAHHAHAHA. You really think I\'m going'+
+                                              '\n\nto charge you? What do I even need money for? I don\'t'+
+                                              '\n\nneed food, water, or sleep my man. Just the clothes on'+
+                                              '\n\nmy back. You\'re good to go. But please.....please be'+
+                                              '\n\ncareful. You\'re the only person in my life that has'+
+                                              '\n\ntreated me like a person. The Institute dumped me like'+
+                                              '\n\nlike trash and the people in this city have hated me my'+
+                                              '\n\nentire short life of 10 years. We may not ever become'+
+                                              '\n\nfriends, but I\'d like to visit Fort Hagen one day and'+
+                                              '\n\nsee the remains of "Kellog the Courser". Because I\'ll know'+
+                                              '\n\nexactly who did it. I\'ll know that you got into the'+
+                                              '\n\nInstitute and found your son. Where will you be? I won\'t'+
+                                              '\n\nknow: this may be the last time I see you. But I\'m sure'+
+                                              '\n\nwherever you go Nate, you will make the best of your'+
+                                              '\n\nsituation. Good luck to you: I really enjoyed you and will'+
+                                              '\n\nnever forget this day.'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('You: Goodbye, Nick! You may not be human exactly. But I feel'+
+                                              '\n\nif my circumstances had allowed it: we could have been'+
+                                              '\n\nthe best of friends. I\'ll never forget you myself.'+
+                                              '\n\nI\'ll give you something to smile about when you visit'+
+                                              '\n\nFort Hagen: don\'t you worry. I will win, and I will'+
+                                              '\n\nmake the best of my situation: whatever it comes to be.'+
+                                              '\n\nThat\'s all anyone can do. Goodbye, Nick!'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('Nick Valentine: Goodbye, Nate! Be safe!'+
+                                              '\n\n(SYSTEM: Press enter to continue.) ')
+                                        print()
+                                        print()
+                                        input('SYSTEM: You leave Nick Valentine\'s Detective Agency:'+
+                                              '\n\nWith a new lead, a smile on your face, and a friend'+
+                                              '\n\nthat you may never see again, but he might be watching'+
+                                              '\n\nyou through the window...You decide to not look back'+
+                                              '\n\nand let the memories be all that you need. You enter'+
+                                              '\n\nyour power armor you left at the entrance of the building'+
+                                              '\n\nyou and have already collected your weapons on your way'+
+                                              '\n\nout of the door.'+
+                                              '\n\nPress enter to contine. ')
+                                            
+                                        if TALKED_TO_NICK not in quest_inventory:
+                                            quest_inventory.append(TALKED_TO_NICK)
+
+                                else:
+                                    input('SYSTEM: You have already visited Nick Valentine\'s Detective Agency.'+
+                                          '\nPress enter to continue.')
+
+                            elif choice2 == MERCHANT:
+                                choice3 = 0
+                                BUY = 1
+                                SELL = 2
+                                QUIT3 = 3
+                                while choice3 != QUIT3:
+                                    print()
+                                    print('Diamond City Merchant')
+                                    print('---------------------')
+                                    print()
+                                    print('1. Buy'+
+                                          '\n2. Sell'+
+                                          '\n3. Leave Diamond City Merchant')
+                                    print()
+                                    choice3 = int(input('Enter your choice: '))
+                                    print()
+                                    while choice3 < BUY or choice3 > QUIT3:
+                                        choice3 = int(input('Enter a valid choice: '))
+                                        print()
+
+                                    if choice3 == BUY:
+                                        choice4 = 0
+                                        SNIPER = 1
+                                        MINIGUN = 2
+                                        FIRSTAIDKIT = 3
+                                        T60POWERARMOR =4
+                                        FUSIONCORE = 5
+                                        QUIT4 = 6
+                                        while choice4 != QUIT4:
+                                            print()
+                                            print('Diamond City Merchant (buying)')
+                                            print('----------------------')
+                                            print()
+                                            print('1. Scoped .50 Cal Sniper ($1500)'+
+                                                  '\n2. MiniGun ($1500)'+
+                                                  '\n3. First Aid Kit ($100)'+
+                                                  '\n4. T-60 Power Armor (?)'+
+                                                  '\n5. Fusion Core ($1100)'+
+                                                  '\n6. Quit')
+                                            print()
+                                            choice4 = int(input('Enter your choice: '))
+                                            print()
+                                            while choice4 < SNIPER or choice4 > QUIT4:
+                                                choice4 = int(input('Enter a valid choice: '))
+                                                print()
+                                            if choice4 == SNIPER:
+                                                # are_you_sure confirms the player's purchase
+                                                are_you_sure = str(input('Diamond City Merchant: Are ya sure ya'+
+                                                                         '\nwant to buy the Scoped .50 Cal Sniper'+
+                                                                         '\nfor $1500?'+
+                                                                         '\nSYSTEM: Enter yes to buy or no to quit (use lowercase): '))
+                                                print()
+                                                if are_you_sure == str('yes'):
+                                                    if MONEY < SNIPER_VALUE:
+                                                        input('Diamond City Merchant: Come back when ya have'+
+                                                              '\n$1500 or more my friend.'+
+                                                              '\n(SYSTEM: Press enter to continue.) ')
+                                                        print()
+                                                        print()
+                                                    else:
+                                                        if WEAPON3 not in character_inventory3:
+                                                            character_inventory3.append(WEAPON3)
+                                                            MONEY -= SNIPER_VALUE
+                                                            input('Diamond City Merchant: Thank ya for yer'+
+                                                                  '\npurchase friend!(SYSTEM: Scoped .50 Cal'+
+                                                                  '\nSniper has been added to your inventory.'+
+                                                                  '\nPress enter to continue.) ')
+                                                        else:
+                                                            input('Diamond City Merchant: Sorry friend, by law we\'re not'+
+                                                                  '\nallowed to sell ya the same weapon ya\'ve already'+
+                                                                  '\npurchased.'+
+                                                                  '\n(SYSTEM: Press enter to continue.) ')
+                                                        
+                                                else:
+                                                    input('Diamond City Merchant: Maybe some other time then...'+
+                                                          '\n(SYSTEM: Press enter to continue.) ')
+                                            elif choice4 == MINIGUN:
+                                                # are_you_sure_2 confirms the player's purchase
+                                                are_you_sure2 = str(input('Diamond City Merchant: Are ya sure ya'+
+                                                                          '\nwant to buy the MiniGun for $1500?'+
+                                                                          '\nSYSTEM: Enter yes to buy, or no to quit'+
+                                                                          '\n(use lowercase): '))
+                                                print()
+                                                if are_you_sure2 == str('yes'):
+                                                    if MONEY < MINIGUN_VALUE:
+                                                        input('Diamond City Merchant: Come back when ya have'+
+                                                              '\n$1500 or more my friend.'+
+                                                              '\n(SYSTEM: Press enter to continue.) ')
+                                                        print()
+                                                        print()
+                                                    else:
+                                                        if WEAPON4 not in character_inventory3:
+                                                            character_inventory3.append(WEAPON4)
+                                                            MONEY -= MINIGUN_VALUE
+                                                            input('Diamond City Merchant: Thank ya for yer'+
+                                                                  '\npurchase friend! (SYSTEM: A MiniGun has'+
+                                                                  '\nbeen added to your inventory. Press enter'+
+                                                                  '\nto continue.) ')
+                                                        else:
+                                                            input('Diamond City Merchant: Sorry friend, by law we\'re not'+
+                                                                  '\nallowed to sell ya the same weapon ya\'ve already'+
+                                                                  '\npurchased.'+
+                                                                  '\n(SYSTEM: Press enter to continue.) ')
+                                                else:
+                                                    input('Diamond City Merchant: Maybe some other time then...'+
+                                                          '\n(SYSTEM: Press enter to continue.) ')
+                                            elif choice4 == FIRSTAIDKIT:
+                                                # are_you_sure3 confirms the player's purchase
+                                                are_you_sure3 = str(input('Diamond City Merchant: Are ya sure ya'+
+                                                                          '\nwant to buy a First Aid Kit for $100?'+
+                                                                          '\nSYSTEM: Enter yes to buy, or no to quit'+
+                                                                          '\n(use lowercase): '))
+                                                print()
+                                                if are_you_sure3 == str('yes'):
+                                                    if MONEY < FIRSTAIDKIT3_VALUE:
+                                                        input('Diamond City Merchant: Come back when ya have'+
+                                                              '\n$100 or more my friend.'+
+                                                              '\n(SYSTEM: Press enter to contine.) ')
+                                                        print()
+                                                        print()
+                                                    else:
+                                                        if FIRST_AID3 not in prevent_exploit3:
+                                                            prevent_exploit3.append(FIRST_AID3)
+                                                            character_inventory4.append(FIRST_AID3)
+                                                            MONEY -= FIRSTAIDKIT3_VALUE
+                                                            input('Diamond City Merchant: Thank ya for yer'+
+                                                                  '\npurchase friend! (SYSTEM: A First Aid Kit'+
+                                                                  '\nhas been added to your inventory. Press'+
+                                                                  '\nenter to continue.) ')
+                                                        else:
+                                                            input('Diamond City Merchant: Sorry friend, by law we\'re not'+
+                                                                  '\nallowed to sell ya multiple first aid in such a short'+
+                                                                  '\namount of time. Ya understand.... medical supplies'+
+                                                                  '\nshould go around evenly. The days of people having'+
+                                                                  '\nhealthcare are long gone. Even then people struggled.'+
+                                                                  '\nBut nowadays first aid kits are about as good as we'+
+                                                                  '\ncan do living in this post-apocalyptic world...'+
+                                                                  '\n(SYSTEM: Press enter to continue.) ')
+                                                            print()
+                                                            input('You: I completely understand. No Worries.'+
+                                                                  '\n(SYSTEM: Press enter to contine.) ')
+                                                else:
+                                                    input('Diamond City Merchant: Maybe some other time then...'+
+                                                          '\n(SYSTEM: Press enter to continue.) ')
+
+                                            elif choice4 == T60POWERARMOR:
+                                                if FUSION_CORE2 in character_inventory4:
+                                                    if TALKED_TO_MERCHANT not in quest_inventory: 
+                                                        quest_inventory.append(TALKED_TO_MERCHANT)
+                                                        if ARMOR3 not in prevent_exploit:
+                                                            input('You: I\'d like to buy that T-60 Power armor.'+
+                                                                  '\n(SYSTEM: Press enter to continue). ')
+                                                            print()
+                                                            print()
+                                                            input('Diamond City Merchant: What!?! Son. Do ya even'+
+                                                                  '\nknow how to use this here T-60 armor? Most people'+
+                                                                  '\nNowadays have no idea how to operate Power Armor.'+
+                                                                  '\nIssa shame really. Issa hands down the best armor'+
+                                                                  '\nout there. So, I assume ya wander this dangerous'+
+                                                                  '\nCommonWealth unlike the spoiled "city" folk around'+
+                                                                  '\nhere?'+
+                                                                  '\n(SYSTEM: Press enter to continue.) ')
+                                                            print()
+                                                            print()
+                                                            input('You: Yes sir! You best believe I know how to use it.'+
+                                                                  '\nAnd yeah....I\'ve been traveling the CommonWealth'+
+                                                                  '\na while now. I\'ve ran into my fair share of troubles'+
+                                                                  '\nbeyond this cities\' walls.'+
+                                                                  '\n(SYSTEM: Press enter to continue.) ')
+                                                            print()
+                                                            print()
+                                                            input('Diamond City Merchant: HAHAHAHA!!! Son! *pssh*'+
+                                                                  '\nI\'m yanking yer leg! Ya already wearing'+
+                                                                  '\nT-45 Power Armor for crying out loud, HAHAHA!'+
+                                                                  '\nOf course I know that ya know how to operate'+
+                                                                  '\nthe T-60 suit: the T-45 and T-60 basically'+
+                                                                  '\noperate the same.'+
+                                                                  '\n(SYSTEM: Press enter to continue.) ')
+                                                            print()
+                                                            print()
+                                                            if DEATH_CLAW and TALKED_TO_NICK in quest_inventory:
+                                                                input('Diamond City Merchant: And son, I\'ve noticed ya'+
+                                                                      '\nsince you came into this city. I couldn\'t help'+
+                                                                      '\nbut notice the guy wearing military armor while'+
+                                                                      '\neveryone else is wearing their everyday clothin\'.'+
+                                                                      '\nHAHAHAHA!! But I\'ve yet to ask ya, how in the'+
+                                                                      '\nworld did you get that huge dent--almost a hole--'+
+                                                                      '\nin that T-45 Power Armor there? No stranger to action'+
+                                                                      '\nare ya?'+
+                                                                      '\n(SYSTEM: Press enter to continue.) ')
+                                                                print()
+                                                                print()
+                                                                input('You: I fought a Dea....'+
+                                                                      '\n(SYSTEM: Press enter to continue.) ')
+                                                                print()
+                                                                print()
+                                                                input('Diamond City Merchant: A DeathClaw? Well son....'+
+                                                                      '\nI respected ya enough seeing ya stroll around'+
+                                                                      '\nin that suit. But now I respect ya 1000 times'+
+                                                                      '\nover. I\'ve never heard of a human defeating a'+
+                                                                      '\nDeathClaw. Those stories often end in horror:'+
+                                                                      '\na fool thinkin\' he can take em on. It\'s only'+
+                                                                      '\npossible in Power Armor for a human. But you'+
+                                                                      '\nhave to know how to operate the power armor as'+
+                                                                      '\nwell. I\'m not goin-ta ask how ya found out to'+
+                                                                      '\noperate power armor. But ya best believe I really'+
+                                                                      '\nhave a deep respect for ya for defeating that'+
+                                                                      '\nDeathClaw and living to tell the tale. And I know'+
+                                                                      '\nyour notta liar because those marks are undeniably'+
+                                                                      '\nfrom a DeathClaw. I\'ve seen them in person myself.'+
+                                                                      '\nBut never crazy enough to get too close to em.'+
+                                                                      '\nHAHHAHA!! Ya must be a real nut job son! Crazy'+
+                                                                      '\nas they come eh? But you, "walk the walk", no?'+
+                                                                      '\n(SYSTEM: Press enter to continue.) ')
+                                                                print()
+                                                                print()
+                                                                input('Diamond City Merchant: I\'m so impressed son that I\'m'+
+                                                                      '\nwilling to sell ya this here T-60 power armor at half'+
+                                                                      '\nprice. I myself have used it 3 times. But never in'+
+                                                                      '\ncombat....I just was hoping that someone like ya would'+
+                                                                      '\ncome along and snatch it up. And boy-oh my wishes have'+
+                                                                      '\ncome to fruition. The original price is $6000, but ya'+
+                                                                      '\ncan take it at $3000 son. Heck I\'d give it to ya free,'+
+                                                                      '\nbut a man\'s gotta make a living, no? But I\'ll make the'+
+                                                                      '\ndeal with ya only if ya give me that T-45 Power armor'+
+                                                                      '\nand the fusion core that\'s in the back of it. I know'+
+                                                                      '\nit\'s damaged and the fusion core\'s energy is probably'+
+                                                                      '\nlow, but yer walking inna relic son. A relic I\'d like-ta'+
+                                                                      '\nhave, but I won\'t steal your story and glorify myself.'+
+                                                                      '\nHAHAHA! Whenever someone ask me about the marks on the armor,'+
+                                                                      '\nI\'ll tell em about the man who stands before me.'+
+                                                                      '\n(SYSTEM: Press enter to continue.) ')
+                                              
+                                                                #are_you_sure4 confirms the player's purchase
+                                                                are_you_sure4 = str(input('Diamond City Merchant: What\'d ya say son, willing'+
+                                                                                          '\nto make this deal?'+
+                                                                                          '\nSYSTEM: Enter yes to buy or enter no to quit (use'+
+                                                                                          '\nlowercase): '))
+                                                                print()
+                                                                if are_you_sure4 == str('yes'):
+                                                                    if MONEY < ARMOR3_VALUE:
+                                                                        input('Diamond City Merchant: Ah, that\'s great son, but come back when ya'+
+                                                                              '\nhave $3000. I promise I\'ll reserve it for ya!'+
+                                                                              '\n(SYSTEM:Press enter to continue.) ')
+                                                                        print()
+                                                                        print()
+
+                                                                    else:
+                                                                        if ARMOR3 not in prevent_exploit:
+                                                                            prevent_exploit.append(ARMOR3)
+                                                                            character_inventory3.append(ARMOR3)
+                                                                            character_inventory3.remove(ARMOR2)
+                                                                            character_inventory2.remove(FUSION_CORE1)
+                                                                            MONEY -= ARMOR3_VALUE
+                                                                            input('Diamond City Merchant: Nice doin\' business with ya son!'+
+                                                                                  '\nAnd it was nice getting to know one of my customers a'+
+                                                                                  '\nlil bit more well.'+
+                                                                                  '\n(SYSTEM: Press enter to continue.) ')
+                                                                        else:
+                                                                            input('SYSTEM: You\'ve already bought the T-60 Power Armor.'+
+                                                                                  '\nPress enter to continue.)')
+                                                                else:
+                                                                    input('Diamond City Merchant: Ok friend. Maybe some other time.'+
+                                                                          '\nBut I\'m sure ya gonna be back. *smiles*'+
+                                                                          '\n(SYSTEM: Press enter to continue.)')
+                                                                
+                                                            input('Diamond City Merchant: And son, I\'ve noticed ya'+
+                                                                  '\nsince you came inta the city. I couldn\'t help'+
+                                                                  '\nbut notice the guy wearing military armor while'+
+                                                                  '\neveryone else is wearing their everyday clothin\'.'+
+                                                                  '\nHAHAHAHA!! I respect ya for knowing how to operate'+
+                                                                  '\npower armor. For that I\'m willing to cut the price'+
+                                                                  '\nof this T-60 from $6000 to $3000. But I\'ll only do'+
+                                                                  '\nit if ya give me that T-45 Power Armor and the fusion'+
+                                                                  '\ncore that\'s in the back of it. I know the fusion core\'s'+
+                                                                  '\nenergy is probably low, but I\'m willing to do a trade-in'+
+                                                                  '\nof sorts with ya.'+
+                                                                  '\n(SYSTEM: Press enter to continue.) ')
+                                                            print()
+                                                            print()
+
+                                                            #are_you_sure5 confirms the player's purchase
+                                                            are_you_sure5 = str(input('Diamond City Merchant: What\'d ya say'+
+                                                                                      '\nson, willing-duh make this deal?'+
+                                                                                      '\nSYSTEM: Enter yes to buy or enter no to quit (use'+
+                                                                                      '\nlowercase): '))
+                                                            print()
+                                                            if are_you_sure5 == str('yes'):
+                                                                if MONEY < ARMOR3_VALUE:
+                                                                    input('Diamond City Merchant: Ah, that\'s great son, but come back when ya'+
+                                                                          '\nhave $3000. I promise I\'ll reserve it for ya!'+
+                                                                          '\n(SYSTEM:Press enter to continue.) ')
+                                                                    print()
+                                                                    print()
+
+                                                                else:
+                                                                    if ARMOR3 not in prevent_exploit:
+                                                                        prevent_exploit.append(ARMOR3)
+                                                                        character_inventory3.append(ARMOR3)
+                                                                        character_inventory3.remove(ARMOR2)
+                                                                        character_inventory2.remove(FUSION_CORE1)
+                                                                        MONEY -= ARMOR3_VALUE
+                                                                        input('Diamond City Merchant: Nice doin\' business with ya son!'+
+                                                                              '\nAnd it was nice getting to know one of my customers a'+
+                                                                              '\nlil bit more well.'+
+                                                                              '\n(SYSTEM: Press enter to continue.) ')
+                                                                    else:
+                                                                        input('SYSTEM: You\'ve already bought the T-60 Power Armor.'+
+                                                                              '\nPress enter to continue.)')
+                                                            else:
+                                                                input('Diamond City Merchant: Ok friend. Maybe some other time.'+
+                                                                      '\nBut I\'m sure ya gonna be back. *smiles*'+
+                                                                      '\n(SYSTEM: Press enter to continue.)')
+                                                                
+                                                    else:
+                                                        #are_you_sure6 confirms the player's purchase
+                                                        are_you_sure6 = str(input('Diamond City Merchant: Welcome back! Would ya like-da'+
+                                                                                  '\nbuy the T-60 Power Armor for $3000? If ya do, ya gonna'+
+                                                                                  '\nhave to swap it for that T-45 Power Armor you\'re wearing.'+
+                                                                                  '\nThose are muh terms. The T-60 is better than the T-45 in'+
+                                                                                  '\nthe field of combat. The price is originally $6000, but'+
+                                                                                  '\nfor ya T-45 Power Armor I\'ll cut the price in half.'+
+                                                                                  '\nWhat\'d ya say?'+
+                                                                                  '\nSYSTEM: Enter yes to buy or enter no to quit (use lowercase): '))
+                                                        print()
+                                                        if are_you_sure6 == str('yes'):
+                                                            if MONEY < ARMOR3_VALUE:
+                                                                input('Diamond City Merchant: Ah, that\'s great son, but come back when ya'+
+                                                                      '\nhave $3000. I promise I\'ll reserve it for ya!'+
+                                                                      '\n(SYSTEM:Press enter to continue.) ')
+                                                                print()
+                                                                print()
+
+                                                            else:
+                                                                if ARMOR3 not in prevent_exploit:
+                                                                    prevent_exploit.append(ARMOR3)
+                                                                    character_inventory3.append(ARMOR3)
+                                                                    character_inventory3.remove(ARMOR2)
+                                                                    character_inventory2.remove(FUSION_CORE1)
+                                                                    MONEY -= ARMOR3_VALUE
+                                                                    input('Diamond City Merchant: Nice doin\' business with ya son!'+
+                                                                          '\n(SYSTEM: Press enter to continue.) ')
+                                                                else:
+                                                                    input('SYSTEM: You\'ve already bought the T-60 Power Armor.'+
+                                                                          '\nPress enter to continue.)')
+                                                        else:
+                                                            input('Diamond City Merchant: Ok friend. Maybe some other time.'+
+                                                                  '\n(SYSTEM: Press enter to continue.)')
+
+                                                        
+
+                                                        
+                                                else:
+                                                    # normally "thinking to self" has a variable and goes in the think_inventory list
+                                                    # but this is an exception
+                                                    input('Thinking to self: I\'d like to buy this T-60 power armor, but'+
+                                                          '\nI\'ll need to buy a fusion core for it first: otherwise the armor'+
+                                                          '\nwon\'t work.'+
+                                                          '\n(SYSTEM: Press enter to continue.)')
+
+                                            elif choice4 == FUSIONCORE:
+                                                #are_you_sure7 confirms the player\'s purchase
+                                                are_you_sure7 = str(input('Diamond City Merchant: Are ya sure ya'+
+                                                                           '\nwant to buy a Fusion Core for $1100?'+
+                                                                           '\nSYSTEM: enter yes to buy or no to quit'+
+                                                                           '\n(use lowercase): '))
+                                                print()
+                                                if are_you_sure7 == str('yes'):
+                                                    if MONEY < FUSION_CORE2_VALUE:
+                                                        input('Diamond City Merchant: Come back when ya have'+
+                                                              '\n$1100 or more friend.'+
+                                                              '\nSYSTEM: Press enter to continue. ')
+                                                        print()
+                                                        print()
+                                                    else:
+                                                        if FUSION_CORE2 not in prevent_exploit2:
+                                                            prevent_exploit2.append(FUSION_CORE2)
+                                                            character_inventory4.append(FUSION_CORE2)
+                                                            MONEY -= FUSION_CORE2_VALUE
+                                                            input('Diamond City Merchant: Thank ya for yer'+
+                                                                  '\npurchase friend! (SYSTEM: A brand new'+
+                                                                  '\nFusion Core has been added to your inventory.'+
+                                                                  '\nPress enter to continue.)')
+                                                        else:
+                                                            input('Diamond City Merchant: Sorry friend, ya won\'t be able'+
+                                                                  '\nto get another Fusion Core out of me. The one I\'ve'+
+                                                                  '\nsold ya already was all I had in stock.'+
+                                                                  '\n(SYSTEM: Press enter to continue.)')
+                                                else:
+                                                    input('Diamond City Merchant: Ok friend. Maybe some other time.'+
+                                                          '\n(SYSTEM: Press enter to continue.)')
+                                    elif choice3 == SELL:
+                                        choice5 = 0
+                                        RING_10 = 1
+                                        RING_20 = 2
+                                        DEATHCLAWMEAT = 3
+                                        QUIT5 = 4
+                                        while choice5 != QUIT5:
+                                            if RING1 or RING2 in character_inventory or DEATHCLAW_MEAT in character_inventory3:
+                                                if TALKED_TO_NICK in quest_inventory:
+                                                    print()
+                                                    print()
+                                                    print('Diamond City Merchant (selling)')
+                                                    print('-------------------------------')
+                                                    print()
+                                                    print('SYSTEM: These are items in your'+
+                                                          '\ninventory that you can sell.'+
+                                                          '\nYou have showed the merchant'+
+                                                          '\nall that you have and he is only'+
+                                                          '\ninterested in the following items.')
+                                                    print()
+                                                    print('1. Nora\'s Wedding Ring (Your Wife\'s wedding ring) ($1250)'+
+                                                          '\n2. Your Wedding Ring ($1250)'+
+                                                          '\n3. DeathClaw Meat ($500?)'+
+                                                          '\n4 Quit')
+                                                    print()
+                                                    choice5 = int(input('Enter your choice: '))
+                                                    print()
+                                                    while choice5 < RING_10 or choice5 > QUIT5:
+                                                        choice5 = int(input('Enter a valid choice: '))
+                                                        print()
+                                                    if choice5 == RING_10:
+                                                        if RING1 in character_inventory:
+                                                            character_inventory.remove(RING1)
+                                                            MONEY += RING1_VALUE
+                                                            input('Diamond City Merchant: Nice doing business with ya.'+
+                                                                  '\n(SYSTEM: You sold Nora\'s ((your wife)) wedding ring'+
+                                                                  '\nfor $1250. Press enter to continue.)')
+                                                        else:
+                                                            input('SYSTEM: Error! You have either sold this item'+
+                                                                  '\nalready or it is not in your inventory'+
+                                                                  '\nPress enter to continue. ')
+                                                    elif choice5 == RING_20:
+                                                        if RING2 in character_inventory:
+                                                            character_inventory.remove(RING2)
+                                                            MONEY += RING2_VALUE
+                                                            input('Diamond City Merchant: Nice doing business with ya.'+
+                                                                    '\n(SYSTEM: You sold your wedding ring for $1250.'+
+                                                                    '\nPress enter to continue.)')
+                                                        else:
+                                                            input('SYSTEM: Error! You have either sold this item'+
+                                                                  '\nalready or it is not in your inventory'+
+                                                                  '\nPress enter to continue. ')
+                                                    elif choice5 == DEATHCLAWMEAT:
+                                                        if DEATHCLAW_MEAT in character_inventory3:
+                                                            character_inventory3.remove(DEATHCLAW_MEAT)
+                                                            MONEY += DEATH_CLAW_MEAT_VALUE
+                                                            input('Diamond City Merchant: Nice doing business with ya.'+
+                                                                  '\n(SYSTEM: You sold DeathClaw Meat for $500. Press enter'+
+                                                                  '\nto continue.)')
+                                                        else:
+                                                            input('SYSTEM: Error! You have either sold this item'+
+                                                                  '\nalready or it is not in your inventory'+
+                                                                  '\nPress enter to continue. ')
+                                                else:
+                                                    input('Diamond City Merchant: Ya gonna have to come back later. I\'m'+
+                                                          '\nnot ready to buy from my customers yet. I usually do so a few'+
+                                                          '\nhours before I close. Maybe ya can walk around the city and'+
+                                                          '\ncome back later? Ya seem like a newcomer. Go explore the city'+
+                                                          '\na bit, eh?. I should be open by the time you come back.'+
+                                                          '\n(SYSTEM: Press enter to continue.)')
+                                                    print()
+                                                    choice5 = int(input('Enter 4 to exit: '))
+                                                    print()
+                                                    while choice5 < 4 or choice5 > 4:
+                                                        choice5 = int(input('You must enter 4 to exit: '))
+                                                        print()
+                                            else:
+                                                print()
+                                                input('Diamond City Merchant: Sorry lad. My customers have already'+
+                                                      '\nsold me a ton of stuff last week. I\'m not interested in'+
+                                                      '\nbuying anything off ya right now. But if ya come back here'+
+                                                      '\nwith some rings and/or meat I\'ll buy those. The ladies love'+
+                                                      '\ntheir jewelry and the families gotta eat: those are some things'+
+                                                      '\nI can resell. So, come back with those things and I\'ll definitely'+
+                                                      '\nbuy from ya.'+
+                                                      '\n(SYSTEM: Press enter to continue.)')
+                                                print()
+                                                input('You: Sure thing!'+
+                                                      '\n(SYSTEM: Press enter to continue.)')
+                                                print()
+                                                print()
+                                                input('Diamond City Merchant: That\'s the spirit! Thanks for understandin\'.'+
+                                                      '\n(SYSTEM: Press enter to continue.)')
+                                                print()
+                                                choice5 = int(input('Enter 4 to exit: '))
+                                                print()
+                                                while choice5 < 4 or choice5 > 4:
+                                                    choice5 = int(input('You must enter 4 to exit: '))
+                                                    print()
+
+                                                    
+                    else:
+                        input('SYSTEM: You figure that you\'ll need some edible food'
+                              '\n\nand to not be hungry on the way to Diamond City'+
+                              '\n\n. You have no idea how far away it is from where'+
+                              '\n\nyou currently are. You\'ll have to look for a'+
+                              '\n\nsource of edible food. But once you know your'+
+                              '\n\nway it won\'t take as long, then maybe you won\'t'+
+                              '\n\nneed food the next time you travel.'+
+                              '\n\nPress enter to contine. ')
+
+                else:
+                    input('SYSTEM: You figure that you\'ll need a some way'+
+                          '\n\nto hydrate before moving forward. You have no'+
+                          '\n\nidea how far Diamond City is from where you'+
+                          '\n\ncurrently are. You\'ll have to look for some'+
+                          '\n\npotable water. But once you know your'+
+                          '\n\nway it won\'t take as long, then maybe you won\'t'+
+                          '\n\nneed water the next time you travel.'+
+                          '\n\nPress enter to contine. ')
+
+            else:
+                input('SYSTEM: You will need ammunition for your assualt rifle'+
+                      '\n\nbefore traveling to Diamond City. With all that you'+
+                      '\n\nhave seen so far: you know good and well that it is'+
+                      '\n\nin your best interest to have ammunition for your'+
+                      '\n\nstrongest weapon yet.'+
+                      '\n\nPress enter to continue. ')
+
+        else:
+            input('SYSTEM: You will need a stronger weapon before traveling'+
+                  '\n\nto Diamond City. With all that you have seen so far:'+
+                  '\n\nYou\'re not so sure that you could make it any further'+
+                  '\n\nwith the things that you currently have.'+
+                  '\n\nPress enter to continue. ')
+
+    else:
+        input('SYSTEM: You will need stronger armor before you travel'+
+              '\n\nto Diamond City. With all that you have seen so far:'+
+              '\n\nYou\'re not sure if you could make it any further'+
+              '\n\nwith the things that you currently have.'+
+              '\n\nPress enter to continue. ')
                                
 main()
