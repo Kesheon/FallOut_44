@@ -1,4 +1,4 @@
-        
+            
 import characterinventory
 import characterinventory2
 import characterinventory3
@@ -80,6 +80,9 @@ FUSION_CORE2 = 'Fusion Core' # this variable also goes in the
                              # prevent_exploit2 list
 
 
+TELEPORT_REMOTE = 'Teleportation Remote'
+
+
     
 
 # Variables that go into the quest_inventory list under def main
@@ -93,6 +96,9 @@ DEATH_CLAW = 'Death Claw already defeated'
 DIAMOND_CITY_TRAVEL = 'Your first time going to Diamond City'
 TALKED_TO_NICK = 'Nick has explained much about the CommonWealth'
 TALKED_TO_MERCHANT = 'Unique dialouge with merchant was read'
+ENCOUNTERED_MAFIA = 'You uninvoluntarily got involved with a mafia'
+BOUNTY_QUEST = 'You accepted the Feral Ghoul bounty'
+PURSUE_KELLOG = 'You pursued and fought Kellog the Courser'
 
 
 
@@ -129,7 +135,7 @@ FIRST_AID1 = 'First Aid Kit' # this variable goes in both the character_inventor
 FIRST_AID2 = 'First Aid Kit' # this variable goes in both the character_inventory3
                              # list and the prevent_exploit2 list
 
-FIRST_AID3 = 'First Aid Kit' # this variable goes in both the character_inventory3
+FIRST_AID3 = 'First Aid Kit' # this variable goes in both the character_inventory4
                              # list and the prevent_exploit3 list 
 
 
@@ -162,7 +168,11 @@ RING1_VALUE = 1250
 
 RING2_VALUE = 1250
 
-DEATH_CLAW_MEAT_VALUE = 500 
+DEATH_CLAW_MEAT_VALUE = 500
+
+MAFIA_MONEY_VALUE = 6000
+
+BOUNTY_POSTER_VALUE = 2000
 
 
 
@@ -240,6 +250,8 @@ def main():
     global FUSION_CORE2 # this variable goes in this list but also
                         # goes into the prevent_exploit2 list
 
+    global TELEPORT_REMOTE
+
 
 
         
@@ -256,6 +268,9 @@ def main():
     global DIAMOND_CITY_TRAVEL
     global TALKED_TO_NICK
     global TALKED_TO_MERCHANT
+    global ENCOUNTERED_MAFIA
+    global BOUNTY_QUEST
+    global PURSUE_KELLOG
 
 
     
@@ -312,7 +327,10 @@ def main():
     global RING2_VALUE
 
     global DEATH_CLAW_MEAT_VALUE
-                    
+
+    global MAFIA_MONEY_VALUE
+
+    global BOUNTY_POSTER_VALUE
 
     
     
@@ -325,7 +343,7 @@ def main():
     global FIRST_AID2 # this variable goes in both the character_inventory3
                       # list and the prevent_exploit2 list
 
-    global FIRST_AID3 #this variable goes in both the character_inventory3
+    global FIRST_AID3 #this variable goes in both the character_inventory4
                       # list and the prevent_exploit3 list
 
                       
@@ -333,7 +351,7 @@ def main():
     # character_inventory is a list that stores the players collected items
     # It is an object imported from the characterinvenory file
     #--------------------------------------------------------------------------------------
-    character_inventory = [BOTTLED_WATER, WEAPON1, AMMO1, RING1, RING2]
+    character_inventory = []
     inventory = characterinventory.CharacterInventory(character_inventory)
 
     
@@ -341,7 +359,7 @@ def main():
     # character_inventory2 is a second list that stores the players collected items
     # It is an object imported from the characterinventory2 file
     #------------------------------------------------------------------------------
-    character_inventory2 = [FOOD1, WEAPON2]
+    character_inventory2 = []
     inventory2 = characterinventory2.CharacterInventory2(character_inventory2)
 
     
@@ -349,7 +367,7 @@ def main():
     # character_inventory3 is a third list that stores the players collected items
     # It is an object imported from the characterinventory3 file
     #-----------------------------------------------------------------------------
-    character_inventory3 = [ARMOR2, AMMO2 ]
+    character_inventory3 = []
     inventory3 = characterinventory3.CharacterInventory3(character_inventory3)
 
 
@@ -366,7 +384,7 @@ def main():
     # quest_inventory is a list that prevents the same messages for various quest
     # from being displayed more than once in certain areas of the program
     #----------------------------------------------------------------------------
-    quest_inventory = [TALKED_TO_NICK]
+    quest_inventory = []
 
     
 
@@ -433,6 +451,12 @@ def main():
                                         quest_inventory, think_inventory,
                                         prevent_exploit, prevent_exploit2,
                                         prevent_exploit3)
+        elif choice == FORT_HAGEN:
+            Fort_Hagen = fort_hagen(character_inventory3, character_inventory4,
+                                    quest_inventory)
+
+        elif choice == INSTITUTE:
+            Institute = institute(character_inventory4)
             
 def get_menu_choice():
     print()
@@ -2077,7 +2101,9 @@ def diamond_city(character_inventory, character_inventory2,
     global RING2_VALUE
     global DEATH_CLAW_MEAT
     global DEATHCLAW_MEAT
-    if ARMOR2 in character_inventory3:
+    global MAFIA_MONEY_VALUE
+    global BOUNTY_POSTER_VALUE
+    if ARMOR2 or ARMOR3 in character_inventory3:
         if WEAPON2 in character_inventory2:
             if AMMO2 in character_inventory3:
                 if BOTTLED_WATER in character_inventory:
@@ -2094,7 +2120,7 @@ def diamond_city(character_inventory, character_inventory2,
                                   '\n\nDhere is so much sufferin\' and wrong-doin\' in dis here-uh'+
                                   '\n\npost-apocalyptic world. But Imma sure you-uh gon\' be ok'+
                                   '\n\nwearin\' dat suit dhere made of steel and toting dat dhere'+
-                                  '\n\n\'ssualt rifle. HAHAHA!! Anywayuh,I gotta get back to'+
+                                  '\n\n\'ssualt rifle. HAHAHA!! Anyway-uh, I gotta get back to'+
                                   '\n\nfarmin\' my fall veggies. Again, you-uh be safe!" You made'+
                                   '\n\nit to Diamond City in the later part of the morning on the'+
                                   '\n\nfourth day.'+
@@ -2201,7 +2227,7 @@ def diamond_city(character_inventory, character_inventory2,
                             print()
                             print('1. Nick Valentine\'s Detective Agency'+
                                   '\n2. Diamond City Merchant'+
-                                  '\n3. Shady man in three piece suit and trilby hat'+
+                                  '\n3. ?'+
                                   '\n4. Bounty poster'+
                                   '\n5. Go back to map (The CommonWealth)')
                             print()
@@ -3642,8 +3668,8 @@ def diamond_city(character_inventory, character_inventory2,
                                             print('Diamond City Merchant (buying)')
                                             print('----------------------')
                                             print()
-                                            print('1. Scoped .50 Cal Sniper ($1500)'+
-                                                  '\n2. MiniGun ($1500)'+
+                                            print('1. Scoped .50 Cal Sniper ($1500) (comes with ammo)'+
+                                                  '\n2. MiniGun ($1500) (comes with ammo)'+
                                                   '\n3. First Aid Kit ($100)'+
                                                   '\n4. T-60 Power Armor (?)'+
                                                   '\n5. Fusion Core ($1100)'+
@@ -3836,17 +3862,20 @@ def diamond_city(character_inventory, character_inventory2,
                                                                       '\ndeal with ya only if ya give me that T-45 Power armor'+
                                                                       '\nand the fusion core that\'s in the back of it. I know'+
                                                                       '\nit\'s damaged and the fusion core\'s energy is probably'+
-                                                                      '\nlow, but yer walking inna relic son. A relic I\'d like-ta'+
+                                                                      '\nlow, but yer walking inna relic son. A relic I\'d like-da'+
                                                                       '\nhave, but I won\'t steal your story and glorify myself.'+
                                                                       '\nHAHAHA! Whenever someone ask me about the marks on the armor,'+
                                                                       '\nI\'ll tell em about the man who stands before me.'+
                                                                       '\n(SYSTEM: Press enter to continue.) ')
+                                                                print()
+                                                                print()
                                               
                                                                 #are_you_sure4 confirms the player's purchase
                                                                 are_you_sure4 = str(input('Diamond City Merchant: What\'d ya say son, willing'+
                                                                                           '\nto make this deal?'+
                                                                                           '\nSYSTEM: Enter yes to buy or enter no to quit (use'+
                                                                                           '\nlowercase): '))
+                                                                print()
                                                                 print()
                                                                 if are_you_sure4 == str('yes'):
                                                                     if MONEY < ARMOR3_VALUE:
@@ -3933,6 +3962,7 @@ def diamond_city(character_inventory, character_inventory2,
                                                                                   '\nfor ya T-45 Power Armor I\'ll cut the price in half.'+
                                                                                   '\nWhat\'d ya say?'+
                                                                                   '\nSYSTEM: Enter yes to buy or enter no to quit (use lowercase): '))
+                                                        print()
                                                         print()
                                                         if are_you_sure6 == str('yes'):
                                                             if MONEY < ARMOR3_VALUE:
@@ -4100,6 +4130,344 @@ def diamond_city(character_inventory, character_inventory2,
                                                     choice5 = int(input('You must enter 4 to exit: '))
                                                     print()
 
+                            elif choice2 == MAFIA_BOSS:
+                                if ENCOUNTERED_MAFIA not in quest_inventory:
+                                    quest_inventory.append(ENCOUNTERED_MAFIA)
+                                    input('SYSTEM: As you walk through Diamond City, you notice that there'+
+                                          '\n\nhave been men in black three piece suits and trilby hats'+
+                                          '\n\nglancing and even staring at you from a distance. Though you'+
+                                          '\n\ncan\'t really see their faces, as they hide their faces under'+
+                                          '\n\nthe brims of their trilby hats. As you continue walking, three'+
+                                          '\n\nmen pull you to the side in an alley. It took three of them'+
+                                          '\n\nbecause you are wearing Power Armor: a steel suit.'+
+                                          '\n\n(Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Man in red pinstripe suit and red trilby hat: Nice of you\'s to join the'+
+                                          '\n\nfour of us amico. Me and my three sons here have taken an interest'+
+                                          '\n\nin you\'s since you\'s came into this city. Now,--'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('You: I don\'t care who you losers are; I have things to tend to, so'+
+                                          '\n\ntry and intimidate someone else. I\'m assuming you\'re the boss'+
+                                          '\n\nman wearing that red pinstripe suit: all of your goonies wear'+
+                                          '\n\nblack suits. What do you guys want?'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Man #1 in black suit and trilby hat: Ya watch how ya talk to the'+
+                                          '\n\nFather, ya punk. He\'s here the most respectable man in all-uh'+
+                                          '\n\nDiamen\' City.'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Man #2 in black suit and trilby hat: Betta yet, keep ya tramp shut when'+
+                                          '\n\nthe big man is talkin\', ya heard? Less you\'s want trouble.'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Man #3 in black suit and trilby hat: *blows cigar smoke on the helmet'+
+                                          '\n\nof your armor* You\'s in cahoots with us now kid: there ain\'t no going'+
+                                          '\n\nback. You\'s was on the nose when ya said, "I have things to tend to".'+
+                                          '\n\nStick around and you\'s gonna find out real quick ya got things to tend to.'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Man in red pinstriped suit and red tribly hat: Enough children! Don\'t make'+
+                                          '\n\nthe Father flip his wig! Look kid, the name\'s Smitty. That\'s-uh Father'+
+                                          '\n\nSmitty to you. Don\'t be crusin\' for a brusin\' wit us now. I\'ll have you\'s'+
+                                          '\n\nknow that there\'s-uh high powered sniper aiming his barrel at you right now.'+
+                                          '\n\nBut it\'s no ordinary sniper. We managed to make a deal of sorts with the'+
+                                          '\n\nInstitute to get this sniper. It shoots lasers and it\'s-uh, "highly concentrated'+
+                                          '\n\nshot" as they told us. Even though you\'s a big metal man, that shot will go right'+
+                                          '\n\nthorugh you\'s metal dome and put you\'s to sleep. So I suggest you\'s to listen up.'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('SYSTEM: You realize there is a red laser pointer on the side of your armor\'s helmet.'+
+                                          '\n\nYou decide to listen to the men before you. If what he said about this sniper is true,'+
+                                          '\n\nthen you\'ve decided it\'s better to play this safe than sorry.'+
+                                          '\n\n(Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Father Smitty: If you\'s haven\'t figured by now: We\'re the Diamond City Mafia. The biggest'+
+                                          '\n\nMafia in the CommonWealth. I don\'t care what you have to tend to son, all that-a stuff'+
+                                          '\n\nyou was talkin\' earlier was gobbledygook. Cause you\'s workin\' for me now. There\'s a small'+
+                                          '\n\ntime mafia in a nearby town called Goodneighbor. They call themselves the Goodneighbor Mafia.'+
+                                          '\n\nWe\'s making a deal of sorts. Ya know: a "drink deal". Drinks aren\'t illegal around these'+
+                                          '\n\nparts, but in these cities you\'s need an official license to sell it. But we don\'t play'+
+                                          '\n\nby a rich politician\'s rules. Nor are we making this a clean deal with the Goodneighbor'+
+                                          '\n\nMafia. We\'re wiping them\'s off\'s the maps if you speak my language. You\'s gonna be the'+
+                                          '\n\none to do it. Should you\'s refuse: you\'s will die by me. You\'s might not right away. But'+
+                                          '\n\nI will find you\'s. And that, "high concentrated" laser sniper that\'s aiming at you\'s now: will'+
+                                          '\n\nbe the cause of your death. Nobody can hide from the Diamond City Mafia.'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('You: Why do I have to be the one to rip off a "drink deal" you set up?'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Father Smitty: Have you\'s seen yourself in the mirror son? You\'s wearing military-grade steel armor:'+
+                                          '\n\nPower Armor. Not many lads can work those these days. So, I am glad you\'s came to this city to'+
+                                          '\n\nvolunteer you\'s services to the Father. The deal happens at midnight tonight. You\'s gonna go'+
+                                          '\n\nthere with one of my sons here and about 82 more of my sons: we have a lotta drinks to "sell".'+
+                                          '\n\nYou\'s all gonna show the Goodneighbor Mafia that the stuff is legit. Then blast em\' all and'+
+                                          '\n\ntake their lettuce. It shoudln\'t be a problem with you\'s wearing that armor. It\'s a win-win for'+
+                                          '\n\nme because they are offering 50,000 in lettuce. AND I get to keep my drinks and sell them some'+
+                                          '\n\nother time. So, I\'m making about 100,000 in lettuce in the long term. So, this deal can\'t go'+
+                                          '\n\nbelly up kid. Make the Father proud. But worry not. I\'m not making you\'s my son. You\'s just a'+
+                                          '\n\n"temporary son". But the oath must still happen.'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('You: Look I really don\'t--'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Father Smitty: --Wanna die? You\'s really don\'t wanna die? That\'s good to know. Then you\'s'+
+                                          '\n\nWILL make this happen for the Father. You\'s do this for me and my 517 sons, and we\'ll'+
+                                          '\n\nbe cooking gas in this Mafia business. You\'s do this one time thing for the Father and'+
+                                          '\n\nyou\'s gonna be off the hook. We\'re a mafia....sure. But we don\'t joke about being men'+
+                                          '\n\nof our word, being loyal, being respectable. I\'m not yanking ya leg son. In fact, I got\'s'+
+                                          '\n\n6000 in lettuce for you\'s on the table WHEN you\'s do this, because there is no IF. You\'s'+
+                                          '\n\nwill do this. So what will it be son? Life or Death?'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('SYSTEM: You still notice one of Father Smitty\'s sons aiming a Institute laser sniper at you.'+
+                                          '\n\nThat Institute laser sniper is so strong that is can burst through your power armor in one'+
+                                          '\n\nshot. They are ready to end you in the blink of an eye should you refuse them. Even if you'+
+                                          '\n\nsomehow got away you know that Father Smitty has 517 "sons" in total: a small army. You give'+
+                                          '\n\nin knowing that nothing good is coming from refusing them.'+
+                                          '\n\n(Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('You: *siggggghhhhs* Ok. I accept. You better at least give me that "6000 lettuce". I\'m'+
+                                          '\n\nassuming your talking about money. Pay it up when I finish this. I\'m not excited over'+
+                                          '\n\nhaving to kill others: in fact I have PTSD from my war days. But I guess it\'s kill or'+
+                                          '\n\nbe killed for me right now.'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Father Smitty: Now ya got\'s you\'s head screwed on right! That\'s what the Father likes to hear!'+
+                                          '\n\nBut you\'s must pledge your temporary loyalty to the Father. An initiation of sorts. Come to our'+
+                                          '\n\nhideout in one hour: it\'s on 147 Jewel street. The password to get in is: SwordFish. Remember'+
+                                          '\n\nit kid: for your sake. You\'s can\'t get it wrong and live another 24 hours after that. No matter'+
+                                          '\n\nwho you\'s are or what promises we\'ve made to one another. I\'ll see you soon: leaving my hideout'+
+                                          '\n\nmaking me richer than I already am, or dead at my feet for not showing up and showing out.'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('SYSTEM: You all part your separate ways after you "volunteered" your services. You then go to the'+
+                                          '\n\nlocation given to you just an hour earlier. You knock on the door.'+
+                                          '\n\n(Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Man in three piece suit and trilby hat at door: What\'s the password?'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('You: SwordFish.'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('SYSTEM: You are allowed into the hideout: being escorted of course. You notice men in black three piece'+
+                                          '\n\nsuits and trilby hats and women everywhere. There is lots of smoking, drinking, card playing, pool'+
+                                          '\n\nplaying, arm wrestling, instrument playing : especially the sax, and dancing going on. It\'s very'+
+                                          '\n\nloud on the inside, but surprisingly you wouldn\'t be able to tell from the outside. You\'d think'+
+                                          '\n\nit was more of some sort of casino than a Mafia hideout. Minus all the armed men glancing at you'+
+                                          '\n\nfrom under the brim\'s of their hats and nodding at you. You finally meet the Father in the back.'+
+                                          '\n\nHe is accompanied by 25+ plus men in one room. They are all armed. You can\'t see their faces because'+
+                                          '\n\nthey all are using the brims of thier hats to hide their faces.'+
+                                          '\n\n(Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Man # 3 in trilby hat: You\'s again? *blows cigar smoke in air* I was hoping you\'s wouldn\'t come'+
+                                          '\n\nso we could do you in. You had some nerve earlier talking to the Father like that.'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('SYSTEM: You notice Father Smitty sitting at the his "boss desk". It is very lavish.'+
+                                          '\n\n(Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Father Smitty: *slams hand on desk* THAT\'S ENOUGH KENNETH! *speaks fast* I\'ve had enough'+
+                                          '\n\nof you and that motor mouth an hour earlier when we met our amico here! You\'s keep'+
+                                          '\n\ntalkin\' bout the man that\'s making us big lettuce and somebody\'s gonna get did in'+
+                                          '\n\nfor sure: *points at Kenneth* YOU!.'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Man # 3 in trilby hat (Kenneth): *bows down on one knee and has a lowered head*'+
+                                          '\n\nPlease forgive me for my insubordination Father. You\'s right, I need to stop'+
+                                          '\n\nrunnin\' my motor mouth. Thank you\'s for putting me in check. I wouldn\'t wanna'+
+                                          '\n\ndisappoint the man that gave me a chance coming from a troubled life....'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Father Smitty: Chiaccerione. Chiudere il becco. Don\'t get all touchy in a'+
+                                          '\n\nroom full of men. I\'ll forgive you\'s sin son. But remain in that bowed'+
+                                          '\n\nposition and kiss your Father\'s ring on his right hand for forgiveness.'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('SYSTEM: Kenneth remains on one knee and kisses Father Smitty\'s ring'+
+                                          '\n\non his right hand for forgiveness.'+
+                                          '\n\n(Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Father Smitty: Someone give me a cigar. *One of his "sons" gives him a cigar*.'+
+                                          '\n\nNow light it up for me my son. *His "son" lights up his cigar for him*.'+
+                                          '\n\nOk amico. Friend. *blows smoke in air*. I\'m sending you\'s with 82 of my'+
+                                          '\n\nsons. Kenneth here included. Kenneth is the lead man. Now. So Diamond'+
+                                          '\n\nCity security don\'t get suspicious of us, I\'ve already sent 82 of my'+
+                                          '\n\nsons out of the city. Don\'t ask how. It\'s simple actually. This deal'+
+                                          '\n\nhas been planned for weeks. I\'ve been sending my men out one at a time.'+
+                                          '\n\nAnd you amico, came to this city at the last minute volunteering your'+
+                                          '\n\nservices. Sealing the deal. Guaranteeing us success in that power armor'+
+                                          '\n\nyou\'s wearing. Now you\'s and Kenneth go to the deal spot and my other 82'+
+                                          '\n\nmen will be there already with the goods. Come back successful amico.'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Kenneth: Magari, Father. Let\'s hope he is successful: for his sake. Amico come'+
+                                          '\n\nwith me. Failing is not an option. It is pazzo to even consider: for me anyway.'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Father Smitty: Aspettare, Kenneth. Our amico must become a temporary son first.'+
+                                          '\n\nCome and bow down to me on one knee and kiss your Father\'s ring my soon'+
+                                          '\n\nto be temporary child. Deny me....and you deny your very life....'+
+                                          '\n\n(SYSTEM: Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('SYSTEM: The room grows silent, and the men in the room glare at you from under'+
+                                          '\n\nthe brims of their trilby hats. They tense up like they are ready to shoot'+
+                                          '\n\nat you if you refuse the Father. Their ordinary automatic tommy guns wouldn\'t'+
+                                          '\n\nbe able to penetrate your power armor. But what you fear is the man who isn\'t'+
+                                          '\n\ntensed up. He is on the other side of the room pointing that Instiute laser'+
+                                          '\n\nsniper at you: the one with a "concentrated shot" that can pierce through power'+
+                                          '\n\narmor in one hit. You have no choice. You take off your power armor helmet, bend'+
+                                          '\n\non one knee, and kiss the Father\'s ring on his right hand. You\'ll do anything'+
+                                          '\n\nto find your son: something you can\'t do if you die in this room because you'+
+                                          '\n\nchose to be stubborn. The room burst in everyone applauding after you become a'+
+                                          '\n\n"temporary son". You put your power armor helmet back on.'+
+                                          '\n\n(Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('Father Smitty: Bene. You are now my temporary son. After you complete your mission,'+
+                                          '\n\nreport to me and I will pay you your 6000 lettuce cuts. Then you will no longer'+
+                                          '\n\nbe my son. Go on. You and Kenneth.'+
+                                          '\n\n(Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('SYSTEM: You and Kenneth arrive at the "drink deal". There you find 82 of Father Smitty\'s'+
+                                          '\n\n"sons" awaiting your arrival. They have the "drinks" that you are going to "sell".'+
+                                          '\n\nIt has just struck midnight. It is raining and thundering very hard. The ground has'+
+                                          '\n\nbecome muddy. The Goodneighbor mafia arrives. You show them the drinks.'+
+                                          '\n\nThey believe it to be legit so they hand over the $50,000. But you look back at Kenneth'+
+                                          '\n\nand the others and yell what Kenneth told you to yell as a signal, "BENE!". A mini war'+
+                                          '\n\nbreaks out. Guns are blazing left and right. You took the Goodneighbor Mafia\'s money'+
+                                          '\n\nwithout giving them their "drinks". You are not affected by the bullets they shoot at you'+
+                                          '\n\nbecause you are wearing power armor. You finish off most of them while the 83 of the Diamond'+
+                                          '\n\nCity Mafia: including Kenneth, support you from a good distance behind you.'+
+                                          '\n\n(Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('SYSTEM: You and everyone else go back to Father Smitty\'s hideout with the $50,000'+
+                                          '\n\nyou stole and the drinks that are worth $50,000 that you did not sell. Father'+
+                                          '\n\nSmitty yells, "BENE!, BENE!, BENE!. He gives you the $6000 that he promised and'+
+                                          '\n\ninsist that you have a celebration with the mafia in their hideout. You refused,'+
+                                          '\n\nbut of course after being threatend: found yourself celebrating. Father Smitty'+
+                                          '\n\ninsisted you, "let loose". You thought you could just sit around until it was'+
+                                          '\n\nover. But Father Smitty threatend you again. You get out of your power armor and'+
+                                          '\n\nhit the dance floor like your life depends on it: because it does. You even have'+
+                                          '\n\nto drink heavy, gamble (you lost some money but got back what you lost), and play'+
+                                          '\n\npool. You eventually pass out and find yourself awoke on the other side of Diamond'+
+                                          '\n\nCity late in the morning: late in the morning because you were partying in the early'+
+                                          '\n\npart of the morning after the "drink deal". You are in some small alley. They put'+
+                                          '\n\nyou out and somehow carried your power armor suit to the other side of the city:'+
+                                          '\n\nbecause it is right beside you. All of your other belongings are with you as well.'+
+                                          '\n\nYou find a note in your pocket that says: "You\'s are no longer my son. Don\'t come'+
+                                          '\n\nback to the hideout. The password is not SwordFish anymore for security reasons.'+
+                                          '\n\nYou\'s understand how it is. You\'s did bene amico! I am a respectable man and keep my'+
+                                          '\n\nword. I could have taken the money from you\'s, but I let you\'s have the 6000 lettuce.'+
+                                          '\n\nIt\'s in you\'s right pocket. Keep you\'s lips zipped or you\'s gonna disappear amico.'+
+                                          '\n\nArrivederci!- Father Smitty.'+
+                                          '\n\n(Press enter to continue.)')
+                                    MONEY += MAFIA_MONEY_VALUE
+                                    print()
+                                    print()
+                                    input('SYSTEM: You get back in your power armor and continue on as if nothing ever happened.'+
+                                          '\n\n$6000 has been added to your inventory.'+
+                                          '\n\n(Press enter to continue.)')
+
+                                else:
+                                    input('SYSTEM: You have already encountered the Diamond City Mafia.'+
+                                          '\n\n(Press enter to continue.)')
+
+                            elif choice2 == BOUNTY_POSTER:
+                                if BOUNTY_QUEST not in quest_inventory:
+                                    quest_inventory.append(BOUNTY_QUEST)
+                                    input('SYSTEM: As you walk through Diamond City, you notice a bounty poster.'+
+                                          '\n\nBut it is not a poster for an individual: it is for Feral Ghouls.'+
+                                          '\n\nIt says at the bottom of the poster that Feral Ghouls were once'+
+                                          '\n\nnormal everyday persons. However, due to too much radiation exposure:'+
+                                          '\n\ntheir flesh starts to rot and they lose their minds: attacking anyone'+
+                                          '\n\nin sight. The poster also explains that Feral Ghoul\'s physical combat'+
+                                          '\n\nabilities are beyond a normal humans: the poster warns that you should'+
+                                          '\n\nbe a capable individual to accept this bounty hunt. It also explains that'+
+                                          '\n\nthe reason for getting rid of these Feral Ghouls is so that the roads of'+
+                                          '\n\nthe CommonWealth will be safer: "this is for the safety of all those'+
+                                          '\n\ntravelling the CommonWealth"--it explains.'+
+                                          '\n\n(Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('SYSTEM: The poster gives the location of these ghouls: the Internal Revenue Service building'+
+                                          '\n\n(IRS). Apparently there are about 23 ghouls there. The reward for accepting this bounty'+
+                                          '\n\nis $2000. The poster says that to claim the reward you have to wait on a Diamond City'+
+                                          '\n\nofficial to go and check to be sure that the Feral Ghouls are dead to receive your pay.'+
+                                          '\n\nYou decide you will accept this bounty.'+
+                                          '\n\n(Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('SYSTEM: After leaving Diamond City hours ago: you finally arrive at the Internal Revenue'+
+                                          '\n\nService building (IRS). The ghouls are laying on the ground as if they are dead persons.'+
+                                          '\n\nBut as you curiously approach them: they pop up off of the ground and start charging at'+
+                                          '\n\nyou. All 23 of them. You note that they are very physically strong, but they can do nothing'+
+                                          '\n\nto you inside of your power armor. You finish all 23 of them off feeling sad at heart: knowing'+
+                                          '\n\nthey were once human, knowing that it is the fault of people from your time period that the'+
+                                          '\n\nworld has come to what it currently is. These 23 Feral Ghoul\'s didn\'t want to become like this.'+
+                                          '\n\nBut they were simply exposed to too much radiation that foolish people from your generation'+
+                                          '\n\ncaused to happen by dropping and shooting nuclear weapons on and at one another. But you know'+
+                                          '\n\nthat finishing these feral ghouls off will only make travelling the CommonWealth safer for others.'+
+                                          '\n\n(Press enter to continue.)')
+                                    print()
+                                    print()
+                                    input('SYSTEM: You travel and take the elevator to the staff room of the baseball'+
+                                          '\n\nstadium, or, "Diamond City" as it is called. There you speak to Diamond'+
+                                          '\n\nCity officials about you completing the bounty hunt. The officials decided'+
+                                          '\n\nthey would go check to see if you really did it and will give you the money'+
+                                          '\n\nthe next day. However they can tell by the blood on your armor that you'+
+                                          '\n\nfought the Feral Ghouls and they take your word. You clean your power armor'
+                                          '\n\nwith some cleaning supplies for steel that the city officials offered you.'+
+                                          '\n\nThey then give you the $2000 dollars and you go about your way. But they did'+
+                                          '\n\nask you to please take down the poster in Diamond City so others could know'+
+                                          '\n\nthis job is already completed. You do it and go about your way.'+
+                                          '\n\n(Press enter to continue.)')
+                                    print()
+                                    print()
+                                    MONEY += BOUNTY_POSTER_VALUE
+                                    input('SYSTEM: $2000 has been added to your inventory'+
+                                          '\n\n(Press enter to continue.)')
+
+                                else:
+                                    input('SYSTEM: You have already collected the bounty for the Feral Ghouls.'+
+                                          '\n\n(Press enter to continue.)')
+                                    
+
                                                     
                     else:
                         input('SYSTEM: You figure that you\'ll need some edible food'
@@ -4142,5 +4510,1125 @@ def diamond_city(character_inventory, character_inventory2,
               '\n\nYou\'re not sure if you could make it any further'+
               '\n\nwith the things that you currently have.'+
               '\n\nPress enter to continue. ')
-                               
+
+
+def fort_hagen(character_inventory3, character_inventory4,
+               quest_inventory):
+    if TALKED_TO_NICK in quest_inventory:
+        if WEAPON3 and WEAPON4 in character_inventory3:
+            if ARMOR3 in character_inventory3:
+                if FIRST_AID3 in character_inventory4:
+                    if PURSUE_KELLOG not in quest_inventory:
+                        quest_inventory.append(PURSUE_KELLOG)
+                        input('SYSTEM: You travel to Fort Hagen in Pursuit of Kellog the synth Institute Courser.'+
+                              '\n\nYou are after him because he can lead you to your kidnapped son, Shaun:'+
+                              '\n\nwillingly or not. According to Nick Valentine the detective: Kellog is FAR'+
+                              '\n\nstronger than all other synth Institute Coursers, all other synth Institute '+
+                              '\n\n coursers are FAR stronger than regular synths like Nick Valentine, and'+
+                              '\n\nregular synths like Nick Valentine are FAR stronger than a human such as'+
+                              '\n\nyourself. Kellog is at the top of the food chain and you are at the bottom.'+
+                              '\n\nYour T-60 power armor should give you an edge, but you know nothing is for'+
+                              '\n\ncertain.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: You arrive at Fort Hagen and notice automated machinegun turrets outside'+
+                              '\n\nof the fort: just as Nick Valentine mentioned. You use your scoped .50 cal'+
+                              '\n\nsniper to destroy all of them from a great distance. You then go to the fort'+
+                              '\n\nbut are blocked entry because of barricaded doors. You bust the doors down by'+
+                              '\n\nfirst walking 50 yards backwards, then you charge the doors in your T-60 power'+
+                              '\n\narmor to bust them down and make entry. You hear an intercom come on that can'+
+                              '\n\nbe heard throughout the entire Fort Hagen building. The speaker is Kellog the'+
+                              '\n\nsynth Institute Courser...'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog on Fort Hagen intercom: *feedback noise* You who are trespassing. You'+
+                              '\n\nare interfering with Institute operations. You have no clearance to enter'+
+                              '\n\nthis place.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: You remember being at Fort Hagen 210+ years ago when you were signing up'+
+                              '\n\nfor the military: just as you told Nick Valentine. You remember that this'+
+                              '\n\nplace does not go upstairs, but goes downstairs. It goes deep into the ground'
+                              '\n\nrather than reaching higher into the air. You recall that there was a bunker'+
+                              '\n\nunderdround where lots of different types of ammunitions were stored. You figure'+
+                              '\n\nKellog has stationed himself there and you head to the elevators.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: You try to use the elevators to go to the bottom floor: the ammunitions bunker,'+
+                              '\n\nbut it seems Kellog has shut off all the power to the elevators to prevent you from'+
+                              '\n\nreaching him.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog on Fort Hagen intercom: *feedback noise* Stranger. I am doing this for your'+
+                              '\n\nbenefit. Leave this place: it is in your best interest.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: You wonder how Kellog knows where you are and that you are here. You take a'+
+                              'look around and see no cameras. But they have to be here, so there must be hidden'+
+                              '\n\ncameras all over the fort. You decide to take the stairs. It shouldn\'t take'+
+                              '\n\nlong, but you do encounter automated machine gun turrets that attack you as you'+
+                              '\n\ngo down the many flights of stairs. Though they do nothing to you while wearing'+
+                              '\n\nT-60 power armor.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog on Fort Hagen intercom: *feedback noise* I will admit: I do remember you.'+
+                              '\n\nI am the one who killed your wife and kidnapped your son. I get it human. You'+
+                              '\n\nare out seeking revenge..........No.....not only revenge. You must also be'+
+                              '\n\nseeking a way to get your son back. You are seeking the Institute itself.'+
+                              '\n\n.........I guess you see me as the bridge to get to your destination.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: You continue to ignore Kellog. You came here for the sake of your family.'+
+                              '\n\nYour family that was destroyed by a cold-hearted machine: someone who disguises'+
+                              '\n\nthemselves as human. Someone who\'s very soul was manufactured in the confines'+
+                              '\n\nof a laboratory. You having nothing against synths: you like Nick Valentine after'+
+                              '\n\nall. But this synth. Kellog the synth Courser: you feel the hate in your heart'+
+                              '\n\ngrowing for him by the milli-second.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog on Fort Hagen intercom: *feedback noise* Your death is certain should you choose'+
+                              '\n\nto remain insubordinate. I truly am trying to lead you away from me for your own'+
+                              '\n\nbenefit. Fighting me is no option. Only death by me is certain should you continue'+
+                              '\n\napproaching me with a fight in mind. I was created by the Institute: a synth. Far'+
+                              '\n\nsuperior than any human in mind and body. Then I became an Institute courser: I'+
+                              '\n\nendured rigorous training, killing my own synth brethern in the process. At that point'+
+                              '\n\nI was stronger than not only humans, but also regular synths: who are FAR stronger'+
+                              '\n\nthan humans to begin with. Recently I have become the strongest Institute courser'+
+                              '\n\nthe Insitute has. You do the math. In terms of strength: there is me, then other'+
+                              '\n\nInstitute coursers, then regular synths, and then there is you, a weak human. Turn'+
+                              '\n\naround or die you fool.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: After going down even more flights of stairs and destroying more automated'+
+                              '\n\nmachine gun turrets: you finally arrive at the steel door Kellog is behind.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('You (speaking to T-60 Power Armor Computer: Power armor computer. Report.'+
+                              '\n\n(SYSTEM: Press enter to continue.')
+                        print()
+                        print()
+                        input('T-60 Power Armor Computer speaking (robotically):'+
+                              '\n\nThe T-45 power armor can endure multiple tank shells with mild damage. This'+
+                              '\n\nT-60 Power Armor suit can take on many explosives and/or bullets from a'+
+                              '\n\nfighter jet with mild damage. It is much more endurable. Summary of suit:'+
+                              '\n\ngiven. Systems: already initialized. Power Armor Combat readiness grade: A+.'+
+                              '\n\nPower Armor hull integrity: 100%. Emergency Attack Mode: Available. Emergency'+
+                              '\n\nAttack Mode Overdrive: Available, but warning! This is very dangerous to'+
+                              '\n\nuse. Emergency Attack Mode Overdrive has a 100% chance of the suit\'s fusion'+
+                              '\n\ncore exploding due to the power strain. This will result in the entire suit'+
+                              '\n\nbursting out in explosive flames from the inside out: with you the user inside'+
+                              '\n\nof it. Emergency Attack Mode Overdrive stresses the fusion core 3 times more'+
+                              '\n\nthan Emergency Attack Mode: this is why this happens.'+
+                              '\n\n(SYSTEM: Press enter to continue.')
+                        print()
+                        print()
+                        input('You: Ok good to know. But computer....I need you to have Emergency Attack Mode'+
+                              '\n\nand Emergency Attack Mode Overdrive on standby.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('T-60 Power Armor Computer speaking (robotically): Negative. No enemies'+
+                              '\n\ndetected in the area. This will not be necessary as these modes only'+
+                              '\n\nstrain the--'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: COMPUTER! Shut up and listen to me! There is a "man" behind this door'+
+                              '\n\nwith unbelieveable combat capabilities. The protection of my life is'+
+                              '\n\nyour number one task is it not? Then listen to me the user and put these'+
+                              '\n\nmodes on standby right now, so that they will activate faster when I need'+
+                              '\n\nthem!'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('T-60 Power Armor Computer speaking (robotically): Argument Valid. Request'+
+                              '\n\naccepted. Emergency Attack Mode:...................on standby.'+
+                              '\n\nEmergency Attack Mode Overdrive:....................on standby.'+
+                              '\n\nEmergency Attack Mode drains the power source of the power armor (fusion'+
+                              '\n\ncore) to increase your physical attack energy output by 3,257% and your'+
+                              'n\nattack speed by 250% for 5 seconds. Emergency Attack Mode Overdrive WILL'+
+                              '\n\ndestroy the fusion core by exploding it and the suit will explode in flames'+
+                              '\n\nfrom the inside out with the user inside of it: unless they bail in time.'+
+                              '\n\nEmergency Attack Mode Overdrive increase your physical attack energy output'+
+                              '\n\nby 9,771% and your attack speed by 750% for 15 seconds.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog on Fort Hagen intercom: *feedback noise* Are you done with your futile'+
+                              '\n\nplanning? I will let you in. I will tear you limb from limb. You have been'+
+                              '\n\nwarned many times and have pursued me like a fool. Your life is mine: I was'+
+                              '\n\nmade for this, but you were born with mere flesh and bone. This is why you'+
+                              '\n\nhide behind that T-60 Power Armor: fully encompassing your body in the'+
+                              '\n\nstrongest steel armor you humans could create before that nuclear war 210+'+
+                              '\n\nyears ago. Watch me rip it and you apart. There is no stopping me now.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: Computer. Going forward I will need you much. Do not let me down. Please.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('T-60 Power Armor Computer speaking (robotically): Fear detected. Affirmative:'+
+                              '\n\nI will not let you down. Nor should you fear. Half the battle is already'+
+                              '\n\nlost with the fear I detect within you as I scan your body. But whatever'+
+                              '\n\nyou lack I am programmed to supply. Proceed with confidence.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: Kellog remotely opens the steel door and you enter the underground ammunitions'+
+                              '\n\nbunker he was in this entire time. You slowly walk forward with your minigun.'+
+                              '\n\nThere is an eerie silence as you see him across the other side of the room.'+
+                              '\n\nThe two of you stare each other down. You are about 25 yards apart from each'+
+                              '\n\nother. Kellog breaks the silence....'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: And here you are. The most persistent human I have ever seen.....and the'+
+                              '\n\nmost foolish. You dare defy me? My sensors indicate your nerves are on the edge.'+
+                              '\n\nA war veteran like you shaking in your boots? You have yet to see me fight, yet,'+
+                              '\n\nmere stories you have heard of me are enough to have you on the verge of a'+
+                              '\n\nnervous breakdown. But on the same token I admire your bravery. You are'+
+                              '\n\nlooking at death itself in the face and yet you strut in here for the sake of'+
+                              '\n\nyour lost family.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: Don\'t even bother trying to mock me. I have already told Nick Valentine that I am'+
+                              '\n\nscared of you. But I also said to the pit with you. I SAID that one of us will be'+
+                              '\n\nhanging our combat boots. I SAID it WILL NOT be me. I SAID that I WIll at least make'+
+                              '\n\nyou bleed for destroying my family. I SAID to Nick Valentine that I will give him'+
+                              '\n\nsomething to smile about when he visits Fort Hagen one day. What will he be smiling'+
+                              '\n\nat? *points at Kellog* YOUR remains. I SAID that I will have you lead me to my son,'+
+                              '\n\neither by you being cooperative or by forcing you. And what do you mean "You dare'+
+                              '\n\ndefy me?" You keep speaking to me like that and Nick Valentine won\'t find any of'+
+                              '\n\nyour remains.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: And here I was complementing your bravery. But I was mistaken. You just'+
+                              '\n\nhide behind shallow words and steel suits that I can cut through like'+
+                              '\n\ncard-board. You have said many things. But soon your lips will not be'+
+                              '\n\nmoving. Soon I will end your pain. You have gone through much to get here...'+
+                              '\n\nthat I am sure of. Inside of you there is a longing for your son. The boy'+
+                              '\n\nthat your wife birthed. You touch him again....and you not only have him...'+
+                              '\n\nbut you believe that you will be somehow connected to your wife as well again.'+
+                              '\n\nYou envision yourself embracing your son: feeling his warmth. But you also feel'+
+                              '\n\nthat you will feel your wife there with the two of you: reunited. You long for'+
+                              '\n\nthe day that you can hold your son and cry your heart out as you reminisce of'+
+                              '\n\nthe days of your youth in which you held his mother: your wife, in the same way.'+
+                              '\n\nYou\'ll hold on to him like a man hanging on for his dear life that is about'+
+                              '\n\nto lose his grip as he holds on to the edge of a cliff. A lost family.....no'+
+                              '\n\n....a destroyed family: reunited. This is what you seek.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: However, THIS IS SOMETHING I WILL BE SURE DOES NOT HAPPEN!!! I WILL be the final'+
+                              '\n\nhurdle that BREAKS you MENTALLY and PHYSICALLY!! I know that you have PTSD....or'+
+                              '\n\nso YOU THINK you have PTSD. You will really have it after I\'m finished with you.'+
+                              '\n\nYes. I have made up my mind. I won\'t kill you. I will torment you physically'+
+                              '\n\nand mentally. I WILL be the physical embodiment of what you humans call the'+
+                              '\n\nDevil!! No....I won\'t have you begging for mercy. I WILL HAVE YOU BEGGING FOR'+
+                              '\n\nDEATH ITSELF!!! DON\'T YOU DARE worry about your son!! DON\'T come at me as some'+
+                              '\n\nbroken father, some wandering soul, some empty individual, as someone who is'+
+                              '\n\ndepressed, or as someone who has dissassociated themselves with reality because'+
+                              '\n\nthey think they are broken! YOU BETTER come at me as a SOLDIER!! *Kellog points at you*'+
+                              '\n\nABANDON YOUR HUMANITY!! Just for a little while longer! If you can do it you MIGHT'+
+                              '\n\njust beat me. Since you have came this far I won\'t deny that it is possible. Anyone'+
+                              '\n\nelse would have succumbed to this cruel post-apocalyptic world. But allow your'+
+                              '\n\nfeelings to get in the way and you will be TORMENTED by ME. Now, where do you stand!?!?'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: You will be the physical embodiment of what we humans call the Devil!?!? *You point'+
+                              '\n\nyour thumb at yourself* Then I will be the physical emodiment of the God he betrayed!!'+
+                              '\n\nTHAT IS WHERE I STAND: ABOVE YOU!! YOU WILL LEAD ME TO THE VERY THING YOU DESTRYOED:'+
+                              '\n\nMY FAMILY!'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: Kellog grabs his weapon that was strapped to his back. You notice that it'+
+                              '\n\nis the "big white gun" that you described to Nick Valentine. Nick said that this'+
+                              '\n\ngun shoots blue laser beams that literally melt the outside and insides of a human'+
+                              '\n\nupon contact with the laser beam. You worry as you don\'t know how much damage it'+
+                              '\n\nwill do to your T-60 Power Armor. But you do beat Kellog to the action. You spin up'+
+                              '\n\nyour minigun and start blasting at Kellog.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: As your minigun bullets shower Kellog: he stands there staring you down. Your'+
+                              '\n\nminigun is of no use to you: your only other weapon that could even possibly have'+
+                              '\n\na chance at being effective is your Scoped .50 Cal Sniper. But that is for long'+
+                              '\n\nranged shooting: Kellog is 25 yards in front of you. The bullets are quit literally'+
+                              '\n\nbouncing off of his body. You continue to fire in desperation, but Kellog disappears'+
+                              '\n\nin a blinding flash of blue light! You stop firing.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: COMPUTER! WHERE DID HE GO!?!?!?'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('T-60 Power Armor Computer speaking (robotically): The enemy has dematerialized'+
+                              '\n\nand re-materialized! The enemy is behind you! Take evasive action!'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: Kellog has teleported behind you! It\'s just as Nick Valentine said.'+
+                              '\n\nInstitute coursers such as Kellog have the ability to teleport at will!'+
+                              '\n\nKellog comes from behind you and snatches your heavy minigun with one'+
+                              '\n\nhand. He then proceeds to smash the heavy minigun over his leg: the'+
+                              '\n\nminigun breaks in half! Kellog then kicks you as hard as he can: sending'+
+                              '\n\nyou flying to the other side of the bunker! You crashed into a brick wall'+
+                              '\n\nand most of it is now completely destroyed. Kellog is most definitely power-'+
+                              '\n\nful. He managed to send you flying with one kick while wearing a steel'+
+                              '\n\nsuit that weighs many tons. Nick Valentine\'s words echo through your head'+
+                              '\n\nas you try to scramble to your feet: "The Institute calls them the ultimate'+
+                              '\n\nfighting machines".'+
+                              '\n\n(Press enter to continue.)')
+                        if WEAPON4 in character_inventory3:
+                            character_inventory3.remove(WEAPON4)
+                            input('SYSTEM: Your minigun has been removed from your inventory.)'+
+                                  '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: Dang! That was the only weapon I had that even had a real chance of harming'+
+                              '\n\nhim.......It\'s ok. I\'m no stranger to physical combat.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        
+                        print()
+                        print()
+                        input('Kellog: Giving yourself a prep talk? A bit late for that is it not? And what do'+
+                              '\n\nyou mean, "I\'m no stranger to physical combat?" I have my weapon right here'+
+                              '\n\nin my hands. Given the context of this situation: does it really seem to you'+
+                              '\n\nthat we are about to have a mixed martial arts fight?'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: Shut up and fight me!'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: Have it your way then. That was a mere warm-up. Now let\'s really dance...'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: Kellog starts firing his gun at you that shoots blue laser beams. You start'+
+                              '\n\nto panick realizing the damage that it can do. As the beams hit your armor in'+
+                              '\n\nrapid succession: the T-60 Power Armor Computer warns you to take cover. Each'+
+                              '\n\nshot puts a hole through your armor. You run behind a security fence to take'+
+                              '\n\ncover.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: Computer! Report!'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('T-60 Power Armor Computer speaking (robotically): Power armor hull integrity: 52%.'+
+                              '\n\nYou must not take another round of fire from the enemy\'s weapon or you will die.'+
+                              '\n\nJust a few tens of his lasers did the following: put holes in the armor all over,'+
+                              '\n\nand cut the power armor hull integrity by 48%. Suggested course of action: When'+
+                              '\n\nenemy teleports again I will detect it. I am able to spot him faster than you. But'+
+                              '\n\nstill I can not pick up his location instantly. However, when I do find him: I will'+
+                              '\n\nautomatically activate Emergency Attack Mode. When this happens: You must act as fast'+
+                              '\n\nas possible, or I will do so for you. Your physical attack energy output will increase'+
+                              '\n\nby 3,257% and your attack speed by 250% for 5 seconds. Calculating......calculating..'+
+                              '\n\n...This will not be enough to defeat the enemy. But such a sudden burst in power'+
+                              '\n\nwill catch him off guard. This should give you an opportunity to do significant'+
+                              '\n\ndamage to him.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: Kellog teleports 75 yards into the air: almost reaching the 115 foot ceiling of the'+
+                              '\n\nFort Hagen underground bunker. He sticks out his right foot. He plans on crushing you'+
+                              '\n\nunderfoot: he is coming at you like a spaceship coming back into the earth\'s orbit.'+
+                              '\n\nYour T-60 Power Armor Computer detects Kellog at 45 yards in the air. It quickly activates'+
+                              '\n\nEmergency Attack Mode: but the computer realizes there is no way you as a human will'+
+                              '\n\nbe able to move in to time to dodge a man that is a second away from crushing you.'+
+                              '\n\nSo the computer overides your control of the T-60 Power armor suit. You as usual get'+
+                              '\n\nmad at the computer screaming: HEY, WAIT! But the computer ignores you and jumps toward'+
+                              '\n\nKellog. The computer catches Kellog by surprise just as it had planned...'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: Kellog trys to dodge the computer, but the computer grabs Kellog\'s leg and then'+
+                              '\n\nnose-dives toward the ground: smashing Kellog 4 feet deep into the concrete ground. The'+
+                              '\n\ncomputer\'s motive was not only to put significant damage on Kellog, but to more importantly'+
+                              '\n\nbreak Kellog\'s laser rifle. This the computer accomplished. But the five seconds of Emergency'+
+                              '\n\nAttack Mode are over. And Kellog instantly jumps back up. The computer gives you back'+
+                              '\n\ncontrol of the suit. You notice that Kellog has a bloody face.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: YOU HEATHEN! USING A COMPUTER TO GET THE EDGE ON ME!'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: MISS ME WITH THAT! YOU ARE LITERALLY A WALKING COMPUTER! Wait a minute....'+
+                              '\n\nHmph. How does it feel you sore loser? Look at your face bleeding!'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: I AM A SYNTH: GET IT RIGHT! It\'s not like it matters: you humans'+
+                              '\n\ncan\'t even tell synth and human apart until you see us fight. And what'+
+                              '\n\ndo you mean, "how does it feel you sore loser?"'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: You\'re not used to getting your tail handed to you so you\'re'+
+                              '\n\nblaming anything but yourself for losing that little skirmish'+
+                              '\n\nwe just had.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: I will admit. That was only the second time I\'ve received'+
+                              '\n\nsuch a hard blow in my life. The first time was this knife cut'+
+                              '\n\nacross my face that another synth gave me in my courser training.'+
+                              '\n\n......I killed that synth. I am the srongest synth the Insstitute'+
+                              '\n\nhas after all....But that was the last, "skirmish" we were going'+
+                              '\n\nto have. It is time to have an all out battle. No more interruptions.'+
+                              '\n\nNo more small talk. No more weapons. Just run the ones.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: Bet.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: You charge Kellog, pick him up, and smash him over your steel power armor knee.'+
+                              '\n\nKellog makes the best of his postition and drop kicks you. You managed to grab Kellog\'s'+
+                              '\n\nfoot, but he teleports above you. Kellog throws a punch that is so strong that it caves'+
+                              '\n\nin not one part of your power armor torso: but your entire power armor torso.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('T-60 Power Armor Computer speaking (robotically): Warning! Power Armor hull integrity'+
+                              '\n\nis now at 41%.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: You grab Kellog\'s hand after he caves in the torso of your armor. You grab his'+
+                              '\n\nother hand and pull him towards you: smashing your steel armor helmet against his'+
+                              '\n\nbloody face. Kellog teleports behind you and kicks you upward: sending you flying'+
+                              '\n\n80 feet into the air. Kellog teleports again and kicks you toward a wall inside'+
+                              '\n\nof the bunker. But before you hit that wall: Kellog teleports again and kicks you'+
+                              '\n\nto the other side of the bunker. Right before you hit that wall of the bunker: Kellog'+
+                              '\n\nyet again teleports and kicks you back to the wall you were about to hit earlier.'+
+                              '\n\nKellog does this 8 times: kicking you from point A to point B back and forth. All'+
+                              '\n\nof this happens while you and Kellog are 80 feet in the air. Kellog finally drives'+
+                              '\n\nhis foot into the caved in torso of your armor. Both of you fly down from 80 feet in'+
+                              '\n\nthe air at an alarming speed. Kellog pushes off of your armor with his foot: making'+
+                              '\n\nyou fall down even faster. Kellog then teleports to safety. But you get buried 9 feet'+
+                              '\n\ndeep: crashing through concrete ground.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('T-60 Power Armor Computer speaking (robotically): Warning! Power Armor hull intergrity'+
+                              '\n\nis now at 28%. Warning! The electronics of the power armor may start to malfunction.'+
+                              '\n\nEmergency Attack Mode Overdrive is on standby: tell me when you need it. But do remember'+
+                              '\n\nthat this suit will explode in flames from he inside out once the 15 second duration of'+
+                              '\n\nEmergency Attack Mode Overdrive expires.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: You manage to get up, but you struggle as the legs of the T-60 Power Armor start'+
+                              '\n\nto malfunction. You try to walk foward, but the legs go backwards. You panic as you'+
+                              '\n\nsee Kellog walking slowly toward you: trying to incite more fear within you.'+
+                              '\n\nKellog then runs at you so fast that he may as well be flying. You know he is coming,'+
+                              '\n\nbut everything is a blur to you, because he is moving so quick. He uppercuts your power'+
+                              '\n\narmor helmet so hard that it flew off of your head and cracked into four separate'+
+                              '\n\nparts. You go flying back and hit your head on the conrete of the underground bunker.'+
+                              '\n\nYou have holes all throughout your armor from Kellog\'s lasers hitting you earlier, and'+
+                              '\n\nnow you have lost your helmet: the part of the armor that allows you to communicate'+
+                              '\n\nwith the computer....'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: Oops.....My hand slipped. Now you can\'t talk to that computer and get'+
+                              '\n\nthose random power ups. Now watch as my foot slips and stomps your face in...'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: Kellog proceeds to stomp your face in multiple times. You are screaming'+
+                              '\n\nthe entire time. Now your face and head are all bloodied up. But Kellog'+
+                              '\n\ncontinues stomping your face. Your nose breaks and your left eye won\'t open.'+
+                              '\n\nKellog finally stops.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: *yelling in pain* AAAAGGGGHHHHHH....AAAAAGGGGHHHHAAAAGGHHHAAGGH...'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: This is only the beginning. This isn\'t physical torment.'+
+                              '\n\nAll I\'ve done is cave your face in. YOU JUST WAIT, if you'+
+                              '\n\nthink this is physically bad: wait until I really get started'+
+                              '\n\non you. You can\'t even begin to fathom the physical and'+
+                              '\n\nmental torture techiniques the Institute has trained me to'+
+                              '\n\ndo to others. I WILL BREAK YOU! Imagine a body walking around'+
+                              '\n\nwith no concious. THAT WILL BE YOU WHEN I\'M FINISHED WITH YOU!'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: I told you I am the physical emodiment of what you humans call'+
+                              '\n\nthe devil. You replied saying you were the physical emodiment of the'+
+                              '\n\nGod the devil betrayed. You said you were above me. Yet here I stand'+
+                              '\n\nover you while you are flat on your back: screaming in pain, you have'+
+                              '\n\na broken nose, and you\'re even bloodier than I am. What happened to'+
+                              '\n\nall that big talk?'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: Feeling desperate: you call out to your T-60 Power Armor Computer.'+
+                              '\n\nBut the problem is that It can\'t be used since it can only hear you'+
+                              '\n\nwith the T-60 Power Armor Helmet on: the helmet Kellog just knocked'+
+                              '\n\noff your head and split into four different parts. You hope that the'+
+                              '\n\ncomputer can hear you. You hope that it somehow is still on and will'+
+                              '\n\nactivate your final and most strongest power boost.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('You (yelling out): Computer! Activate Emergency Attack Mode Overdrive!'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: Shut up! *Kellog stomps your face again* I destroyed your'+
+                              '\n\nhelmet: that\'s where your computer resides. So the computer is'+
+                              '\n\ngone as well. You lose...'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('T-60 Power Armor Computer speaking (malfunctioning): EeeeeeeMmmeerrr....'+
+                              '\n\nEmergensheeeee...*feedback noises* *malfunctioning noises* Emmmerr...'+
+                              '\n\nEmergency Attack Mode OverDrive: Activated. Physical attack energy'+
+                              '\n\noutput increased by 9,771%. Attack speed increased by 750%.'+
+                              '\n\nDuration of this mode: 15 seconds. Power Armor will explode from the'+
+                              '\n\ninside out after 15 seconds. Proceed cautiously user.....*computer'+
+                              '\n\ndies out*.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: WHAT!?!? HOW DID IT ACTIVATE!?!?'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: Though you broke the helmet: the computer just barely survived, and it'+
+                              '\n\nit heard me. And why do you sound so scared Kellog *smirks at Kellog*'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: With Emergency Attack Mode OverDrive activated: you jump up and prepare to'+
+                              '\n\nattack Kellog. Kellog tries to teleport above you to drop down on you with a'+
+                              '\n\nheavy punch, but with a 750% increase in attack speed: you beat him. You grab'+
+                              '\n\nKellog by the neck and drive him into the ground. You start strangling him.'+
+                              '\n\nKellog starts to gasp for air. But he somehow manages to break free: even'+
+                              '\n\nthough you have a 9,771% increase in physical attack power. However, you'+
+                              '\n\nquickly grab him by the neck again and start slamming his head into the'+
+                              '\n\nconcrete ground. You do this many times. You then drag Kellog by the feet and'+
+                              '\n\nrun as fast as you can to the most nearby wall in the bunker. You reach back'+
+                              '\n\nwith Kellog\'s foot in your hand as if you were an archer reaching back to get'+
+                              '\n\na bow out of your bow holder strapped to your back. You then sling Kellog into'+
+                              '\n\nthe wall: it collapses. You then hop on top of Kellog and treat his face like'+
+                              '\n\na speed boxing bag: except the punches are 750% faster and the hits he takes'+
+                              '\n\nare coming from fist of steel.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: You continued sitting on top of Kellog and punching him for another 7 seconds.'+
+                              '\n\nKellogs face is now deformed: he is completely unrecognizable. He lays on the ground'+
+                              '\n\nmotionless. Going in the fit of rage that you did: you forgot that Emergency Attack'+
+                              '\n\nMode OverDrive only last for 15 seconds. The time just ran out. You try to hurry up'+
+                              '\n\nand get out of your power armor before the fusion core explodes and blows the suit'+
+                              '\n\nup: burning you to a crisp. You can feel the suit getting really hot and you hear a'+
+                              '\n\nnoise that is getting louder and louder. It is the fusion core getting ready to'+
+                              '\n\nexplode. But you don\'t have the computer around to tell it to open the armor. You'+
+                              '\n\nstart to panic.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: COME ON!! I NEED TO GET THIS OFF OF ME......Hot! Hot! HOT!'+
+                              '\n\n*you shriek* AhHhHhHHHHhhH. HEEEELLLLPPP.*you roll around as'+
+                              '\n\nthe suit is on fire and gets ready to explode.* HELP ME!!'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: Just as you were about to lose all hope :the suit opens up'+
+                              '\n\nand you crawl out of it and run away from it. But you can\'t'+
+                              '\n\nget far because the fire has done a great deal of damage'+
+                              '\n\nto everything except your face. You were in excrutiating pain'+
+                              '\n\nas you ran away from the armor. You fell on the concrete and'+
+                              '\n\ncried out in more pain because your skin is burned/tender.'+
+                              '\n\nYou left the power armor suit right next to Kellog: it explodes'+
+                              '\n\nright next to him.'+
+                              '\n\n(Press enter to continue.)')
+                        if ARMOR3 in character_inventory3:
+                            character_inventory3.remove(ARMOR3)
+                        if FUSION_CORE2 in character_inventory4:
+                            character_inventory4.remove(FUSION_CORE2)
+                        print()
+                        print()
+                        input('SYSTEM: T-60 Power Armor and Fusion Core have been removed from your inventory.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: Wait! This is bad! I need to get that computer chip inside of Kellog\'s head!'+
+                              '\n\nThat\'s what he uses to teleport to the Institute. But it\'s over there burning'+
+                              '\n\nup! I probably made it no better nearly caving his head inwards: the computer'+
+                              '\n\nchip is probably damaged! Dang it!'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: You notice Kellog crawling out of the flames coming from the power armor'+
+                              '\n\nexplosion.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: NO! IT\'S IMPOSSIBLE! HOW ARE YOU ALIVE!?!? JUST DIE ALREADY!'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: *heavy breathing* Who said I was burning up?  *continues crawling* *heavy breathing*'+
+                              '\n\nAnd who\'s head is nearly caved in? **heavier breathing** And who\'s computer......'+
+                              '\n\n***even heavier breating*** chip is damaged? Forget it. I have to kill you. I can\'t'+
+                              '\n\nbelieve a mere human hiding *wheezes* behind steel armor could......no. It wasn\'t you'+
+                              '\n\nwho did this to me.....It was that armor. You did nothing to me!'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: You are so ignorant. Let me strip you of all your cybernetic parts and things like your'+
+                              '\n\nteleportation ability: then let\'s see who beats who. My point is: both of us used technology'+
+                              '\n\nto fight one another. So shut your ignorant self up! And stop crawling towards me!!........'+
+                              '\n\n*tries to move*.......*tries to move again*......WHY CAN\'T I MOVE!?!?'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: You\'re exhausted is all. You may have had on a highly advanced combat suit....but'+
+                              '\n\nit wasn\'t enough to keep your body from tiring out fighting the likes of me.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: Kellog stops crawling toward you and manages to muster up the strength to get up.'+
+                              '\n\nYou finally are able to get up as well, but you fall because you are still suffering'+
+                              '\n\nfrom the burns the fire gave you. Kellog started to slowly walk toward you. Now Kellog'+
+                              '\n\nis standing right over you.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: This is the end of the line for you. What\'s the cliche? So close but so far?'+
+                              '\n\nThat\'s your son, Shaun. You were SO close. And you failed right at the end. Too bad'+
+                              '\n\nfor you. I can only imagine what you must be feeling on the inside right now. I said'+
+                              '\n\nthat I would torture you....but it\'s best that I kill you now. I can\'t take anymore.'+
+                              '\n\nI\'m on the verge of death. You would be too if you weren\'t hiding behind all that'+
+                              '\n\nsteel armor. Better yet, you would have been killed if it weren\'t for that armor.'+
+                              '\n\nNow it is---'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('A familiar voice: TIME FOR YOU TO DIE! NOW IT IS TIME FOR YOU TO DIE KELLOG!'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: You see someone rush at Kellog with a sword. The sword goes through Kellog\'s'+
+                              '\n\nchest. Kellog gasp for air holding the sword in his chest as if he wants to get it out.'+
+                              '\n\nYou can\'t tell who this new person is, but their voice sounds familiar. You really don\'t'+
+                              '\n\ncare seeing that they are here to help you: hopefully.'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: **Kellog chokes** You fool...who......are you?'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('A familiar voice: Who am I? I\'m the man that just stole the kill of my friend over there.'+
+                              '\n\nIt couldn\'t be helped because you were about to kill him. I can\'t allow that to happen.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: There...*chokes* There is no way you\'re a human. Other than that human over there'+
+                              '\n\n*Kellog points at you* there is no way any other humans even know about me or this place.'+
+                              '\n\nYou have to be a synth!'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('Nick Valentine: The names Nick. Nick Valentine. My last name is fitting isn\'t it?'+
+                              '\n\nI just became your valentine! I kind of just stole your heart with this sword.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('You: What!?!? Nick!?!?'+
+                              '\n\n(Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: STOP! *coughs* *coughs* *wheezes* STOP TELLING JOKES! You underhanded heathen!'+
+                              '\n\nThese tactics of yours are dishonorable. You dare attack me at my weakest?'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('Nick Valentine: Look punk. I just happened to get here at a convenient time.'+
+                              '\n\nI don\'t care about honor. I\'m a detective. Not a fighter like you. Now'+
+                              '\n\nit\'s time for you to die so my friend Nate here can take that computer'+
+                              '\n\nchip inside of your head and teleport to the Institute.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('Kellog: Hmph. Your friend is not a synth like me. What is he going to do? Open up'+
+                              '\n\nhis head and put the computer chip in? Last I checked humans can\'t do that.'+
+                              '\n\nYou might be a synth Valentine, but even you can\'t do it. You said your a'+
+                              '\n\ndetective. So you live in the CommonWealth. That means the Institute scientist'+
+                              '\n\ncounted you as a failed experiment and erased most of your memories. So you'+
+                              '\n\nwouldn\'t even know how to put the chip in your head. Even if you did you would'+
+                              '\n\nneed the Institute scientist to put it in for you.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('Nick Valentine: I might not remember much, but I do know that I can make a'+
+                              '\n\nremote that can store your computer chip inside of it. It will all work'+
+                              '\n\nthe same and Nate will be able to teleport into the institute using that'+
+                              '\n\nremote. It\'s the same type of remote that the human scientist use to'+
+                              '\n\nteleport into the Institute. But to make it I need your computer chip.'+
+                              '\n\nSO DIE ALREADY!! *Nick thrust the sword further into Kellog\'s chest*'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        print()
+                        print()
+                        input('SYSTEM: Kellog is finally dead. Nick swooped in and saved you: even though you asked Nick not'+
+                              '\n\nto help. He tells you that he couldn\'t help but worry about you. You and Nick stay inside'+
+                              '\n\nthe Fort Hagen underground bunker for another month or so helping you to recover. There was'+
+                              '\n\nmore than enough medical supplies with it being a military bunker: even though it is mostly'+
+                              '\n\nan ammunition storage bunker. Nick would go buy you food and water from Diamond City and come'+
+                              '\n\nback as fast as he could to help you recover from your fight with Kellog. You use any First'+
+                              '\n\nAid Kits that you had on yourself. Nick relates to you how surprised he is that the Institute'+
+                              '\n\nhas not yet come after the two of you after finding out their strongest synth courser was'+
+                              '\n\ndefeated. Nick relates to you how he feels something isn\'t right.'+
+                              '\n\n(SYSTEM: Press enter to continue.)')
+                        if FIRST_AID1 in character_inventory2:
+                            character_inventory2.remove(FIRST_AID1)
+                        elif FIRST_AID2 in character_inventory3:
+                            character_inventory3.remove(FIRST_AID2)
+                        elif FIRST_AID3 in character_inventory4:
+                            character_inventory4.remove(FIRST_AID3)
+                        print()
+                        print()
+                        input('SYSTEM: Nick manages to get the computer chip out of Kellog\'s head. Though he keeps telling you'+
+                              '\n\nto shut up everytime you ask him how he did it. You stop asking assuming it must have been'+
+                              '\n\na very bad experience for Nick. You finally fully recover and Nick has the teleporting remote'+
+                              '\n\nworking. It will take you straight to the Insitute. You and Nick Say goodbye to each other for'+
+                              '\n\nthe second time. You again thank Nick for all he has done for you. He tells you to be safe and'+
+                              '\n\nto make the best of your circumstances. You tell him that you always do. Nick heads back to'+
+                              '\n\nDiamond City. And you can now use the teleporting machine to travel to the Institute to find your'+
+                              '\n\nson, Shaun.'+
+                              '\n\n(Press enter to continue.)')
+                        if TELEPORT_REMOTE not in character_inventory4:
+                            character_inventory4.append(TELEPORT_REMOTE)
+                        print()
+                        print()
+                        input('SYSTEM: Teleporting remote has been added to your inventory.'+
+                              '\n\n(Press enter to continue.)')
+
+            else:
+                input('SYSTEM: You need stronger Power Armor'+
+                      '\n\nbefore coming here.'+
+                      '\n\n(Press enter to continue.)')
+
+        else:
+            input('SYSTEM: You need stronger weapons before'+
+                  '\n\ncoming here.'+
+                  '\n\n(Press enter to continue.)')
+
+    else:
+        input('SYSTEM: You need to explore more of Diamond City before'+
+              '\n\ncoming here.'+
+              '\n\n(Press enter to continue.)')
+
+def institute(character_inventory4):
+    if TELEPORT_REMOTE in character_inventory4:
+        input('SYSTEM: You turn on the teleporting remote that Nick Valentine'+
+              '\n\nmade for you. Besides the power button. All you have to'+
+              '\n\ndo is press the big red button in the middle. Kellog\'s'+
+              '\n\ncomputer chip that was inside of his head is now inisde'+
+              '\n\nof the remote, so you can teleport into the Institute just'+
+              '\n\nas Kellog used to do.'+
+              '\n\n(Press enter to continue.)')
+        print()
+        print()
+        input('SYSTEM: You press down on the big red button in the middle of the'+
+              '\n\nremote and feel as if you are, "evaporating". Your body'+
+              '\n\nis dematerializing in a blinding flash of blue light: just as'+
+              '\n\nKellog did many times in your battle against him.'+
+              '\n\n(Press enter to continue.)')
+        print()
+        print()
+        input('SYSTEM: You are now re-materializing in a blinding flash of blue light.'+
+              '\n\nYou now find yourself in a place that looks very futuristic and clean.'+
+              '\n\nYou know for certain that you have made it to the Institute. But you see'+
+              '\n\nno people or synths anywhere. You appear to be in some sort of room that'+
+              '\n\nis no longer being used.'+
+              '\n\n(Press enter to continue.)')
+        print()
+        print()
+        input('Institute intercom: Hello. I wondered if you\'d make it here. You\'re quite'+
+              '\n\nresourceful.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('You: Who in the.....'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Institute intercom: I am known as Father; the Institute is under my guidance.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father (on intercom): I know why you\'re here. I\'d like to discuss things'+
+              '\n\nwith you face-to-face. Please, step into the elevator up ahead.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('SYSTEM: You go up ahead and the elevator opens up. You step inside and it closes'+
+              '\n\nbehind you. It then starts to descend. You don\'t know what is about to happen,'+
+              '\n\nbut you are willing to go to the moon and back to find your son.'+
+              '\n\n(Press enter to continue.)')
+        print()
+        print()
+        input('Father (on intercom): I can only imagine what you\'ve heard---what you'+
+              '\n\nthink of us. I\'d like to show you that you may have....the wrong'+
+              '\n\nimpression.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father (on intercom): Welcome to the Institute.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('SYSTEM: Apparently the elevator is capable of blocking your view.'+
+              '\n\nBecause as soon as Father said, "Welcome to the Institute", your'+
+              '\n\nview became clear. You look around and are amazed at how orderly,'+
+              '\n\nneat, clean, and futuristic everything looks. You see people walking'+
+              '\n\naround the facility. Some of them might be synths and you just can\'t'+
+              '\n\ntell: since synths easily pass as humans. You see condo like buildings'+
+              '\n\nwith balconies. You also see healthy trees and plant life: something'+
+              '\n\nthat you do not see in the CommonWealth. You even see a pond in the'+
+              '\n\nthe distance.'+
+              '\n\n(Press enter to continue.)')
+        print()
+        print()
+        input('Father (on intercom): This is the reality of the Institute. This place,'+
+              '\n\nthese people, the work we do.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father (on intercom): For over 100 years we have dedicated ourselves'+
+              '\n\nto the survival of humanity.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father (on intercom): Decades of research, countless experiments and'+
+              '\n\nand trials......A shared vision of how science can help shape the'+
+              '\n\nfuture.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father (on itercom): It has never been easy....and our actions are often'+
+              '\n\nmisinterpreted by those above ground.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Thinking to self: He just said, "aboveground". So the Institute is underground, huh?'+
+              '\n\nI guess it makes perfect since actually. Where else could they hide themselves?'+
+              '\n\nAnd this elevator is still descending....they definitely reside underground.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father (on intercom): Someday, perhaps, we can show them what we\'ve accomplished. But'+
+              '\n\nfor now, we must remain underground.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father (on intercom): There\'s too much at stake here to risk it all. As you have'+
+              '\n\nseen, things above ground are......horrendous.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father (on intercom): I\'d like to talk to you about what'+
+              '\n\nwe can do for everyone.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father (on intercom): But that can wait. You are here for a very specific,'+
+              '\n\nvery personal reason. You are here for your son.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('SYSTEM: Right as "Father" finished speaking: the elevator finally stopped'+
+              '\n\ndescending. The elevator opens up and what you find in front of you makes'+
+              '\n\nyour heart sink and jump at the same time. It appears to be your son, Shaun.'+
+              '\n\nBut it appears he is around the age of 10. So after your wife was murdered'+
+              '\n\nby Kellog and he took your son: just how long were you left in vault 111?'+
+              '\n\nShaun was an infant when Kellog kidnapped him......now Shaun appears to be'+
+              '\n\nabout the age of 10. Were you frozen for another 10 years before you got out'+
+              '\n\nof vault 111?'+
+              '\n\n(Press enter to continue.)')
+        print()
+        print()
+        input('You: .....Shaun?'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Shaun: Huh?... Yes, I\'m Shaun...'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('You: Oh my goodness....it\'s really you..'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Shaun: Who are you?'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('You: Shaun.....it\'s me.....I\'m......I\'m you dad.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Shaun: Father...What\'s going on? What\'s happening?'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('You: *voice starts to break* Shaun...are you okay?'+
+              '\n\nYou\'re not hurt are you?'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Shaun: What\'s going on? Father! Father!'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('You: What do you want me to do Shaun?'+
+              '\n\nWhat can I do?'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Shaun: I don\'t know you! Get away from me!'+
+              '\n\nFather help! Father!'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('SYSTEM: Some nearby sliding doors open and an old man'+
+              '\n\nwalks put of them. He has on a white lab coat with'+
+              '\n\nbrown dress pants and brown dress shoes.'+
+              '\n\n(Press enter to continue.)')
+        print()
+        print()
+        input('Mysterious old man: Shaun....S9-23 Recall Code Cirus.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('SYSTEM: when the old man says those words: your son Shaun'+
+              '\n\nappears to act like he "powered off". He is standing'+
+              '\n\nthere with his arms dangling down along with his head.'+
+              '\n\nYou wonder what in the world is going on.'+
+              '\n\n(Press enter to continue.)')
+        print()
+        print()
+        input('Mysterious old man: Let\'s start anew. I am Father. Welcome'+
+              '\n\nto the Institute.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('You: *very serious tone* I\'ll make this simple. Where. Is. my son?'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father: He is here. In the Institute. Closer than you think.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('You: So that boy I was just speaking to....he must be a synth....'+
+              '\n\nGIVE ME SHAUN! THE REAL SHAUN! RIGHT NOW!'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father: I know...I know you have gone to such great lengths to find'+
+              '\n\nhim. But I need you to realize this....situation....is far more'+
+              '\n\nxomplicated than you realize.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father: You have traveled very far, and suffered a great deal to find'+
+              '\n\nyour son. Well, your tenacity and dedication have been rewarded.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father: It\'s good to finally meet you after all this time. It\'s me.'+
+              '\n\nI am Shaun. I am...your son.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('You: NO! How is that even possible!?!? You have got to be twice my age: I\'m 30!'+
+              '\n\nYour hair and beard are literally pure white! WHERE IS MY SON!?!? I AM'+
+              '\n\nLOSING PATIENCE WITH YOU!'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father (Shaun): I know this is a lot to take in. Hear me out. In the vault you had'+
+              '\n\nno concept of the passage of time. You were released from your cryogenic'+
+              '\n\npod and went searching for the son you had lost. But you had no idea how'+
+              '\n\nhow old you son was. You assumed that I was still an infant. And moments'+
+              '\n\nago you thought that I was a 10 year old boy.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father (Shaun): Is it really so hard to believe that it was 60 years ago when Kellog'+
+              '\n\nmurdered my mother and took me to the Institute? I am 60. At that time....the year'+
+              '\n\nwas 2227. The Institute were experimenting with synths, but never succeeded'+
+              '\n\nin making them, "perfect". To make synths appear as closely as possible to a'+
+              '\n\nhuman and give them the perfect genetics was the goal. To make synths....DNA'+
+              '\n\nwas needed from people above ground. But everyone above ground is affected'+
+              '\n\nby radiation in some way or another. So they found me, the perfect specimen'+
+              '\n\nsealed away in a vault with uncorrupted DNA: I was ideal and beyond. So every'+
+              '\n\nsynth you see and meet: You and I are their family in a way. Because all'+
+              '\n\nsynths have my uncorrupted genetics, and you are my father: we are all'+
+              '\n\nrelated.....at least by genes. And this is why I am called "Father" because'+
+              '\n\nthrough science: we are all related. I\'m sure you have seen synths that'+
+              '\n\nlook nothing like me nor you. That is simply thanks to high tech genetic'+
+              '\n\nengineering.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('You: Ok....It really is you...I must admit though. I really wish you were younger'+
+              '\n\nShaun. I\'m heartbroken. But why do you talk about your mother as if she is'+
+              '\n\njust collateral damage!?!? And the year is currently 2287! WHY WAS I LEFT IN'+
+              '\n\nTHE VAULT!?!? *burst out crying* Why did they not take me with you!?!? Why'+
+              '\n\nleave me in there for sixty years!?!?'+
+              '\n\nI had been in there since the year 2077. I was in there 210 years total!'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father (Shaun): I\'m afraid I have little experience with loving others. Please try'+
+              '\n\nto understand my situation. I have been raised down here in the Institute as a'+
+              '\n\nman of science. I have lived my entire life as a man of science alongside many'+
+              '\n\nother scientist down in here in the institute. Try to understand that I have not'+
+              '\n\neven a single memory of my mother. I was but an infant. Had the world not become'+
+              '\n\nwhat it is now: I am more than sure I would have grew up attached to her hip. I am'+
+              '\n\nmore than sure I would have loved my mother so deeply. But, here we are in this'+
+              '\n\nunfortunate reality of the world. Also try to understand that I have had my entire'+
+              '\n\nlife to cope with the loss of my mother.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father (Shaun): And as for you. You were left in the vault because the Institute saw'+
+              '\n\nno need to release you. They already had the perfect specimen to help create the'+
+              '\n\nperfect synths: me. But please do not take this the wrong way. In truth, in a way...'+
+              '\n\nThe Institute rescued me and you from that vault. We would have been frozen in time'+
+              '\n\nforever had it not been for the Institute. But here we are: reunited.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('You: Ok...ok....Listen to this...Since I\'ve been in here I can\'t help but notice this'+
+              '\n\nextremely advanced technology. There is an entire pond down here! I\'m assuming'+
+              '\n\nthese things: You all have good, clean, edible food, that you all have potable water,'+
+              '\n\nand that you all sleep good, because I saw what are basically condos down here, and'+
+              '\n\nI\'m betting you guys have the best healthcare the world has ever seen. This technology'+
+              '\n\nis insane! My question: why are you not helping the people above ground? It is hades up'+
+              '\n\nup there!'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father (Shaun): Oh we have tried to help them! But they refused the Institute. We will look'+
+              '\n\nafter our own now! I\'m sure you have heard lots of bad things about the Institute. I'+
+              '\n\nwill not deny any of the things you have heard. But father....you know as well as I that'+
+              '\n\nthe world above ground is doomed. Looking in history books we see that humans never change!'+
+              '\n\nEven if we rebuild the world up there....again wars will break out, people will hate one'+
+              '\n\nanother, the world will be divided in even the smallest of ways! Surely this hits close to'+
+              '\n\nhome for you father. I know that you were a war veteran...you know just how terrible the'+
+              '\n\nworld is! Humanity\'s future now resides down here, in the Institute. You have seen this'+
+              '\n\nutopia of a place compared to the, as you put it, "hades up there".'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('You: Shaun...you really are my son. I do hate this world. It never changes. I can say that'+
+              '\n\nhaving been around so long. But none of this justifies the Institute kidnapping people,'+
+              'n\nkilling them, and replacing them with a synth. Sure....this is heaven on earth down here.'+
+              '\n\nBut it does not justify you guys treating the people up there like lab rats. Is that all'+
+              '\n\nthe CommonWealth is to you Institute people? A big experiment? Sure, the Institute benefits'+
+              '\n\nfrom these experiemtns and it in the long-term makes you guys lives better, but at the expense'+
+              '\n\nof the already struggling people above ground. The same people that have a first aid kit'+
+              '\n\nfor healthcare, the same people that having nothing to wipe their behinds with, the same people'+
+              '\n\nthat can\'t find potable water, the same people that can\'t find food, the same people trying'+
+              '\n\nto farm for food only to get robbed by their neighbor, the same people that have no hope because'+
+              '\n\nfor so long the world has been upside down! AND YOU TREAT THEM LIKE RATS!'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father (Shaun): Father. You can not be too idealistic in this world. Look at the reality. Should we go'+
+              '\n\nstop our experiments...how are we to continue on advancing? How are we to maintain life down here'+
+              '\n\nwithout taking experimenting and sampling from people and things above ground? You think this utopia'+
+              '\n\nof a life down here came without blood? It has to happen! You are trying to paint an ideal world where'+
+              '\n\neveryone wins and benefits. THIS IS IDIOCY! LOOK at history books father! You know even better than I'+
+              '\n\nthat the world would eventually just repeat itself: humans will bring themselves to ruin. But this way'+
+              '\n\ndown here....we are so far ahead of the world technologically that no one can have a grip on us. We can'+
+              '\n\nkeep everyone and anything under our control. Should it continue on this way: the Institute will thirve.'+
+              '\n\nHumans will have a perfect guaranteed future: the Institute. OR we can go willy-nilly helping everyone and'+
+              '\n\nin a few hundred years just repeat the mistakes of the past. Then there would be no Institute around. Who'+
+              '\n\nwould preserve humanity then? WE WOULD BE DONE FOR! Father I know it is so hard to see...But you have to'+
+              '\n\nthink with the greater good in mind. I would love an ideal world just as much as you, but reality is sad.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('You: *long sigh* You have a good point. Many nations would eventually rise and just want to destroy each other'+
+              '\n\nfor the sake of control over various things. People would hate one another over skin color, race, ethnicity,'+
+              '\n\nlanguage, beliefs, and the list can lierally go on and on and on. I remember seeing news articles 210+ years'+
+              '\n\nago of people killing each other over fast food sandwiches or over cutting each other in line. People really'+
+              '\n\nare no good. It just SOOOOOOO many things I can name that\'s bad about people....It\'s all racing through my'+
+              '\n\nmind but it can\'t come off my tounge because it\'s just so much....where do I even start?'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father (Shaun): Yes. The old world is a lost cause. It would be foolish to try to bring back something that has been'+
+              '\n\nproven time and time and time and TIME again to be BEYOND faulty. The old world didn\'t work for an ocean'+
+              '\n\nof reasons. So please stop it father. Don\'t even consider that faulty system of things. I ask that you stay'+
+              '\n\nhere within the Institute. Become a scientist...well that is asking a lot... You don\'t have to do that of'+
+              '\n\ncourse. You could become a simple maintenance worker. I simply want you to lead the best life possible. I want'+
+              '\n\nyou to be apart of something great. Re-marry down here and start you a new family. You are 30 years young.'+
+              '\n\nYou don\'t have to fear of a crashing economy, or fear how you are going to feed your family, or fear anything'+
+              '\n\nthat the people of that old world had to fear. Father, my offer stands for you to stay here....what do you say?'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('You: *tears fall down your eyes* Shaun I hate it so much that you\'re so right. I just can\'t accept it.'+
+              '\n\n*starts crying* Why does everything have to be the way it is? I\'m honestly a crybaby of a grown man:'+
+              '\n\nI\'m sorry. If it\'s not one thing it\'s another. I appreciate this place. I really do. But at the same'+
+              '\n\ntime I can\'t live here knowing that we are ignoring and even harming suffering people and things for the'+
+              '\n\nsake of humanity\'s perservation. But on the same token, I agree with you that it\'s pointless trying to'+
+              '\n\nmake things better. Throughtout history millions have tried to make things better. And things only kept'+
+              '\n\ngetting progressively worse. And here we are today: we have a post-apocalytic wasteland not just here in'+
+              '\n\nthe CommonWealth, but world-wide. Shaun.....I don\'t know what to choose.'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('Father (Shaun): I won\'t be inconspicuous about this. I will do everything I can to try to get you'+
+              '\n\nto stay down here and rebuild your life: a life better than you previously had. But I also of'+
+              '\n\ncourse am not going to hold you against your will. In the meantime....let\'s just.....talk'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('You: *sad smile* Sure son.....let\'s just talk....'+
+              '\n\n(SYSTEM: Press enter to continue.)')
+        print()
+        print()
+        input('SYSTEM: THE END! GAME OVER! CONGRATULATIONS!'+
+              '\n\n(SYSTEM: YOU BEAT THE GAME! PRESS ENTER TO CONTINUE!')                   
 main()
+
