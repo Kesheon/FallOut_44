@@ -1,4 +1,4 @@
-            
+        
 import characterinventory
 import characterinventory2
 import characterinventory3
@@ -143,7 +143,7 @@ FIRST_AID3 = 'First Aid Kit' # this variable goes in both the character_inventor
 
 # Variable that hold's that players money
 #----------------------------------------
-MONEY = 6000
+MONEY = 0
 
 
 
@@ -173,12 +173,6 @@ DEATH_CLAW_MEAT_VALUE = 500
 MAFIA_MONEY_VALUE = 6000
 
 BOUNTY_POSTER_VALUE = 2000
-
-
-
-# File that the program saves to
-#-------------------------------
-FILENAME = 'FallOut44.txt'
 
 def main():
     
@@ -421,13 +415,17 @@ def main():
         if choice == INVENTORY:
             print('Your Inventory')
             print('----------------------------')
-            print(character_inventory)
+            for x in range(len(character_inventory)):
+                print(character_inventory[x])
             print()
-            print(character_inventory2)
+            for x in range(len(character_inventory2)):
+                print(character_inventory2[x])
             print()
-            print(character_inventory3)
+            for x in range(len(character_inventory3)):
+                print(character_inventory3[x])
             print()
-            print(character_inventory4)
+            for x in range(len(character_inventory4)):
+                print(character_inventory4[x])
             print()
             print('Money:\t$',format(MONEY, ',.2f'), sep='')
             print()
@@ -452,8 +450,8 @@ def main():
                                         prevent_exploit, prevent_exploit2,
                                         prevent_exploit3)
         elif choice == FORT_HAGEN:
-            Fort_Hagen = fort_hagen(character_inventory3, character_inventory4,
-                                    quest_inventory)
+            Fort_Hagen = fort_hagen(character_inventory2, character_inventory3,
+                                    character_inventory4, quest_inventory)
 
         elif choice == INSTITUTE:
             Institute = institute(character_inventory4)
@@ -1034,9 +1032,6 @@ def concord(character_inventory, character_inventory2,
                         print()
                         if FIRST_AID1 in character_inventory2:
                             character_inventory2.remove(FIRST_AID1)
-                    else:
-                        input('SYSTEM: You have already killed the "Raiders" that were here. You'+
-                          '\n\nwalk by their corpses. Press enter to continue. ')
                         print()
                         print()
                     print('Inside of the Muesuem of Freedom')
@@ -1180,7 +1175,7 @@ def concord(character_inventory, character_inventory2,
                               '\n\nMuesuem of Freedom\'s public computer'+
                               '\n\npassword. Or search around the muesuem'+
                               '\n\nto see if you can find it. Press enter'+
-                              '\n\n to continue. ')
+                              '\n\nto continue. ')
                     else:
                         choice4 = 0
                         OPEN_SECURITY_GATE = 1
@@ -2103,7 +2098,7 @@ def diamond_city(character_inventory, character_inventory2,
     global DEATHCLAW_MEAT
     global MAFIA_MONEY_VALUE
     global BOUNTY_POSTER_VALUE
-    if ARMOR2 or ARMOR3 in character_inventory3:
+    if ARMOR2 in character_inventory3 or ARMOR3 in character_inventory3:
         if WEAPON2 in character_inventory2:
             if AMMO2 in character_inventory3:
                 if BOTTLED_WATER in character_inventory:
@@ -3687,6 +3682,7 @@ def diamond_city(character_inventory, character_inventory2,
                                                                          '\nfor $1500?'+
                                                                          '\nSYSTEM: Enter yes to buy or no to quit (use lowercase): '))
                                                 print()
+                                                print()
                                                 if are_you_sure == str('yes'):
                                                     if MONEY < SNIPER_VALUE:
                                                         input('Diamond City Merchant: Come back when ya have'+
@@ -3718,6 +3714,7 @@ def diamond_city(character_inventory, character_inventory2,
                                                                           '\nSYSTEM: Enter yes to buy, or no to quit'+
                                                                           '\n(use lowercase): '))
                                                 print()
+                                                print()
                                                 if are_you_sure2 == str('yes'):
                                                     if MONEY < MINIGUN_VALUE:
                                                         input('Diamond City Merchant: Come back when ya have'+
@@ -3747,6 +3744,7 @@ def diamond_city(character_inventory, character_inventory2,
                                                                           '\nwant to buy a First Aid Kit for $100?'+
                                                                           '\nSYSTEM: Enter yes to buy, or no to quit'+
                                                                           '\n(use lowercase): '))
+                                                print()
                                                 print()
                                                 if are_you_sure3 == str('yes'):
                                                     if MONEY < FIRSTAIDKIT3_VALUE:
@@ -3903,54 +3901,55 @@ def diamond_city(character_inventory, character_inventory2,
                                                                     input('Diamond City Merchant: Ok friend. Maybe some other time.'+
                                                                           '\nBut I\'m sure ya gonna be back. *smiles*'+
                                                                           '\n(SYSTEM: Press enter to continue.)')
-                                                                
-                                                            input('Diamond City Merchant: And son, I\'ve noticed ya'+
-                                                                  '\nsince you came inta the city. I couldn\'t help'+
-                                                                  '\nbut notice the guy wearing military armor while'+
-                                                                  '\neveryone else is wearing their everyday clothin\'.'+
-                                                                  '\nHAHAHAHA!! I respect ya for knowing how to operate'+
-                                                                  '\npower armor. For that I\'m willing to cut the price'+
-                                                                  '\nof this T-60 from $6000 to $3000. But I\'ll only do'+
-                                                                  '\nit if ya give me that T-45 Power Armor and the fusion'+
-                                                                  '\ncore that\'s in the back of it. I know the fusion core\'s'+
-                                                                  '\nenergy is probably low, but I\'m willing to do a trade-in'+
-                                                                  '\nof sorts with ya.'+
-                                                                  '\n(SYSTEM: Press enter to continue.) ')
-                                                            print()
-                                                            print()
 
-                                                            #are_you_sure5 confirms the player's purchase
-                                                            are_you_sure5 = str(input('Diamond City Merchant: What\'d ya say'+
-                                                                                      '\nson, willing-duh make this deal?'+
-                                                                                      '\nSYSTEM: Enter yes to buy or enter no to quit (use'+
-                                                                                      '\nlowercase): '))
-                                                            print()
-                                                            if are_you_sure5 == str('yes'):
-                                                                if MONEY < ARMOR3_VALUE:
-                                                                    input('Diamond City Merchant: Ah, that\'s great son, but come back when ya'+
-                                                                          '\nhave $3000. I promise I\'ll reserve it for ya!'+
-                                                                          '\n(SYSTEM:Press enter to continue.) ')
-                                                                    print()
-                                                                    print()
-
-                                                                else:
-                                                                    if ARMOR3 not in prevent_exploit:
-                                                                        prevent_exploit.append(ARMOR3)
-                                                                        character_inventory3.append(ARMOR3)
-                                                                        character_inventory3.remove(ARMOR2)
-                                                                        character_inventory2.remove(FUSION_CORE1)
-                                                                        MONEY -= ARMOR3_VALUE
-                                                                        input('Diamond City Merchant: Nice doin\' business with ya son!'+
-                                                                              '\nAnd it was nice getting to know one of my customers a'+
-                                                                              '\nlil bit more well.'+
-                                                                              '\n(SYSTEM: Press enter to continue.) ')
-                                                                    else:
-                                                                        input('SYSTEM: You\'ve already bought the T-60 Power Armor.'+
-                                                                              '\nPress enter to continue.)')
                                                             else:
-                                                                input('Diamond City Merchant: Ok friend. Maybe some other time.'+
-                                                                      '\nBut I\'m sure ya gonna be back. *smiles*'+
-                                                                      '\n(SYSTEM: Press enter to continue.)')
+                                                                input('Diamond City Merchant: And son, I\'ve noticed ya'+
+                                                                      '\nsince you came inta the city. I couldn\'t help'+
+                                                                      '\nbut notice the guy wearing military armor while'+
+                                                                      '\neveryone else is wearing their everyday clothin\'.'+
+                                                                      '\nHAHAHAHA!! I respect ya for knowing how to operate'+
+                                                                      '\npower armor. For that I\'m willing to cut the price'+
+                                                                      '\nof this T-60 from $6000 to $3000. But I\'ll only do'+
+                                                                      '\nit if ya give me that T-45 Power Armor and the fusion'+
+                                                                      '\ncore that\'s in the back of it. I know the fusion core\'s'+
+                                                                      '\nenergy is probably low, but I\'m willing to do a trade-in'+
+                                                                      '\nof sorts with ya.'+
+                                                                      '\n(SYSTEM: Press enter to continue.) ')
+                                                                print()
+                                                                print()
+
+                                                                #are_you_sure5 confirms the player's purchase
+                                                                are_you_sure5 = str(input('Diamond City Merchant: What\'d ya say'+
+                                                                                          '\nson, willing-duh make this deal?'+
+                                                                                          '\nSYSTEM: Enter yes to buy or enter no to quit (use'+
+                                                                                          '\nlowercase): '))
+                                                                print()
+                                                                if are_you_sure5 == str('yes'):
+                                                                    if MONEY < ARMOR3_VALUE:
+                                                                        input('Diamond City Merchant: Ah, that\'s great son, but come back when ya'+
+                                                                              '\nhave $3000. I promise I\'ll reserve it for ya!'+
+                                                                              '\n(SYSTEM:Press enter to continue.) ')
+                                                                        print()
+                                                                        print()
+
+                                                                    else:
+                                                                        if ARMOR3 not in prevent_exploit:
+                                                                            prevent_exploit.append(ARMOR3)
+                                                                            character_inventory3.append(ARMOR3)
+                                                                            character_inventory3.remove(ARMOR2)
+                                                                            character_inventory2.remove(FUSION_CORE1)
+                                                                            MONEY -= ARMOR3_VALUE
+                                                                            input('Diamond City Merchant: Nice doin\' business with ya son!'+
+                                                                                  '\nAnd it was nice getting to know one of my customers a'+
+                                                                                  '\nlil bit more well.'+
+                                                                                  '\n(SYSTEM: Press enter to continue.) ')
+                                                                        else:
+                                                                            input('SYSTEM: You\'ve already bought the T-60 Power Armor.'+
+                                                                                  '\nPress enter to continue.)')
+                                                                else:
+                                                                    input('Diamond City Merchant: Ok friend. Maybe some other time.'+
+                                                                          '\nBut I\'m sure ya gonna be back. *smiles*'+
+                                                                          '\n(SYSTEM: Press enter to continue.)')
                                                                 
                                                     else:
                                                         #are_you_sure6 confirms the player's purchase
@@ -4053,7 +4052,7 @@ def diamond_city(character_inventory, character_inventory2,
                                                     print('1. Nora\'s Wedding Ring (Your Wife\'s wedding ring) ($1250)'+
                                                           '\n2. Your Wedding Ring ($1250)'+
                                                           '\n3. DeathClaw Meat ($500?)'+
-                                                          '\n4 Quit')
+                                                          '\n4. Quit')
                                                     print()
                                                     choice5 = int(input('Enter your choice: '))
                                                     print()
@@ -4201,7 +4200,7 @@ def diamond_city(character_inventory, character_inventory2,
                                           '\n\nMafia. We\'re wiping them\'s off\'s the maps if you speak my language. You\'s gonna be the'+
                                           '\n\none to do it. Should you\'s refuse: you\'s will die by me. You\'s might not right away. But'+
                                           '\n\nI will find you\'s. And that, "high concentrated" laser sniper that\'s aiming at you\'s now: will'+
-                                          '\n\nbe the cause of your death. Nobody can hide from the Diamond City Mafia.'+
+                                          '\n\nbe the cause of you\'s death. Nobody can hide from the Diamond City Mafia.'+
                                           '\n\n(SYSTEM: Press enter to continue.)')
                                     print()
                                     print()
@@ -4209,7 +4208,7 @@ def diamond_city(character_inventory, character_inventory2,
                                           '\n\n(SYSTEM: Press enter to continue.)')
                                     print()
                                     print()
-                                    input('Father Smitty: Have you\'s seen yourself in the mirror son? You\'s wearing military-grade steel armor:'+
+                                    input('Father Smitty: Have you\'s seen yaself in the mirror son? You\'s wearing military-grade steel armor:'+
                                           '\n\nPower Armor. Not many lads can work those these days. So, I am glad you\'s came to this city to'+
                                           '\n\nvolunteer you\'s services to the Father. The deal happens at midnight tonight. You\'s gonna go'+
                                           '\n\nthere with one of my sons here and about 82 more of my sons: we have a lotta drinks to "sell".'+
@@ -4512,13 +4511,13 @@ def diamond_city(character_inventory, character_inventory2,
               '\n\nPress enter to continue. ')
 
 
-def fort_hagen(character_inventory3, character_inventory4,
-               quest_inventory):
+def fort_hagen(character_inventory2, character_inventory3,
+               character_inventory4, quest_inventory):
     if TALKED_TO_NICK in quest_inventory:
-        if WEAPON3 and WEAPON4 in character_inventory3:
+        if PURSUE_KELLOG not in quest_inventory:
             if ARMOR3 in character_inventory3:
                 if FIRST_AID3 in character_inventory4:
-                    if PURSUE_KELLOG not in quest_inventory:
+                    if WEAPON3 in character_inventory3 and WEAPON4 in character_inventory3:
                         quest_inventory.append(PURSUE_KELLOG)
                         input('SYSTEM: You travel to Fort Hagen in Pursuit of Kellog the synth Institute Courser.'+
                               '\n\nYou are after him because he can lead you to your kidnapped son, Shaun:'+
@@ -5237,14 +5236,23 @@ def fort_hagen(character_inventory3, character_inventory4,
                         input('SYSTEM: Teleporting remote has been added to your inventory.'+
                               '\n\n(Press enter to continue.)')
 
+                    else:
+                        input('SYSTEM: You need stronger weapons before'+
+                              '\n\ncoming here.'+
+                              '\n\n(Press enter to continue.)')
+                        
+
+                else:
+                    input('SYSTEM: You need to buy a First Aid Kit before coming here.'+
+                          '\n\n(Press enter to continue.)')
+
             else:
                 input('SYSTEM: You need stronger Power Armor'+
                       '\n\nbefore coming here.'+
                       '\n\n(Press enter to continue.)')
 
         else:
-            input('SYSTEM: You need stronger weapons before'+
-                  '\n\ncoming here.'+
+            input('SYSTEM: You have already went to Fort Hagen and defeated Kellog.'+
                   '\n\n(Press enter to continue.)')
 
     else:
@@ -5629,6 +5637,10 @@ def institute(character_inventory4):
         print()
         print()
         input('SYSTEM: THE END! GAME OVER! CONGRATULATIONS!'+
-              '\n\n(SYSTEM: YOU BEAT THE GAME! PRESS ENTER TO CONTINUE!')                   
-main()
+              '\n\nSYSTEM: YOU BEAT THE GAME! PRESS ENTER TO CONTINUE! ')
 
+    else:
+        input('SYSTEM: You need to complete more of the story before coming here.'+
+              '\n\n(Press enter to continue.)')
+        
+main()
