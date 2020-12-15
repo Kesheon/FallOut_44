@@ -1,9 +1,9 @@
-        
+    
 import characterinventory
 import characterinventory2
 import characterinventory3
 import characterinventory4
-import pickle
+import sys
 
 INVENTORY = 1
 SANCTUARY_HILLS = 2
@@ -370,7 +370,7 @@ def main():
     #character_inventory4 is a fourth list that stores the players collected items
     # It is an object importred from the characterinventory4 file
     #-----------------------------------------------------------------------------
-    character_inventory4 = []
+    character_inventory4 = [TELEPORT_REMOTE]
     inventory4 = characterinventory4.CharacterInventory4(character_inventory4)
 
     
@@ -412,7 +412,7 @@ def main():
     choice = 0 
     while choice != QUIT:
         choice = get_menu_choice()
-        if choice == INVENTORY:
+        if choice == INVENTORY: # Character's inventory
             print('Your Inventory')
             print('----------------------------')
             for x in range(len(character_inventory)):
@@ -430,30 +430,42 @@ def main():
             print('Money:\t$',format(MONEY, ',.2f'), sep='')
             print()
             input('Press enter to continue. ')
-        elif choice == SANCTUARY_HILLS:
+        elif choice == SANCTUARY_HILLS: # Sanctuary Hills is a post apocalyptic neighborhood with loot-able
+                                        # and nostalgic items the player can take.
             Sanctuary_Hills = sanctuary_hills(character_inventory, quest_inventory,
                                               think_inventory, prevent_exploit)
-        elif choice == REDROCKET_TRUCKSTOP:
+        elif choice == REDROCKET_TRUCKSTOP: # Red Rocket Truck Stop is a run down/ gas station in
+                                            # a post-apocalytpic world. The player can collect loot here.
             RedRocketTruckStop = redrocket_truckstop(character_inventory, character_inventory2,
                                                      quest_inventory, think_inventory,
                                                      prevent_exploit)
-        elif choice == CONCORD:
+        elif choice == CONCORD: # Concord is a small town with a muesuem that has many loot-able items.
+                                # It also has enemies outside of the muesuem and a terryfying creature
+                                # in the sewer.
             ConCord = concord(character_inventory, character_inventory2,
                               character_inventory3, quest_inventory,
                               think_inventory, prevent_exploit,
                               prevent_exploit2)
 
-        elif choice == DIAMOND_CITY:
+        elif choice == DIAMOND_CITY: # Diamond City is a post-apocalyptic city: inside of an old baseball stadium.
+                                     # The main story can be continued here, side quest can be done, and there is
+                                     # also a merchant the player can buy and sell from.
             Diamond_City = diamond_city(character_inventory, character_inventory2,
                                         character_inventory3, character_inventory4,
                                         quest_inventory, think_inventory,
                                         prevent_exploit, prevent_exploit2,
                                         prevent_exploit3)
-        elif choice == FORT_HAGEN:
+        elif choice == FORT_HAGEN: # Fort Hagen is where you confront the "person" that murdered your wife
+                                   # and kidnapped your son. He will "help" you get to your kidnapped son:
+                                   # inside of the Institute.
             Fort_Hagen = fort_hagen(character_inventory2, character_inventory3,
                                     character_inventory4, quest_inventory)
 
-        elif choice == INSTITUTE:
+        elif choice == INSTITUTE: # The Institute is an underground utopia of mostly scientist that sends their robots (that look like humans)
+                                  # above ground into the dystopian, post-apocalyptic, wasteland doing questionable things to others.
+                                  # But it turns out your son, Shaun is surprisingly the one running the Institute. He tries
+                                  # to explain everything that has happened to you up to this point and tries to convince you to stay with
+                                  # him in the Institute.
             Institute = institute(character_inventory4)
             
 def get_menu_choice():
@@ -1133,7 +1145,7 @@ def concord(character_inventory, character_inventory2,
                           '\n\nthat. No spaces. Then you can remove the fusion core behind this computer\'s'+
                           '\n\nsecurity gate and you will have removed this place\'s source of power permanently.'+
                           '\n\nThen you all can go find a new job if you so choose.'+
-                          '\n\n-"TJ"'+
+                          '\n\n-"Anonymous"'+
                           '\nAugust 21, 2077')
                     print()
                     input('Press enter to continue. ')
@@ -5263,7 +5275,7 @@ def fort_hagen(character_inventory2, character_inventory3,
 def institute(character_inventory4):
     if TELEPORT_REMOTE in character_inventory4:
         input('SYSTEM: You turn on the teleporting remote that Nick Valentine'+
-              '\n\nmade for you. Besides the power button. All you have to'+
+              '\n\nmade for you. Besides the power button: all you have to'+
               '\n\ndo is press the big red button in the middle. Kellog\'s'+
               '\n\ncomputer chip that was inside of his head is now inisde'+
               '\n\nof the remote, so you can teleport into the Institute just'+
@@ -5406,7 +5418,7 @@ def institute(character_inventory4):
               '\n\n(SYSTEM: Press enter to continue.)')
         print()
         print()
-        input('You: Shaun.....it\'s me.....I\'m......I\'m you dad.'+
+        input('You: Shaun.....it\'s me.....I\'m......I\'m your dad.'+
               '\n\n(SYSTEM: Press enter to continue.)')
         print()
         print()
@@ -5434,7 +5446,7 @@ def institute(character_inventory4):
         print()
         print()
         input('SYSTEM: Some nearby sliding doors open and an old man'+
-              '\n\nwalks put of them. He has on a white lab coat with'+
+              '\n\nwalks out of them. He has on a white lab coat with'+
               '\n\nbrown dress pants and brown dress shoes.'+
               '\n\n(Press enter to continue.)')
         print()
@@ -5443,7 +5455,7 @@ def institute(character_inventory4):
               '\n\n(SYSTEM: Press enter to continue.)')
         print()
         print()
-        input('SYSTEM: when the old man says those words: your son Shaun'+
+        input('SYSTEM: When the old man says those words: your son Shaun'+
               '\n\nappears to act like he "powered off". He is standing'+
               '\n\nthere with his arms dangling down along with his head.'+
               '\n\nYou wonder what in the world is going on.'+
@@ -5470,7 +5482,7 @@ def institute(character_inventory4):
         print()
         input('Father: I know...I know you have gone to such great lengths to find'+
               '\n\nhim. But I need you to realize this....situation....is far more'+
-              '\n\nxomplicated than you realize.'+
+              '\n\ncomplicated than you realize.'+
               '\n\n(SYSTEM: Press enter to continue.)')
         print()
         print()
@@ -5493,7 +5505,7 @@ def institute(character_inventory4):
         input('Father (Shaun): I know this is a lot to take in. Hear me out. In the vault you had'+
               '\n\nno concept of the passage of time. You were released from your cryogenic'+
               '\n\npod and went searching for the son you had lost. But you had no idea how'+
-              '\n\nhow old you son was. You assumed that I was still an infant. And moments'+
+              '\n\nhow old your son was. You assumed that I was still an infant. And moments'+
               '\n\nago you thought that I was a 10 year old boy.'+
               '\n\n(SYSTEM: Press enter to continue.)')
         print()
@@ -5527,7 +5539,7 @@ def institute(character_inventory4):
         input('Father (Shaun): I\'m afraid I have little experience with loving others. Please try'+
               '\n\nto understand my situation. I have been raised down here in the Institute as a'+
               '\n\nman of science. I have lived my entire life as a man of science alongside many'+
-              '\n\nother scientist down in here in the institute. Try to understand that I have not'+
+              '\n\nother scientist down in here in the Institute. Try to understand that I have not'+
               '\n\neven a single memory of my mother. I was but an infant. Had the world not become'+
               '\n\nwhat it is now: I am more than sure I would have grew up attached to her hip. I am'+
               '\n\nmore than sure I would have loved my mother so deeply. But, here we are in this'+
@@ -5568,7 +5580,7 @@ def institute(character_inventory4):
         print()
         input('You: Shaun...you really are my son. I do hate this world. It never changes. I can say that'+
               '\n\nhaving been around so long. But none of this justifies the Institute kidnapping people,'+
-              'n\nkilling them, and replacing them with a synth. Sure....this is heaven on earth down here.'+
+              '\n\nkilling them, and replacing them with a synth. Sure....this is heaven on earth down here.'+
               '\n\nBut it does not justify you guys treating the people up there like lab rats. Is that all'+
               '\n\nthe CommonWealth is to you Institute people? A big experiment? Sure, the Institute benefits'+
               '\n\nfrom these experiemtns and it in the long-term makes you guys lives better, but at the expense'+
@@ -5636,8 +5648,8 @@ def institute(character_inventory4):
               '\n\n(SYSTEM: Press enter to continue.)')
         print()
         print()
-        input('SYSTEM: THE END! GAME OVER! CONGRATULATIONS!'+
-              '\n\nSYSTEM: YOU BEAT THE GAME! PRESS ENTER TO CONTINUE! ')
+        print('SYSTEM: Congrats! Game Over!')
+        sys.exit(0)
 
     else:
         input('SYSTEM: You need to complete more of the story before coming here.'+
