@@ -1,6 +1,9 @@
 # FallOut_44 
 
 # FallOut44 is a text-based adventure game based off of the 2015 triple A game: Fallout 4.
+# To beat the game: collect items, defeat enemies, discover different dialogue options,
+# buy and sell, and last but not least: enjoy the main story and short stories as you play.
+
 
 # It starts out in the year 2077. Your name is Nate Mcpherson. You served in the Special
 
