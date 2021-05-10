@@ -9,7 +9,7 @@
 
 # Forces from 2073-2076 during world war 3 for the
 
-# USA. You operated a mechanical suit called, "Power Armor": Iron Man without lasers or flying.
+# USA. You operated a mechanical suit called, "Power Armor" (Iron Man without lasers or flying).
 
 # As the war continued on: you had retired and settled down in the northeastern part
 
