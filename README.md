@@ -27,7 +27,7 @@
 
 # happening world wide. World war 3 had reached it's climax. Fortunately, you signed up
 
-# for a program named Vault Tec earlier that morning: your wife insisted you sign up for
+# for a program named Vault Tec earlier that morning: your wife had insisted you sign up for
 
 # it. Vault Tec, for years, had been selling spots to people to live in an underground
 
