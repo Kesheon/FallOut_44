@@ -5,11 +5,17 @@ To beat the game: collect items, defeat enemies, discover different dialogue opt
 buy and sell, and last but not least: enjoy the main story and side stories as you play.
 
 It starts out in the year 2077. Your name is Nate Mcpherson. You served in the Special
+
 Forces from 2073-2076 during world war 3 for the USA. You operated a mechanical suit called,
+
 "Power Armor" (Iron Man without lasers or flying). As the war continued on: you had retired
+
 and settled down in the northeastern part of America with your family. You lived in the
-CommonWealth/Massachusetts: in a neighborhood called, "Sanctuary Hills". 
-Your wife is Nora Mcpherson. Together you two had an infant son whom the two of you 
+
+CommonWealth/Massachusetts: in a neighborhood called, "Sanctuary Hills".
+
+Your wife is Nora Mcpherson. Together you two had an infant son whom the two of you
+
 named, Shaun. The date was October 23, 2077. You, a retired soldier, and your wife, a
 
 # lawyer: were going to go to the park with your infant son, Shaun. However, a disturbing
