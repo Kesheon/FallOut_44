@@ -370,7 +370,7 @@ def main():
     #character_inventory4 is a fourth list that stores the players collected items
     # It is an object importred from the characterinventory4 file
     #-----------------------------------------------------------------------------
-    character_inventory4 = [TELEPORT_REMOTE]
+    character_inventory4 = []
     inventory4 = characterinventory4.CharacterInventory4(character_inventory4)
 
     
